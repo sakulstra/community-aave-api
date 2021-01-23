@@ -1,0 +1,145 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/home/lukass/Documents/aave-api/contracts/IAaveProtocolDataProvider.sol": {
+      "lastModificationDate": 1610889173617,
+      "contentHash": "75abf32046d586255608fb08f15e4c89",
+      "sourceName": "contracts/IAaveProtocolDataProvider.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "istanbul",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "0.6.8"
+      ],
+      "artifacts": [
+        "IAaveProtocolDataProvider"
+      ]
+    },
+    "/home/lukass/Documents/aave-api/contracts/IERC20Detailed.sol": {
+      "lastModificationDate": 1610889173617,
+      "contentHash": "6323e477f82de352aae70f9783c9c891",
+      "sourceName": "contracts/IERC20Detailed.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "istanbul",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.6.8"
+      ],
+      "artifacts": [
+        "IERC20Detailed"
+      ]
+    },
+    "/home/lukass/Documents/aave-api/contracts/IPoolDataProviderV1.sol": {
+      "lastModificationDate": 1610889173617,
+      "contentHash": "c2c4fb124978c8c18cd833c82ebd32f1",
+      "sourceName": "contracts/IPoolDataProviderV1.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "istanbul",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.6.8"
+      ],
+      "artifacts": [
+        "IPoolDataProvider"
+      ]
+    },
+    "/home/lukass/Documents/aave-api/contracts/IUiPoolDataProvider.sol": {
+      "lastModificationDate": 1610889173621,
+      "contentHash": "2da8ea6b1e61cc26c40f358ac8c1c084",
+      "sourceName": "contracts/IUiPoolDataProvider.sol",
+      "solcConfig": {
+        "version": "0.6.8",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "istanbul",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "0.6.8"
+      ],
+      "artifacts": [
+        "IUiPoolDataProvider"
+      ]
+    }
+  }
+}
