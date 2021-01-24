@@ -1,0 +1,27 @@
+# What i initially wanted to do here is to call the api every minute to cache an answer
+# This doesn't work atm though as github does not guarantee scheduled runs https://upptime.js.org/blog/2021/01/22/github-actions-schedule-not-working/
+# As a sorta hackish workaround this cron *tries* to run every 10min
+# Whenever it does it runs for 10 minutes and pings the api once every minute :shrug:, sorry @github
+name: ping_cron
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        endpoint: ["https://aave.com"]
+        delay: [0, 60, 120, 180, 240, 300, 360, 420, 480, 540]
+    steps:
+      - name: sleep
+        run: |
+          sleep ${{ matrix.delay }}
+
+      - name: ping
+        run: |
+          curl -Is ${{ matrix.endpoint }}
