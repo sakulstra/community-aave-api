@@ -8,7 +8,9 @@ export default function Home() {
         <title>Aave api</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      Welcome to the inofficial aave api! (more to come soon)
+      Welcome to the unofficial Aave api!
+      <br />
+      Watch this space - soon there will be docs and stuff.
     </div>
   );
 }

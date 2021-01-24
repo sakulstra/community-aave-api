@@ -33,3 +33,12 @@ Ideas:
 - fees
 - liquidations
 - markets data
+
+## Used tools
+
+I want this thing to be cheap and easy to extend.
+Therefor I use a serverless architecture based on:
+
+- github actions ci for refreshing the cache
+- mongodb at the moment as atlas provides a generous free tier (might migrate to fauna, as mongodb is poor on serverless :sob:)
+- vercel for hosting & cdn as I already pay for it, and it has a flat fee :shrug:

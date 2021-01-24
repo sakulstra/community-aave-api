@@ -4,7 +4,6 @@
  */
 import { Db, MongoClient } from "mongodb";
 
-// TODO: this is local in-mem for now as it's just a POC, we should probably use .env or similar
 const MONGODB_DB = "aave";
 const MONGODB_URI = process.env.MONGO_URI;
 
