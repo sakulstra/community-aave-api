@@ -13,6 +13,7 @@ jobs:
         id: install
         run: |
           yarn install --frozen-lockfile
+          echo "lalalalala"
 
       - id: test
         name: test
