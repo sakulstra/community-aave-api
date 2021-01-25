@@ -8,7 +8,8 @@
     "start": "next start",
     "db:mem": "node local-mongo",
     "db:mem:persist": "DB_PATH=database node local-mongo",
-    "codegen": "graphql-codegen --config graphql-codegen.yml && SKIP_LOAD=true hardhat compile"
+    "codegen": "graphql-codegen --config graphql-codegen.yml && SKIP_LOAD=true hardhat compile",
+    "release": "standard-version"
   },
   "dependencies": {
     "@aave/protocol-js": "^2.3.0",
@@ -40,6 +41,7 @@
     "lint-staged": "^10.5.3",
     "mongodb-memory-server": "^6.9.2",
     "prettier": "2.2.1",
+    "standard-version": "^9.1.0",
     "ts-generator": "^0.1.1",
     "typechain": "^4.0.1",
     "typescript": "^4.1.2"
