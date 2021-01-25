@@ -4,7 +4,7 @@
  */
 import { Db, MongoClient } from "mongodb";
 
-const MONGODB_DB = "aave";
+const MONGODB_DB = "aave-community-api";
 const MONGODB_URI = process.env.MONGO_URI;
 
 type Cached = { conn: { client: MongoClient; db: Db }; promise: Promise<any> };

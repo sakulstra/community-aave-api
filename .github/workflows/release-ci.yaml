@@ -1,0 +1,32 @@
+name: ci
+
+on:
+  push:
+jobs:
+  release:
+    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: install
+        id: install
+        run: |
+          yarn install --frozen-lockfile
+
+      - id: test
+        name: test
+        run: |
+          yarn test
+
+      - id: build
+        name: build
+        run: |
+          yarn build
+
+      - id: release
+        name: release
+        if: github.ref == 'refs/heads/master'
+        run: |
+          yarn release --message "chore(release): Release v%s :tada: [ci skip]"
+          git push --follow-tags origin master

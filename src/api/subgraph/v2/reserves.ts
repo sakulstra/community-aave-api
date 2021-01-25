@@ -1,54 +1,51 @@
-import { gql } from 'graphql-request';
+import { gql } from "graphql-request";
 
-export const RESERVES_QUERY = gql`
-  query Reserves($pool: String) {
-    reserves(where: { pool: $pool }) {
+const RESERVE_FRAGMENT = gql`
+  fragment ReserveItem on Reserve {
+    id
+    symbol
+    decimals
+    totalLiquidity
+    liquidityRate
+    variableBorrowRate
+    stableBorrowRate
+    stableBorrowRateEnabled
+    availableLiquidity
+    lastUpdateTimestamp
+    liquidityIndex
+    variableBorrowIndex
+    lifetimeFlashLoans
+    lifetimeLiquidated
+    lifetimeFlashloanProtocolFee
+    lifetimeFeeCollected
+    totalScaledVariableDebt
+    totalPrincipalStableDebt
+    averageStableRate
+    stableDebtLastUpdateTimestamp
+    flashLoanHistory(orderBy: amount, orderDirection: desc, first: 1) {
       id
-      underlyingAsset
-      name
-      symbol
-      decimals
-      isActive
-      usageAsCollateralEnabled
-      borrowingEnabled
-      stableBorrowRateEnabled
-      baseLTVasCollateral
-      liquidityIndex
-      reserveLiquidationThreshold
-      totalLiquidityAsCollateral
-      variableBorrowIndex
-      averageStableRate
-      aToken {
-        id
-      }
-      vToken {
-        id
-      }
-      sToken {
-        id
-      }
-      availableLiquidity
-      stableBorrowRate
-      liquidityRate
-      totalPrincipalStableDebt
-      totalScaledVariableDebt
-      totalLiquidity
-      utilizationRate
-      reserveLiquidationBonus
-      variableBorrowRate
-      price {
-        priceInEth
-      }
-      lastUpdateTimestamp
-      isFrozen
-      reserveFactor
-      optimalUtilisationRate
-      stableRateSlope1
-      stableRateSlope2
-      stableDebtLastUpdateTimestamp
-      baseVariableBorrowRate
-      variableRateSlope1
-      variableRateSlope2
+      amount
+    }
+    price {
+      id
+      priceInEth
+    }
+    pool {
+      id
     }
   }
+`;
+
+export const RESERVES = gql`
+  query ReservesQuery {
+    priceOracle(id: 1) {
+      id
+      usdPriceEth
+      lastUpdateTimestamp
+    }
+    reserves(orderBy: liquidityRate, orderDirection: desc) {
+      ...ReserveItem
+    }
+  }
+  ${RESERVE_FRAGMENT}
 `;

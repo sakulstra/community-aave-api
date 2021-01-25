@@ -5792,111 +5792,177 @@ export enum _SubgraphErrorPolicy_ {
   Deny = 'deny',
 }
 
-export type ReservesQueryVariables = Exact<{
-  pool?: Maybe<Scalars['String']>;
+export type ReserveHistoryDataFragment = {
+  __typename?: 'ReserveParamsHistoryItem';
+} & Pick<
+  ReserveParamsHistoryItem,
+  | 'id'
+  | 'timestamp'
+  | 'totalLiquidity'
+  | 'availableLiquidity'
+  | 'liquidityIndex'
+  | 'variableBorrowIndex'
+  | 'priceInEth'
+  | 'priceInUsd'
+  | 'totalScaledVariableDebt'
+  | 'totalPrincipalStableDebt'
+  | 'averageStableBorrowRate'
+>;
+
+export type ReserveParamsHistoryQueryVariables = Exact<{
+  reference: Scalars['Int'];
+  reserve: Scalars['String'];
 }>;
 
-export type ReservesQuery = { __typename?: 'Query' } & {
-  reserves: Array<
-    { __typename?: 'Reserve' } & Pick<
-      Reserve,
-      | 'id'
-      | 'underlyingAsset'
-      | 'name'
-      | 'symbol'
-      | 'decimals'
-      | 'isActive'
-      | 'usageAsCollateralEnabled'
-      | 'borrowingEnabled'
-      | 'stableBorrowRateEnabled'
-      | 'baseLTVasCollateral'
-      | 'liquidityIndex'
-      | 'reserveLiquidationThreshold'
-      | 'totalLiquidityAsCollateral'
-      | 'variableBorrowIndex'
-      | 'averageStableRate'
-      | 'availableLiquidity'
-      | 'stableBorrowRate'
-      | 'liquidityRate'
-      | 'totalPrincipalStableDebt'
-      | 'totalScaledVariableDebt'
-      | 'totalLiquidity'
-      | 'utilizationRate'
-      | 'reserveLiquidationBonus'
-      | 'variableBorrowRate'
-      | 'lastUpdateTimestamp'
-      | 'isFrozen'
-      | 'reserveFactor'
-      | 'optimalUtilisationRate'
-      | 'stableRateSlope1'
-      | 'stableRateSlope2'
-      | 'stableDebtLastUpdateTimestamp'
-      | 'baseVariableBorrowRate'
-      | 'variableRateSlope1'
-      | 'variableRateSlope2'
-    > & {
-        aToken: { __typename?: 'AToken' } & Pick<AToken, 'id'>;
-        vToken: { __typename?: 'VToken' } & Pick<VToken, 'id'>;
-        sToken: { __typename?: 'SToken' } & Pick<SToken, 'id'>;
-        price: { __typename?: 'PriceOracleAsset' } & Pick<
-          PriceOracleAsset,
-          'priceInEth'
-        >;
-      }
+export type ReserveParamsHistoryQuery = { __typename?: 'Query' } & {
+  reference: Array<
+    { __typename?: 'ReserveParamsHistoryItem' } & ReserveHistoryDataFragment
   >;
 };
 
-export const ReservesDocument = gql`
-  query Reserves($pool: String) {
-    reserves(where: { pool: $pool }) {
+export type FirstReserveParamsHistoryQueryVariables = Exact<{
+  reserve: Scalars['String'];
+}>;
+
+export type FirstReserveParamsHistoryQuery = { __typename?: 'Query' } & {
+  reference: Array<
+    { __typename?: 'ReserveParamsHistoryItem' } & ReserveHistoryDataFragment
+  >;
+};
+
+export type ReserveItemFragment = { __typename?: 'Reserve' } & Pick<
+  Reserve,
+  | 'id'
+  | 'symbol'
+  | 'decimals'
+  | 'totalLiquidity'
+  | 'liquidityRate'
+  | 'variableBorrowRate'
+  | 'stableBorrowRate'
+  | 'stableBorrowRateEnabled'
+  | 'availableLiquidity'
+  | 'lastUpdateTimestamp'
+  | 'liquidityIndex'
+  | 'variableBorrowIndex'
+  | 'lifetimeFlashLoans'
+  | 'lifetimeLiquidated'
+  | 'lifetimeFlashloanProtocolFee'
+  | 'lifetimeFeeCollected'
+  | 'totalScaledVariableDebt'
+  | 'totalPrincipalStableDebt'
+  | 'averageStableRate'
+  | 'stableDebtLastUpdateTimestamp'
+> & {
+    flashLoanHistory: Array<
+      { __typename?: 'FlashLoan' } & Pick<FlashLoan, 'id' | 'amount'>
+    >;
+    price: { __typename?: 'PriceOracleAsset' } & Pick<
+      PriceOracleAsset,
+      'id' | 'priceInEth'
+    >;
+    pool: { __typename?: 'Pool' } & Pick<Pool, 'id'>;
+  };
+
+export type ReservesQueryQueryVariables = Exact<{ [key: string]: never }>;
+
+export type ReservesQueryQuery = { __typename?: 'Query' } & {
+  priceOracle?: Maybe<
+    { __typename?: 'PriceOracle' } & Pick<
+      PriceOracle,
+      'id' | 'usdPriceEth' | 'lastUpdateTimestamp'
+    >
+  >;
+  reserves: Array<{ __typename?: 'Reserve' } & ReserveItemFragment>;
+};
+
+export const ReserveHistoryDataFragmentDoc = gql`
+  fragment ReserveHistoryData on ReserveParamsHistoryItem {
+    id
+    timestamp
+    totalLiquidity
+    availableLiquidity
+    liquidityIndex
+    variableBorrowIndex
+    priceInEth
+    priceInUsd
+    totalScaledVariableDebt
+    totalPrincipalStableDebt
+    averageStableBorrowRate
+  }
+`;
+export const ReserveItemFragmentDoc = gql`
+  fragment ReserveItem on Reserve {
+    id
+    symbol
+    decimals
+    totalLiquidity
+    liquidityRate
+    variableBorrowRate
+    stableBorrowRate
+    stableBorrowRateEnabled
+    availableLiquidity
+    lastUpdateTimestamp
+    liquidityIndex
+    variableBorrowIndex
+    lifetimeFlashLoans
+    lifetimeLiquidated
+    lifetimeFlashloanProtocolFee
+    lifetimeFeeCollected
+    totalScaledVariableDebt
+    totalPrincipalStableDebt
+    averageStableRate
+    stableDebtLastUpdateTimestamp
+    flashLoanHistory(orderBy: amount, orderDirection: desc, first: 1) {
       id
-      underlyingAsset
-      name
-      symbol
-      decimals
-      isActive
-      usageAsCollateralEnabled
-      borrowingEnabled
-      stableBorrowRateEnabled
-      baseLTVasCollateral
-      liquidityIndex
-      reserveLiquidationThreshold
-      totalLiquidityAsCollateral
-      variableBorrowIndex
-      averageStableRate
-      aToken {
-        id
-      }
-      vToken {
-        id
-      }
-      sToken {
-        id
-      }
-      availableLiquidity
-      stableBorrowRate
-      liquidityRate
-      totalPrincipalStableDebt
-      totalScaledVariableDebt
-      totalLiquidity
-      utilizationRate
-      reserveLiquidationBonus
-      variableBorrowRate
-      price {
-        priceInEth
-      }
-      lastUpdateTimestamp
-      isFrozen
-      reserveFactor
-      optimalUtilisationRate
-      stableRateSlope1
-      stableRateSlope2
-      stableDebtLastUpdateTimestamp
-      baseVariableBorrowRate
-      variableRateSlope1
-      variableRateSlope2
+      amount
+    }
+    price {
+      id
+      priceInEth
+    }
+    pool {
+      id
     }
   }
+`;
+export const ReserveParamsHistoryDocument = gql`
+  query ReserveParamsHistory($reference: Int!, $reserve: String!) {
+    reference: reserveParamsHistoryItems(
+      where: { timestamp_lte: $reference, reserve: $reserve }
+      first: 1
+      orderBy: timestamp
+      orderDirection: desc
+    ) {
+      ...ReserveHistoryData
+    }
+  }
+  ${ReserveHistoryDataFragmentDoc}
+`;
+export const FirstReserveParamsHistoryDocument = gql`
+  query FirstReserveParamsHistory($reserve: String!) {
+    reference: reserveParamsHistoryItems(
+      where: { reserve: $reserve }
+      first: 1
+      orderBy: timestamp
+      orderDirection: asc
+    ) {
+      ...ReserveHistoryData
+    }
+  }
+  ${ReserveHistoryDataFragmentDoc}
+`;
+export const ReservesQueryDocument = gql`
+  query ReservesQuery {
+    priceOracle(id: 1) {
+      id
+      usdPriceEth
+      lastUpdateTimestamp
+    }
+    reserves(orderBy: liquidityRate, orderDirection: desc) {
+      ...ReserveItem
+    }
+  }
+  ${ReserveItemFragmentDoc}
 `;
 
 export type SdkFunctionWrapper = <T>(action: () => Promise<T>) => Promise<T>;
@@ -5907,19 +5973,55 @@ export function getSdk(
   withWrapper: SdkFunctionWrapper = defaultWrapper
 ) {
   return {
-    Reserves(
-      variables?: ReservesQueryVariables,
+    ReserveParamsHistory(
+      variables: ReserveParamsHistoryQueryVariables,
       requestHeaders?: Headers
     ): Promise<{
-      data?: ReservesQuery | undefined;
+      data?: ReserveParamsHistoryQuery | undefined;
       extensions?: any;
       headers: Headers;
       status: number;
       errors?: GraphQLError[] | undefined;
     }> {
       return withWrapper(() =>
-        client.rawRequest<ReservesQuery>(
-          print(ReservesDocument),
+        client.rawRequest<ReserveParamsHistoryQuery>(
+          print(ReserveParamsHistoryDocument),
+          variables,
+          requestHeaders
+        )
+      );
+    },
+    FirstReserveParamsHistory(
+      variables: FirstReserveParamsHistoryQueryVariables,
+      requestHeaders?: Headers
+    ): Promise<{
+      data?: FirstReserveParamsHistoryQuery | undefined;
+      extensions?: any;
+      headers: Headers;
+      status: number;
+      errors?: GraphQLError[] | undefined;
+    }> {
+      return withWrapper(() =>
+        client.rawRequest<FirstReserveParamsHistoryQuery>(
+          print(FirstReserveParamsHistoryDocument),
+          variables,
+          requestHeaders
+        )
+      );
+    },
+    ReservesQuery(
+      variables?: ReservesQueryQueryVariables,
+      requestHeaders?: Headers
+    ): Promise<{
+      data?: ReservesQueryQuery | undefined;
+      extensions?: any;
+      headers: Headers;
+      status: number;
+      errors?: GraphQLError[] | undefined;
+    }> {
+      return withWrapper(() =>
+        client.rawRequest<ReservesQueryQuery>(
+          print(ReservesQueryDocument),
           variables,
           requestHeaders
         )

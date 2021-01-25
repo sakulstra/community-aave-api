@@ -2,12 +2,15 @@
 # yarn lockfile v1
 
 
-"@aave/protocol-js@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@aave/protocol-js/-/protocol-js-2.1.1.tgz#a4123db4778adcb78a7aa7289c0b20c455c5605d"
-  integrity sha512-TzdpsKxNAUCRw0rp7KZQ8LR6I4CTLybwIj+O5vqSspvtIb4O5/Iaow08uU/rQiSOyRF98PHgsIFCCROYmo8XPw==
+"@aave/protocol-js@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@aave/protocol-js/-/protocol-js-2.3.0.tgz#3bfd2ac1410dd95d38dd2c3c4fbf6d0f7084224c"
+  integrity sha512-fMLebqa94zmE0qwkVfapmrGTT06UBXMwqE++qePggAytsp75zDhp3xmF/HvFalyMzjAP2xrDcO7LSV4ehNXa9w==
   dependencies:
+    axios "^0.21.0"
     bignumber.js "^9.0.1"
+    bs58 "^4.0.1"
+    reflect-metadata "^0.1.13"
 
 "@ampproject/toolbox-core@2.7.4", "@ampproject/toolbox-core@^2.6.0":
   version "2.7.4"
@@ -2104,6 +2107,13 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.11.0.tgz#d61f46d83b2519250e2784daf5b09479a8b41c59"
   integrity sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==
 
+axios@^0.21.0:
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
+  integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
+  dependencies:
+    follow-redirects "^1.10.0"
+
 babel-plugin-dynamic-import-node@^2.3.3:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/babel-plugin-dynamic-import-node/-/babel-plugin-dynamic-import-node-2.3.3.tgz#84fda19c976ec5c6defef57f9427b3def66e17a3"
@@ -2385,7 +2395,7 @@ browserslist@4.14.6:
     escalade "^3.1.1"
     node-releases "^1.1.65"
 
-bs58@^4.0.0:
+bs58@^4.0.0, bs58@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/bs58/-/bs58-4.0.1.tgz#be161e76c354f6f788ae4071f63f34e8c4f0a42a"
   integrity sha1-vhYedsNU9veIrkBx9j806MTwpCo=
@@ -4301,7 +4311,7 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
-follow-redirects@^1.12.1:
+follow-redirects@^1.10.0, follow-redirects@^1.12.1:
   version "1.13.1"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.1.tgz#5f69b813376cee4fd0474a3aba835df04ab763b7"
   integrity sha512-SSG5xmZh1mkPGyKzjZP8zLjltIfpW32Y5QpdNJyjcfGxK3qo3NDDkZOZSFiGn1A6SclQxY9GzEwAHQ3dmYRWpg==
@@ -7519,6 +7529,11 @@ readdirp@~3.5.0:
   integrity sha512-cMhu7c/8rdhkHXWsY+osBhfSy0JikwpHK/5+imo+LpeasTF8ouErHrlYkwT0++njiyuDvc7OFY5T3ukvZ8qmFQ==
   dependencies:
     picomatch "^2.2.1"
+
+reflect-metadata@^0.1.13:
+  version "0.1.13"
+  resolved "https://registry.yarnpkg.com/reflect-metadata/-/reflect-metadata-0.1.13.tgz#67ae3ca57c972a2aa1642b10fe363fe32d49dc08"
+  integrity sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==
 
 regenerator-runtime@^0.13.4:
   version "0.13.7"

@@ -11,7 +11,7 @@
     "codegen": "graphql-codegen --config graphql-codegen.yml && SKIP_LOAD=true hardhat compile"
   },
   "dependencies": {
-    "@aave/protocol-js": "^2.1.1",
+    "@aave/protocol-js": "^2.3.0",
     "bignumber.js": "^9.0.1",
     "dayjs": "^1.9.6",
     "ethers": "^5.0.26",
