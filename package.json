@@ -8,6 +8,7 @@
     "start": "next start",
     "db:mem": "node local-mongo",
     "db:mem:persist": "DB_PATH=database node local-mongo",
+    "codegen:watch": "graphql-codegen --config graphql-codegen.yml --watch",
     "codegen": "graphql-codegen --config graphql-codegen.yml && SKIP_LOAD=true hardhat compile",
     "release": "standard-version"
   },

@@ -5792,6 +5792,17 @@ export enum _SubgraphErrorPolicy_ {
   Deny = 'deny',
 }
 
+export type OracleQueryVariables = Exact<{ [key: string]: never }>;
+
+export type OracleQuery = { __typename?: 'Query' } & {
+  priceOracle?: Maybe<
+    { __typename?: 'PriceOracle' } & Pick<
+      PriceOracle,
+      'id' | 'usdPriceEth' | 'lastUpdateTimestamp'
+    >
+  >;
+};
+
 export type ReserveHistoryDataFragment = {
   __typename?: 'ReserveParamsHistoryItem';
 } & Pick<
@@ -5925,6 +5936,15 @@ export const ReserveItemFragmentDoc = gql`
     }
   }
 `;
+export const OracleDocument = gql`
+  query Oracle {
+    priceOracle(id: 1) {
+      id
+      usdPriceEth
+      lastUpdateTimestamp
+    }
+  }
+`;
 export const ReserveParamsHistoryDocument = gql`
   query ReserveParamsHistory($reference: Int!, $reserve: String!) {
     reference: reserveParamsHistoryItems(
@@ -5973,6 +5993,24 @@ export function getSdk(
   withWrapper: SdkFunctionWrapper = defaultWrapper
 ) {
   return {
+    Oracle(
+      variables?: OracleQueryVariables,
+      requestHeaders?: Headers
+    ): Promise<{
+      data?: OracleQuery | undefined;
+      extensions?: any;
+      headers: Headers;
+      status: number;
+      errors?: GraphQLError[] | undefined;
+    }> {
+      return withWrapper(() =>
+        client.rawRequest<OracleQuery>(
+          print(OracleDocument),
+          variables,
+          requestHeaders
+        )
+      );
+    },
     ReserveParamsHistory(
       variables: ReserveParamsHistoryQueryVariables,
       requestHeaders?: Headers

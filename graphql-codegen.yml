@@ -2,7 +2,6 @@ overwrite: true
 hooks:
   afterAllFileWrite:
     - prettier --single-quote --write
-watch: false
 config:
   withHOC: false
   withComponent: false

@@ -9,20 +9,18 @@ First, run the development database. If you got a local mongo running - great. I
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Learn More
+### Quick start
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# npm run db:mem:persist // only needed when using mongo
+yarn dev
+# watch for query changes
+yarn codegen:watch
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Add a new api endpoint
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. create a new file in `pages/api`, e.g. test-endpoint.ts
 
 ## Contribute
 
