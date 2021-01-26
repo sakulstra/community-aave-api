@@ -20,7 +20,8 @@ yarn codegen:watch
 
 ### Add a new api endpoint
 
-1. create a new file in `pages/api`, e.g. test-endpoint.ts
+1. create a new file in `pages/api`, e.g. test-endpoint.ts (have a look at the existing example)
+2. now you should be able to access the response at [http://localhost:3000/api/test-endpoint](http://localhost:3000/api/test-endpoint)
 
 ## Contribute
 
