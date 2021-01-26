@@ -4,7 +4,7 @@
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      ETHEREUM_NETWORK: string;
+      ETHEREUM_NETWORK: "mainnet";
       MONGO_URI: string;
       RPC_PROVIDER: string;
     }

@@ -12,6 +12,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ### Quick start
 
 ```bash
+cp .env.test .env
 # npm run db:mem:persist // only needed when using mongo
 yarn dev
 # watch for query changes
