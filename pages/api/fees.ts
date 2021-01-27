@@ -62,8 +62,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   );
   res.json(
     JSON.stringify({
-      oneDayAgo: normalize(fee.oneDayAgo, 10),
-      sevenDaysAVG: normalize(fee.sevenDaysAVG, 10),
+      oneDayAgo: normalize(fee.oneDayAgo, USD_DECIMALS),
+      sevenDaysAVG: normalize(fee.sevenDaysAVG, USD_DECIMALS),
     })
   );
 };
