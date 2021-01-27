@@ -1,0 +1,54 @@
+---
+name: About
+---
+
+import { Playground } from "dokz";
+import { MiniGraphiQL } from "mini-graphiql";
+
+# Motivation
+
+In the aave community a lot of people seem to struggle with the same things over & over again.
+With this project I try to create:
+
+1. a community sourced documentation for things they learned on their jurney
+2. a community sourced api interface or commonly required features
+
+## Official data apis
+
+### V1
+
+#### Graphql
+
+Aave provides a public subgraph hosten on [thegraph](https://thegraph.com/explorer/subgraph/aave/protocol-multy-raw).
+
+export const query1 = `
+{
+  pools {
+    id
+  }
+}
+`;
+
+<MiniGraphiQL
+  url="https://api.thegraph.com/subgraphs/name/aave/protocol-multy-raw"
+  query={query1}
+/>
+
+### V2
+
+#### Graphql
+
+Aave provides a public subgraph hosten on [thegraph](https://thegraph.com/explorer/subgraph/aave/protocol-v2)
+
+export const query2 = `
+{
+  pools {
+    id
+  }
+}
+`;
+
+<MiniGraphiQL
+  url="https://api.thegraph.com/subgraphs/name/aave/protocol-v2"
+  query={query2}
+/>

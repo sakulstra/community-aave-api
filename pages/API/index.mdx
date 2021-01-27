@@ -1,0 +1,22 @@
+---
+name: Introduction
+---
+
+import { Playground, Props } from "dokz";
+
+# Getting started
+
+You should be able to just fetch any api endpoint exposed here:
+
+```js
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+const incomeEndpoint = "/api/income";
+
+fetcher(incomeEndpoint).then(console.log);
+```
+
+While there aren't a lot of endpoints exposed at this moment I expect their number to grow over time trough community contributions.
+
+## Adding a new endpoint
+
+<Props of={Playground} />

@@ -1,4 +1,8 @@
-module.exports = {
+const { withDokz } = require('dokz/dist/plugin')
+
+
+module.exports = withDokz({
+  pageExtensions: ['mdx', 'ts', 'tsx'],
     async headers() {
       return [
         {
@@ -13,4 +17,4 @@ module.exports = {
         }
       ]
     }
-  };
+  });
