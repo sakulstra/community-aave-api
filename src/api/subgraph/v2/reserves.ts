@@ -16,8 +16,7 @@ const RESERVE_FRAGMENT = gql`
     variableBorrowIndex
     lifetimeFlashLoans
     lifetimeLiquidated
-    lifetimeFlashloanProtocolFee
-    lifetimeFeeCollected
+    lifetimeFlashLoanPremium
     totalScaledVariableDebt
     totalPrincipalStableDebt
     averageStableRate

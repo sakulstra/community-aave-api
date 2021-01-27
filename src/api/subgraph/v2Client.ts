@@ -2687,6 +2687,7 @@ export type Reserve = {
   reserveLiquidationBonus: Scalars['BigInt'];
   utilizationRate: Scalars['BigDecimal'];
   totalLiquidity: Scalars['BigInt'];
+  totalATokenSupply: Scalars['BigInt'];
   totalLiquidityAsCollateral: Scalars['BigInt'];
   availableLiquidity: Scalars['BigInt'];
   totalPrincipalStableDebt: Scalars['BigInt'];
@@ -2712,9 +2713,10 @@ export type Reserve = {
   lifetimeRepayments: Scalars['BigInt'];
   lifetimeWithdrawals: Scalars['BigInt'];
   lifetimeLiquidated: Scalars['BigInt'];
-  lifetimeFeeCollected: Scalars['BigInt'];
   lifetimeFlashLoans: Scalars['BigInt'];
-  lifetimeFlashloanProtocolFee: Scalars['BigInt'];
+  lifetimeFlashLoanPremium: Scalars['BigInt'];
+  lifetimeDepositorsInterestEarned: Scalars['BigInt'];
+  lifetimeReserveFactorAccrued: Scalars['BigInt'];
   userReserves: Array<UserReserve>;
   depositHistory: Array<Deposit>;
   redeemUnderlyingHistory: Array<RedeemUnderlying>;
@@ -2971,6 +2973,7 @@ export type ReserveParamsHistoryItem = {
   liquidityIndex: Scalars['BigInt'];
   liquidityRate: Scalars['BigInt'];
   totalLiquidity: Scalars['BigInt'];
+  totalATokenSupply: Scalars['BigInt'];
   totalLiquidityAsCollateral: Scalars['BigInt'];
   availableLiquidity: Scalars['BigInt'];
   priceInEth: Scalars['BigInt'];
@@ -2982,6 +2985,10 @@ export type ReserveParamsHistoryItem = {
   lifetimePrincipalStableDebt: Scalars['BigInt'];
   lifetimeScaledVariableDebt: Scalars['BigInt'];
   lifetimeCurrentVariableDebt: Scalars['BigInt'];
+  lifetimeFlashLoans: Scalars['BigInt'];
+  lifetimeFlashLoanPremium: Scalars['BigInt'];
+  lifetimeReserveFactorAccrued: Scalars['BigInt'];
+  lifetimeDepositorsInterestEarned: Scalars['BigInt'];
 };
 
 export type ReserveParamsHistoryItem_Filter = {
@@ -3071,6 +3078,14 @@ export type ReserveParamsHistoryItem_Filter = {
   totalLiquidity_lte?: Maybe<Scalars['BigInt']>;
   totalLiquidity_in?: Maybe<Array<Scalars['BigInt']>>;
   totalLiquidity_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  totalATokenSupply?: Maybe<Scalars['BigInt']>;
+  totalATokenSupply_not?: Maybe<Scalars['BigInt']>;
+  totalATokenSupply_gt?: Maybe<Scalars['BigInt']>;
+  totalATokenSupply_lt?: Maybe<Scalars['BigInt']>;
+  totalATokenSupply_gte?: Maybe<Scalars['BigInt']>;
+  totalATokenSupply_lte?: Maybe<Scalars['BigInt']>;
+  totalATokenSupply_in?: Maybe<Array<Scalars['BigInt']>>;
+  totalATokenSupply_not_in?: Maybe<Array<Scalars['BigInt']>>;
   totalLiquidityAsCollateral?: Maybe<Scalars['BigInt']>;
   totalLiquidityAsCollateral_not?: Maybe<Scalars['BigInt']>;
   totalLiquidityAsCollateral_gt?: Maybe<Scalars['BigInt']>;
@@ -3159,6 +3174,38 @@ export type ReserveParamsHistoryItem_Filter = {
   lifetimeCurrentVariableDebt_lte?: Maybe<Scalars['BigInt']>;
   lifetimeCurrentVariableDebt_in?: Maybe<Array<Scalars['BigInt']>>;
   lifetimeCurrentVariableDebt_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  lifetimeFlashLoans?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashLoans_not?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashLoans_gt?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashLoans_lt?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashLoans_gte?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashLoans_lte?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashLoans_in?: Maybe<Array<Scalars['BigInt']>>;
+  lifetimeFlashLoans_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  lifetimeFlashLoanPremium?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashLoanPremium_not?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashLoanPremium_gt?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashLoanPremium_lt?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashLoanPremium_gte?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashLoanPremium_lte?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashLoanPremium_in?: Maybe<Array<Scalars['BigInt']>>;
+  lifetimeFlashLoanPremium_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  lifetimeReserveFactorAccrued?: Maybe<Scalars['BigInt']>;
+  lifetimeReserveFactorAccrued_not?: Maybe<Scalars['BigInt']>;
+  lifetimeReserveFactorAccrued_gt?: Maybe<Scalars['BigInt']>;
+  lifetimeReserveFactorAccrued_lt?: Maybe<Scalars['BigInt']>;
+  lifetimeReserveFactorAccrued_gte?: Maybe<Scalars['BigInt']>;
+  lifetimeReserveFactorAccrued_lte?: Maybe<Scalars['BigInt']>;
+  lifetimeReserveFactorAccrued_in?: Maybe<Array<Scalars['BigInt']>>;
+  lifetimeReserveFactorAccrued_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  lifetimeDepositorsInterestEarned?: Maybe<Scalars['BigInt']>;
+  lifetimeDepositorsInterestEarned_not?: Maybe<Scalars['BigInt']>;
+  lifetimeDepositorsInterestEarned_gt?: Maybe<Scalars['BigInt']>;
+  lifetimeDepositorsInterestEarned_lt?: Maybe<Scalars['BigInt']>;
+  lifetimeDepositorsInterestEarned_gte?: Maybe<Scalars['BigInt']>;
+  lifetimeDepositorsInterestEarned_lte?: Maybe<Scalars['BigInt']>;
+  lifetimeDepositorsInterestEarned_in?: Maybe<Array<Scalars['BigInt']>>;
+  lifetimeDepositorsInterestEarned_not_in?: Maybe<Array<Scalars['BigInt']>>;
 };
 
 export enum ReserveParamsHistoryItem_OrderBy {
@@ -3172,6 +3219,7 @@ export enum ReserveParamsHistoryItem_OrderBy {
   LiquidityIndex = 'liquidityIndex',
   LiquidityRate = 'liquidityRate',
   TotalLiquidity = 'totalLiquidity',
+  TotalATokenSupply = 'totalATokenSupply',
   TotalLiquidityAsCollateral = 'totalLiquidityAsCollateral',
   AvailableLiquidity = 'availableLiquidity',
   PriceInEth = 'priceInEth',
@@ -3183,6 +3231,10 @@ export enum ReserveParamsHistoryItem_OrderBy {
   LifetimePrincipalStableDebt = 'lifetimePrincipalStableDebt',
   LifetimeScaledVariableDebt = 'lifetimeScaledVariableDebt',
   LifetimeCurrentVariableDebt = 'lifetimeCurrentVariableDebt',
+  LifetimeFlashLoans = 'lifetimeFlashLoans',
+  LifetimeFlashLoanPremium = 'lifetimeFlashLoanPremium',
+  LifetimeReserveFactorAccrued = 'lifetimeReserveFactorAccrued',
+  LifetimeDepositorsInterestEarned = 'lifetimeDepositorsInterestEarned',
 }
 
 export type Reserve_Filter = {
@@ -3382,6 +3434,14 @@ export type Reserve_Filter = {
   totalLiquidity_lte?: Maybe<Scalars['BigInt']>;
   totalLiquidity_in?: Maybe<Array<Scalars['BigInt']>>;
   totalLiquidity_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  totalATokenSupply?: Maybe<Scalars['BigInt']>;
+  totalATokenSupply_not?: Maybe<Scalars['BigInt']>;
+  totalATokenSupply_gt?: Maybe<Scalars['BigInt']>;
+  totalATokenSupply_lt?: Maybe<Scalars['BigInt']>;
+  totalATokenSupply_gte?: Maybe<Scalars['BigInt']>;
+  totalATokenSupply_lte?: Maybe<Scalars['BigInt']>;
+  totalATokenSupply_in?: Maybe<Array<Scalars['BigInt']>>;
+  totalATokenSupply_not_in?: Maybe<Array<Scalars['BigInt']>>;
   totalLiquidityAsCollateral?: Maybe<Scalars['BigInt']>;
   totalLiquidityAsCollateral_not?: Maybe<Scalars['BigInt']>;
   totalLiquidityAsCollateral_gt?: Maybe<Scalars['BigInt']>;
@@ -3600,14 +3660,6 @@ export type Reserve_Filter = {
   lifetimeLiquidated_lte?: Maybe<Scalars['BigInt']>;
   lifetimeLiquidated_in?: Maybe<Array<Scalars['BigInt']>>;
   lifetimeLiquidated_not_in?: Maybe<Array<Scalars['BigInt']>>;
-  lifetimeFeeCollected?: Maybe<Scalars['BigInt']>;
-  lifetimeFeeCollected_not?: Maybe<Scalars['BigInt']>;
-  lifetimeFeeCollected_gt?: Maybe<Scalars['BigInt']>;
-  lifetimeFeeCollected_lt?: Maybe<Scalars['BigInt']>;
-  lifetimeFeeCollected_gte?: Maybe<Scalars['BigInt']>;
-  lifetimeFeeCollected_lte?: Maybe<Scalars['BigInt']>;
-  lifetimeFeeCollected_in?: Maybe<Array<Scalars['BigInt']>>;
-  lifetimeFeeCollected_not_in?: Maybe<Array<Scalars['BigInt']>>;
   lifetimeFlashLoans?: Maybe<Scalars['BigInt']>;
   lifetimeFlashLoans_not?: Maybe<Scalars['BigInt']>;
   lifetimeFlashLoans_gt?: Maybe<Scalars['BigInt']>;
@@ -3616,14 +3668,30 @@ export type Reserve_Filter = {
   lifetimeFlashLoans_lte?: Maybe<Scalars['BigInt']>;
   lifetimeFlashLoans_in?: Maybe<Array<Scalars['BigInt']>>;
   lifetimeFlashLoans_not_in?: Maybe<Array<Scalars['BigInt']>>;
-  lifetimeFlashloanProtocolFee?: Maybe<Scalars['BigInt']>;
-  lifetimeFlashloanProtocolFee_not?: Maybe<Scalars['BigInt']>;
-  lifetimeFlashloanProtocolFee_gt?: Maybe<Scalars['BigInt']>;
-  lifetimeFlashloanProtocolFee_lt?: Maybe<Scalars['BigInt']>;
-  lifetimeFlashloanProtocolFee_gte?: Maybe<Scalars['BigInt']>;
-  lifetimeFlashloanProtocolFee_lte?: Maybe<Scalars['BigInt']>;
-  lifetimeFlashloanProtocolFee_in?: Maybe<Array<Scalars['BigInt']>>;
-  lifetimeFlashloanProtocolFee_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  lifetimeFlashLoanPremium?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashLoanPremium_not?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashLoanPremium_gt?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashLoanPremium_lt?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashLoanPremium_gte?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashLoanPremium_lte?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashLoanPremium_in?: Maybe<Array<Scalars['BigInt']>>;
+  lifetimeFlashLoanPremium_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  lifetimeDepositorsInterestEarned?: Maybe<Scalars['BigInt']>;
+  lifetimeDepositorsInterestEarned_not?: Maybe<Scalars['BigInt']>;
+  lifetimeDepositorsInterestEarned_gt?: Maybe<Scalars['BigInt']>;
+  lifetimeDepositorsInterestEarned_lt?: Maybe<Scalars['BigInt']>;
+  lifetimeDepositorsInterestEarned_gte?: Maybe<Scalars['BigInt']>;
+  lifetimeDepositorsInterestEarned_lte?: Maybe<Scalars['BigInt']>;
+  lifetimeDepositorsInterestEarned_in?: Maybe<Array<Scalars['BigInt']>>;
+  lifetimeDepositorsInterestEarned_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  lifetimeReserveFactorAccrued?: Maybe<Scalars['BigInt']>;
+  lifetimeReserveFactorAccrued_not?: Maybe<Scalars['BigInt']>;
+  lifetimeReserveFactorAccrued_gt?: Maybe<Scalars['BigInt']>;
+  lifetimeReserveFactorAccrued_lt?: Maybe<Scalars['BigInt']>;
+  lifetimeReserveFactorAccrued_gte?: Maybe<Scalars['BigInt']>;
+  lifetimeReserveFactorAccrued_lte?: Maybe<Scalars['BigInt']>;
+  lifetimeReserveFactorAccrued_in?: Maybe<Array<Scalars['BigInt']>>;
+  lifetimeReserveFactorAccrued_not_in?: Maybe<Array<Scalars['BigInt']>>;
 };
 
 export enum Reserve_OrderBy {
@@ -3652,6 +3720,7 @@ export enum Reserve_OrderBy {
   ReserveLiquidationBonus = 'reserveLiquidationBonus',
   UtilizationRate = 'utilizationRate',
   TotalLiquidity = 'totalLiquidity',
+  TotalATokenSupply = 'totalATokenSupply',
   TotalLiquidityAsCollateral = 'totalLiquidityAsCollateral',
   AvailableLiquidity = 'availableLiquidity',
   TotalPrincipalStableDebt = 'totalPrincipalStableDebt',
@@ -3677,9 +3746,10 @@ export enum Reserve_OrderBy {
   LifetimeRepayments = 'lifetimeRepayments',
   LifetimeWithdrawals = 'lifetimeWithdrawals',
   LifetimeLiquidated = 'lifetimeLiquidated',
-  LifetimeFeeCollected = 'lifetimeFeeCollected',
   LifetimeFlashLoans = 'lifetimeFlashLoans',
-  LifetimeFlashloanProtocolFee = 'lifetimeFlashloanProtocolFee',
+  LifetimeFlashLoanPremium = 'lifetimeFlashLoanPremium',
+  LifetimeDepositorsInterestEarned = 'lifetimeDepositorsInterestEarned',
+  LifetimeReserveFactorAccrued = 'lifetimeReserveFactorAccrued',
   UserReserves = 'userReserves',
   DepositHistory = 'depositHistory',
   RedeemUnderlyingHistory = 'redeemUnderlyingHistory',
@@ -5792,6 +5862,61 @@ export enum _SubgraphErrorPolicy_ {
   Deny = 'deny',
 }
 
+export type ReserveHistoryFeeDataFragment = {
+  __typename?: 'ReserveParamsHistoryItem';
+} & Pick<
+  ReserveParamsHistoryItem,
+  | 'id'
+  | 'timestamp'
+  | 'lifetimeFlashLoanPremium'
+  | 'lifetimeReserveFactorAccrued'
+  | 'lifetimeDepositorsInterestEarned'
+>;
+
+export type ReserveFeeItemFragment = { __typename?: 'Reserve' } & Pick<
+  Reserve,
+  | 'id'
+  | 'symbol'
+  | 'decimals'
+  | 'lifetimeFlashLoanPremium'
+  | 'lifetimeReserveFactorAccrued'
+  | 'lifetimeDepositorsInterestEarned'
+> & {
+    price: { __typename?: 'PriceOracleAsset' } & Pick<
+      PriceOracleAsset,
+      'id' | 'priceInEth'
+    >;
+    pool: { __typename?: 'Pool' } & Pick<Pool, 'id'>;
+  };
+
+export type ReservesFeesQueryQueryVariables = Exact<{
+  oneDayAgo: Scalars['Int'];
+  sevenDaysAgo: Scalars['Int'];
+}>;
+
+export type ReservesFeesQueryQuery = { __typename?: 'Query' } & {
+  priceOracle?: Maybe<
+    { __typename?: 'PriceOracle' } & Pick<
+      PriceOracle,
+      'id' | 'usdPriceEth' | 'lastUpdateTimestamp'
+    >
+  >;
+  reserves: Array<
+    { __typename?: 'Reserve' } & {
+      oneDayAgo: Array<
+        {
+          __typename?: 'ReserveParamsHistoryItem';
+        } & ReserveHistoryFeeDataFragment
+      >;
+      sevenDaysAgo: Array<
+        {
+          __typename?: 'ReserveParamsHistoryItem';
+        } & ReserveHistoryFeeDataFragment
+      >;
+    } & ReserveFeeItemFragment
+  >;
+};
+
 export type OracleQueryVariables = Exact<{ [key: string]: never }>;
 
 export type OracleQuery = { __typename?: 'Query' } & {
@@ -5857,8 +5982,7 @@ export type ReserveItemFragment = { __typename?: 'Reserve' } & Pick<
   | 'variableBorrowIndex'
   | 'lifetimeFlashLoans'
   | 'lifetimeLiquidated'
-  | 'lifetimeFlashloanProtocolFee'
-  | 'lifetimeFeeCollected'
+  | 'lifetimeFlashLoanPremium'
   | 'totalScaledVariableDebt'
   | 'totalPrincipalStableDebt'
   | 'averageStableRate'
@@ -5886,6 +6010,32 @@ export type ReservesQueryQuery = { __typename?: 'Query' } & {
   reserves: Array<{ __typename?: 'Reserve' } & ReserveItemFragment>;
 };
 
+export const ReserveHistoryFeeDataFragmentDoc = gql`
+  fragment ReserveHistoryFeeData on ReserveParamsHistoryItem {
+    id
+    timestamp
+    lifetimeFlashLoanPremium
+    lifetimeReserveFactorAccrued
+    lifetimeDepositorsInterestEarned
+  }
+`;
+export const ReserveFeeItemFragmentDoc = gql`
+  fragment ReserveFeeItem on Reserve {
+    id
+    symbol
+    decimals
+    lifetimeFlashLoanPremium
+    lifetimeReserveFactorAccrued
+    lifetimeDepositorsInterestEarned
+    price {
+      id
+      priceInEth
+    }
+    pool {
+      id
+    }
+  }
+`;
 export const ReserveHistoryDataFragmentDoc = gql`
   fragment ReserveHistoryData on ReserveParamsHistoryItem {
     id
@@ -5917,8 +6067,7 @@ export const ReserveItemFragmentDoc = gql`
     variableBorrowIndex
     lifetimeFlashLoans
     lifetimeLiquidated
-    lifetimeFlashloanProtocolFee
-    lifetimeFeeCollected
+    lifetimeFlashLoanPremium
     totalScaledVariableDebt
     totalPrincipalStableDebt
     averageStableRate
@@ -5935,6 +6084,36 @@ export const ReserveItemFragmentDoc = gql`
       id
     }
   }
+`;
+export const ReservesFeesQueryDocument = gql`
+  query ReservesFeesQuery($oneDayAgo: Int!, $sevenDaysAgo: Int!) {
+    priceOracle(id: 1) {
+      id
+      usdPriceEth
+      lastUpdateTimestamp
+    }
+    reserves {
+      ...ReserveFeeItem
+      oneDayAgo: paramsHistory(
+        orderDirection: desc
+        orderBy: timestamp
+        first: 1
+        where: { timestamp_lte: $oneDayAgo }
+      ) {
+        ...ReserveHistoryFeeData
+      }
+      sevenDaysAgo: paramsHistory(
+        orderDirection: desc
+        orderBy: timestamp
+        first: 1
+        where: { timestamp_lte: $sevenDaysAgo }
+      ) {
+        ...ReserveHistoryFeeData
+      }
+    }
+  }
+  ${ReserveFeeItemFragmentDoc}
+  ${ReserveHistoryFeeDataFragmentDoc}
 `;
 export const OracleDocument = gql`
   query Oracle {
@@ -5993,6 +6172,24 @@ export function getSdk(
   withWrapper: SdkFunctionWrapper = defaultWrapper
 ) {
   return {
+    ReservesFeesQuery(
+      variables: ReservesFeesQueryQueryVariables,
+      requestHeaders?: Headers
+    ): Promise<{
+      data?: ReservesFeesQueryQuery | undefined;
+      extensions?: any;
+      headers: Headers;
+      status: number;
+      errors?: GraphQLError[] | undefined;
+    }> {
+      return withWrapper(() =>
+        client.rawRequest<ReservesFeesQueryQuery>(
+          print(ReservesFeesQueryDocument),
+          variables,
+          requestHeaders
+        )
+      );
+    },
     Oracle(
       variables?: OracleQueryVariables,
       requestHeaders?: Headers
