@@ -5,13 +5,9 @@ import { GraphQLError } from 'graphql-request/dist/types';
 import { Headers } from 'graphql-request/dist/types.dom';
 import gql from 'graphql-tag';
 export type Maybe<T> = T | null;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
-  { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
-  { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -23,6 +19,9 @@ export type Scalars = {
   BigInt: any;
   Bytes: any;
 };
+
+
+
 
 export type AToken = {
   __typename?: 'AToken';
@@ -108,7 +107,7 @@ export enum ATokenBalanceHistoryItem_OrderBy {
   Timestamp = 'timestamp',
   ScaledATokenBalance = 'scaledATokenBalance',
   CurrentATokenBalance = 'currentATokenBalance',
-  Index = 'index',
+  Index = 'index'
 }
 
 export type AToken_Filter = {
@@ -161,8 +160,10 @@ export enum AToken_OrderBy {
   Pool = 'pool',
   UnderlyingAssetAddress = 'underlyingAssetAddress',
   UnderlyingAssetDecimals = 'underlyingAssetDecimals',
-  TokenContractImpl = 'tokenContractImpl',
+  TokenContractImpl = 'tokenContractImpl'
 }
+
+
 
 export type Block_Height = {
   hash?: Maybe<Scalars['Bytes']>;
@@ -190,7 +191,7 @@ export type Borrow = UserTransaction & {
 export enum BorrowRateMode {
   None = 'None',
   Stable = 'Stable',
-  Variable = 'Variable',
+  Variable = 'Variable'
 }
 
 export type Borrow_Filter = {
@@ -343,8 +344,9 @@ export enum Borrow_OrderBy {
   Referrer = 'referrer',
   Timestamp = 'timestamp',
   StableTokenDebt = 'stableTokenDebt',
-  VariableTokenDebt = 'variableTokenDebt',
+  VariableTokenDebt = 'variableTokenDebt'
 }
+
 
 export type ChainlinkAggregator = {
   __typename?: 'ChainlinkAggregator';
@@ -379,7 +381,7 @@ export type ChainlinkAggregator_Filter = {
 
 export enum ChainlinkAggregator_OrderBy {
   Id = 'id',
-  OracleAsset = 'oracleAsset',
+  OracleAsset = 'oracleAsset'
 }
 
 export type ContractToPoolMapping = {
@@ -415,7 +417,7 @@ export type ContractToPoolMapping_Filter = {
 
 export enum ContractToPoolMapping_OrderBy {
   Id = 'id',
-  Pool = 'pool',
+  Pool = 'pool'
 }
 
 export type Deposit = UserTransaction & {
@@ -552,7 +554,7 @@ export enum Deposit_OrderBy {
   UserReserve = 'userReserve',
   Amount = 'amount',
   Referrer = 'referrer',
-  Timestamp = 'timestamp',
+  Timestamp = 'timestamp'
 }
 
 export type FlashLoan = {
@@ -659,7 +661,7 @@ export enum FlashLoan_OrderBy {
   Amount = 'amount',
   TotalFee = 'totalFee',
   Initiator = 'initiator',
-  Timestamp = 'timestamp',
+  Timestamp = 'timestamp'
 }
 
 export type LiquidationCall = UserTransaction & {
@@ -814,12 +816,12 @@ export enum LiquidationCall_OrderBy {
   PrincipalUserReserve = 'principalUserReserve',
   PrincipalAmount = 'principalAmount',
   Liquidator = 'liquidator',
-  Timestamp = 'timestamp',
+  Timestamp = 'timestamp'
 }
 
 export enum OrderDirection {
   Asc = 'asc',
-  Desc = 'desc',
+  Desc = 'desc'
 }
 
 export type OriginationFeeLiquidation = UserTransaction & {
@@ -966,7 +968,7 @@ export enum OriginationFeeLiquidation_OrderBy {
   PrincipalUserReserve = 'principalUserReserve',
   FeeLiquidated = 'feeLiquidated',
   LiquidatedCollateralForFee = 'liquidatedCollateralForFee',
-  Timestamp = 'timestamp',
+  Timestamp = 'timestamp'
 }
 
 export type Pool = {
@@ -999,6 +1001,7 @@ export type Pool = {
   active: Scalars['Boolean'];
 };
 
+
 export type PoolHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -1006,6 +1009,7 @@ export type PoolHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<PoolConfigurationHistoryItem_Filter>;
 };
+
 
 export type PoolReservesArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1015,6 +1019,7 @@ export type PoolReservesArgs = {
   where?: Maybe<Reserve_Filter>;
 };
 
+
 export type PoolDepositHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -1022,6 +1027,7 @@ export type PoolDepositHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<Deposit_Filter>;
 };
+
 
 export type PoolRedeemUnderlyingHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1031,6 +1037,7 @@ export type PoolRedeemUnderlyingHistoryArgs = {
   where?: Maybe<RedeemUnderlying_Filter>;
 };
 
+
 export type PoolBorrowHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -1038,6 +1045,7 @@ export type PoolBorrowHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<Borrow_Filter>;
 };
+
 
 export type PoolSwapHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1047,6 +1055,7 @@ export type PoolSwapHistoryArgs = {
   where?: Maybe<Swap_Filter>;
 };
 
+
 export type PoolUsageAsCollateralHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -1054,6 +1063,7 @@ export type PoolUsageAsCollateralHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<UsageAsCollateral_Filter>;
 };
+
 
 export type PoolRebalanceStableBorrowRateHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1063,6 +1073,7 @@ export type PoolRebalanceStableBorrowRateHistoryArgs = {
   where?: Maybe<RebalanceStableBorrowRate_Filter>;
 };
 
+
 export type PoolRepayHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -1070,6 +1081,7 @@ export type PoolRepayHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<Repay_Filter>;
 };
+
 
 export type PoolFlashLoanHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1079,6 +1091,7 @@ export type PoolFlashLoanHistoryArgs = {
   where?: Maybe<FlashLoan_Filter>;
 };
 
+
 export type PoolLiquidationCallHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -1086,6 +1099,7 @@ export type PoolLiquidationCallHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<LiquidationCall_Filter>;
 };
+
 
 export type PoolOriginationFeeLiquidationHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1209,7 +1223,7 @@ export enum PoolConfigurationHistoryItem_OrderBy {
   ProxyPriceProvider = 'proxyPriceProvider',
   LendingRateOracle = 'lendingRateOracle',
   ConfigurationAdmin = 'configurationAdmin',
-  Timestamp = 'timestamp',
+  Timestamp = 'timestamp'
 }
 
 export type Pool_Filter = {
@@ -1335,7 +1349,7 @@ export enum Pool_OrderBy {
   FlashLoanHistory = 'flashLoanHistory',
   LiquidationCallHistory = 'liquidationCallHistory',
   OriginationFeeLiquidationHistory = 'originationFeeLiquidationHistory',
-  Active = 'active',
+  Active = 'active'
 }
 
 export type PriceHistoryItem = {
@@ -1391,7 +1405,7 @@ export enum PriceHistoryItem_OrderBy {
   Id = 'id',
   Asset = 'asset',
   Price = 'price',
-  Timestamp = 'timestamp',
+  Timestamp = 'timestamp'
 }
 
 export type PriceOracle = {
@@ -1409,6 +1423,7 @@ export type PriceOracle = {
   lastUpdateTimestamp: Scalars['Int'];
 };
 
+
 export type PriceOracleUsdDependentAssetsArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -1416,6 +1431,7 @@ export type PriceOracleUsdDependentAssetsArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<PriceOracleAsset_Filter>;
 };
+
 
 export type PriceOracleTokensArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1425,6 +1441,7 @@ export type PriceOracleTokensArgs = {
   where?: Maybe<PriceOracleAsset_Filter>;
 };
 
+
 export type PriceOracleUsdPriceEthHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -1432,6 +1449,7 @@ export type PriceOracleUsdPriceEthHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<UsdEthPriceHistoryItem_Filter>;
 };
+
 
 export type PriceOracleTokensWithFallbackArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1456,6 +1474,7 @@ export type PriceOracleAsset = {
   fromChainlinkSourcesRegistry: Scalars['Boolean'];
 };
 
+
 export type PriceOracleAssetDependentAssetsArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -1463,6 +1482,7 @@ export type PriceOracleAssetDependentAssetsArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<PriceOracleAsset_Filter>;
 };
+
 
 export type PriceOracleAssetPriceHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1474,12 +1494,12 @@ export type PriceOracleAssetPriceHistoryArgs = {
 
 export enum PriceOracleAssetPlatform {
   Simple = 'Simple',
-  Uniswap = 'Uniswap',
+  Uniswap = 'Uniswap'
 }
 
 export enum PriceOracleAssetType {
   Simple = 'Simple',
-  Composite = 'Composite',
+  Composite = 'Composite'
 }
 
 export type PriceOracleAsset_Filter = {
@@ -1556,7 +1576,7 @@ export enum PriceOracleAsset_OrderBy {
   DependentAssets = 'dependentAssets',
   LastUpdateTimestamp = 'lastUpdateTimestamp',
   PriceHistory = 'priceHistory',
-  FromChainlinkSourcesRegistry = 'fromChainlinkSourcesRegistry',
+  FromChainlinkSourcesRegistry = 'fromChainlinkSourcesRegistry'
 }
 
 export type PriceOracle_Filter = {
@@ -1627,7 +1647,7 @@ export enum PriceOracle_OrderBy {
   Tokens = 'tokens',
   UsdPriceEthHistory = 'usdPriceEthHistory',
   TokensWithFallback = 'tokensWithFallback',
-  LastUpdateTimestamp = 'lastUpdateTimestamp',
+  LastUpdateTimestamp = 'lastUpdateTimestamp'
 }
 
 export type Protocol = {
@@ -1635,6 +1655,7 @@ export type Protocol = {
   id: Scalars['ID'];
   pools: Array<Pool>;
 };
+
 
 export type ProtocolPoolsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1657,7 +1678,7 @@ export type Protocol_Filter = {
 
 export enum Protocol_OrderBy {
   Id = 'id',
-  Pools = 'pools',
+  Pools = 'pools'
 }
 
 export type Query = {
@@ -1740,10 +1761,12 @@ export type Query = {
   _meta?: Maybe<_Meta_>;
 };
 
+
 export type QueryProtocolArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryProtocolsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1754,10 +1777,12 @@ export type QueryProtocolsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryContractToPoolMappingArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryContractToPoolMappingsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1768,10 +1793,12 @@ export type QueryContractToPoolMappingsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryPoolConfigurationHistoryItemArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryPoolConfigurationHistoryItemsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1782,10 +1809,12 @@ export type QueryPoolConfigurationHistoryItemsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryPoolArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryPoolsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1796,10 +1825,12 @@ export type QueryPoolsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryPriceHistoryItemArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryPriceHistoryItemsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1810,10 +1841,12 @@ export type QueryPriceHistoryItemsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryUsdEthPriceHistoryItemArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryUsdEthPriceHistoryItemsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1824,10 +1857,12 @@ export type QueryUsdEthPriceHistoryItemsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryChainlinkAggregatorArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryChainlinkAggregatorsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1838,10 +1873,12 @@ export type QueryChainlinkAggregatorsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryPriceOracleAssetArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryPriceOracleAssetsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1852,10 +1889,12 @@ export type QueryPriceOracleAssetsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryPriceOracleArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryPriceOraclesArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1866,10 +1905,12 @@ export type QueryPriceOraclesArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryStokenArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryStokensArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1880,10 +1921,12 @@ export type QueryStokensArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryVtokenArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryVtokensArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1894,10 +1937,12 @@ export type QueryVtokensArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryAtokenArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryAtokensArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1908,10 +1953,12 @@ export type QueryAtokensArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryVariableDebtTokenArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryVariableDebtTokensArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1922,10 +1969,12 @@ export type QueryVariableDebtTokensArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryStableDebtTokenArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryStableDebtTokensArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1936,10 +1985,12 @@ export type QueryStableDebtTokensArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryReferrerArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryReferrersArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1950,10 +2001,12 @@ export type QueryReferrersArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryDepositArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryDepositsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1964,10 +2017,12 @@ export type QueryDepositsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryRedeemUnderlyingArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryRedeemUnderlyingsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1978,10 +2033,12 @@ export type QueryRedeemUnderlyingsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryBorrowArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryBorrowsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -1992,10 +2049,12 @@ export type QueryBorrowsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QuerySwapArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QuerySwapsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2006,10 +2065,12 @@ export type QuerySwapsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryUsageAsCollateralArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryUsageAsCollateralsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2020,10 +2081,12 @@ export type QueryUsageAsCollateralsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryRebalanceStableBorrowRateArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryRebalanceStableBorrowRatesArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2034,10 +2097,12 @@ export type QueryRebalanceStableBorrowRatesArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryRepayArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryRepaysArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2048,10 +2113,12 @@ export type QueryRepaysArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryFlashLoanArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryFlashLoansArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2062,10 +2129,12 @@ export type QueryFlashLoansArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryLiquidationCallArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryLiquidationCallsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2076,10 +2145,12 @@ export type QueryLiquidationCallsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryOriginationFeeLiquidationArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryOriginationFeeLiquidationsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2090,10 +2161,12 @@ export type QueryOriginationFeeLiquidationsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryReserveConfigurationHistoryItemArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryReserveConfigurationHistoryItemsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2104,10 +2177,12 @@ export type QueryReserveConfigurationHistoryItemsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryReserveParamsHistoryItemArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryReserveParamsHistoryItemsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2118,10 +2193,12 @@ export type QueryReserveParamsHistoryItemsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryReserveArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryReservesArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2132,10 +2209,12 @@ export type QueryReservesArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryWethreserveArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryWethreservesArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2146,10 +2225,12 @@ export type QueryWethreservesArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryAtokenBalanceHistoryItemArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryAtokenBalanceHistoryItemsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2160,10 +2241,12 @@ export type QueryAtokenBalanceHistoryItemsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryVtokenBalanceHistoryItemArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryVtokenBalanceHistoryItemsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2174,10 +2257,12 @@ export type QueryVtokenBalanceHistoryItemsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryStokenBalanceHistoryItemArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryStokenBalanceHistoryItemsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2188,10 +2273,12 @@ export type QueryStokenBalanceHistoryItemsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryStableTokenDelegatedAllowanceArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryStableTokenDelegatedAllowancesArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2202,10 +2289,12 @@ export type QueryStableTokenDelegatedAllowancesArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryVariableTokenDelegatedAllowanceArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryVariableTokenDelegatedAllowancesArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2216,10 +2305,12 @@ export type QueryVariableTokenDelegatedAllowancesArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryUserReserveArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryUserReservesArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2230,10 +2321,12 @@ export type QueryUserReservesArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryUserArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryUsersArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2244,10 +2337,12 @@ export type QueryUsersArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type QueryUserTransactionArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type QueryUserTransactionsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2257,6 +2352,7 @@ export type QueryUserTransactionsArgs = {
   where?: Maybe<UserTransaction_Filter>;
   block?: Maybe<Block_Height>;
 };
+
 
 export type Query_MetaArgs = {
   block?: Maybe<Block_Height>;
@@ -2374,7 +2470,7 @@ export enum RebalanceStableBorrowRate_OrderBy {
   UserReserve = 'userReserve',
   BorrowRateFrom = 'borrowRateFrom',
   BorrowRateTo = 'borrowRateTo',
-  Timestamp = 'timestamp',
+  Timestamp = 'timestamp'
 }
 
 export type RedeemUnderlying = UserTransaction & {
@@ -2495,7 +2591,7 @@ export enum RedeemUnderlying_OrderBy {
   Reserve = 'reserve',
   UserReserve = 'userReserve',
   Amount = 'amount',
-  Timestamp = 'timestamp',
+  Timestamp = 'timestamp'
 }
 
 export type Referrer = {
@@ -2505,6 +2601,7 @@ export type Referrer = {
   borrows: Array<Borrow>;
 };
 
+
 export type ReferrerDepositsArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -2512,6 +2609,7 @@ export type ReferrerDepositsArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<Deposit_Filter>;
 };
+
 
 export type ReferrerBorrowsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2535,7 +2633,7 @@ export type Referrer_Filter = {
 export enum Referrer_OrderBy {
   Id = 'id',
   Deposits = 'deposits',
-  Borrows = 'borrows',
+  Borrows = 'borrows'
 }
 
 export type Repay = UserTransaction & {
@@ -2656,7 +2754,7 @@ export enum Repay_OrderBy {
   Reserve = 'reserve',
   UserReserve = 'userReserve',
   Amount = 'amount',
-  Timestamp = 'timestamp',
+  Timestamp = 'timestamp'
 }
 
 export type Reserve = {
@@ -2733,6 +2831,7 @@ export type Reserve = {
   deposits: Array<Deposit>;
 };
 
+
 export type ReserveUserReservesArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -2740,6 +2839,7 @@ export type ReserveUserReservesArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<UserReserve_Filter>;
 };
+
 
 export type ReserveDepositHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2749,6 +2849,7 @@ export type ReserveDepositHistoryArgs = {
   where?: Maybe<Deposit_Filter>;
 };
 
+
 export type ReserveRedeemUnderlyingHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -2756,6 +2857,7 @@ export type ReserveRedeemUnderlyingHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<RedeemUnderlying_Filter>;
 };
+
 
 export type ReserveBorrowHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2765,6 +2867,7 @@ export type ReserveBorrowHistoryArgs = {
   where?: Maybe<Borrow_Filter>;
 };
 
+
 export type ReserveUsageAsCollateralHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -2772,6 +2875,7 @@ export type ReserveUsageAsCollateralHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<UsageAsCollateral_Filter>;
 };
+
 
 export type ReserveSwapHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2781,6 +2885,7 @@ export type ReserveSwapHistoryArgs = {
   where?: Maybe<Swap_Filter>;
 };
 
+
 export type ReserveRebalanceStableBorrowRateHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -2788,6 +2893,7 @@ export type ReserveRebalanceStableBorrowRateHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<RebalanceStableBorrowRate_Filter>;
 };
+
 
 export type ReserveRepayHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2797,6 +2903,7 @@ export type ReserveRepayHistoryArgs = {
   where?: Maybe<Repay_Filter>;
 };
 
+
 export type ReserveFlashLoanHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -2804,6 +2911,7 @@ export type ReserveFlashLoanHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<FlashLoan_Filter>;
 };
+
 
 export type ReserveLiquidationCallHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2813,6 +2921,7 @@ export type ReserveLiquidationCallHistoryArgs = {
   where?: Maybe<LiquidationCall_Filter>;
 };
 
+
 export type ReserveOriginationFeeLiquidationHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -2820,6 +2929,7 @@ export type ReserveOriginationFeeLiquidationHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<OriginationFeeLiquidation_Filter>;
 };
+
 
 export type ReserveParamsHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2829,6 +2939,7 @@ export type ReserveParamsHistoryArgs = {
   where?: Maybe<ReserveParamsHistoryItem_Filter>;
 };
 
+
 export type ReserveConfigurationHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -2836,6 +2947,7 @@ export type ReserveConfigurationHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<ReserveConfigurationHistoryItem_Filter>;
 };
+
 
 export type ReserveDepositsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -2957,7 +3069,7 @@ export enum ReserveConfigurationHistoryItem_OrderBy {
   BaseLtVasCollateral = 'baseLTVasCollateral',
   ReserveLiquidationThreshold = 'reserveLiquidationThreshold',
   ReserveLiquidationBonus = 'reserveLiquidationBonus',
-  Timestamp = 'timestamp',
+  Timestamp = 'timestamp'
 }
 
 export type ReserveParamsHistoryItem = {
@@ -3234,7 +3346,7 @@ export enum ReserveParamsHistoryItem_OrderBy {
   LifetimeFlashLoans = 'lifetimeFlashLoans',
   LifetimeFlashLoanPremium = 'lifetimeFlashLoanPremium',
   LifetimeReserveFactorAccrued = 'lifetimeReserveFactorAccrued',
-  LifetimeDepositorsInterestEarned = 'lifetimeDepositorsInterestEarned',
+  LifetimeDepositorsInterestEarned = 'lifetimeDepositorsInterestEarned'
 }
 
 export type Reserve_Filter = {
@@ -3763,7 +3875,7 @@ export enum Reserve_OrderBy {
   OriginationFeeLiquidationHistory = 'originationFeeLiquidationHistory',
   ParamsHistory = 'paramsHistory',
   ConfigurationHistory = 'configurationHistory',
-  Deposits = 'deposits',
+  Deposits = 'deposits'
 }
 
 export type SToken = {
@@ -3850,7 +3962,7 @@ export enum STokenBalanceHistoryItem_OrderBy {
   PrincipalStableDebt = 'principalStableDebt',
   CurrentStableDebt = 'currentStableDebt',
   Timestamp = 'timestamp',
-  AvgStableBorrowRate = 'avgStableBorrowRate',
+  AvgStableBorrowRate = 'avgStableBorrowRate'
 }
 
 export type SToken_Filter = {
@@ -3903,7 +4015,7 @@ export enum SToken_OrderBy {
   Pool = 'pool',
   UnderlyingAssetAddress = 'underlyingAssetAddress',
   UnderlyingAssetDecimals = 'underlyingAssetDecimals',
-  TokenContractImpl = 'tokenContractImpl',
+  TokenContractImpl = 'tokenContractImpl'
 }
 
 export type StableDebtToken = {
@@ -3958,7 +4070,7 @@ export enum StableDebtToken_OrderBy {
   Id = 'id',
   Pool = 'pool',
   UnderlyingAssetAddress = 'underlyingAssetAddress',
-  UnderlyingAssetDecimals = 'underlyingAssetDecimals',
+  UnderlyingAssetDecimals = 'underlyingAssetDecimals'
 }
 
 export type StableTokenDelegatedAllowance = {
@@ -4037,7 +4149,7 @@ export enum StableTokenDelegatedAllowance_OrderBy {
   FromUser = 'fromUser',
   ToUser = 'toUser',
   AmountAllowed = 'amountAllowed',
-  UserReserve = 'userReserve',
+  UserReserve = 'userReserve'
 }
 
 export type Subscription = {
@@ -4120,10 +4232,12 @@ export type Subscription = {
   _meta?: Maybe<_Meta_>;
 };
 
+
 export type SubscriptionProtocolArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionProtocolsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4134,10 +4248,12 @@ export type SubscriptionProtocolsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionContractToPoolMappingArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionContractToPoolMappingsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4148,10 +4264,12 @@ export type SubscriptionContractToPoolMappingsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionPoolConfigurationHistoryItemArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionPoolConfigurationHistoryItemsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4162,10 +4280,12 @@ export type SubscriptionPoolConfigurationHistoryItemsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionPoolArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionPoolsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4176,10 +4296,12 @@ export type SubscriptionPoolsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionPriceHistoryItemArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionPriceHistoryItemsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4190,10 +4312,12 @@ export type SubscriptionPriceHistoryItemsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionUsdEthPriceHistoryItemArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionUsdEthPriceHistoryItemsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4204,10 +4328,12 @@ export type SubscriptionUsdEthPriceHistoryItemsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionChainlinkAggregatorArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionChainlinkAggregatorsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4218,10 +4344,12 @@ export type SubscriptionChainlinkAggregatorsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionPriceOracleAssetArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionPriceOracleAssetsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4232,10 +4360,12 @@ export type SubscriptionPriceOracleAssetsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionPriceOracleArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionPriceOraclesArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4246,10 +4376,12 @@ export type SubscriptionPriceOraclesArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionStokenArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionStokensArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4260,10 +4392,12 @@ export type SubscriptionStokensArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionVtokenArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionVtokensArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4274,10 +4408,12 @@ export type SubscriptionVtokensArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionAtokenArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionAtokensArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4288,10 +4424,12 @@ export type SubscriptionAtokensArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionVariableDebtTokenArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionVariableDebtTokensArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4302,10 +4440,12 @@ export type SubscriptionVariableDebtTokensArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionStableDebtTokenArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionStableDebtTokensArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4316,10 +4456,12 @@ export type SubscriptionStableDebtTokensArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionReferrerArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionReferrersArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4330,10 +4472,12 @@ export type SubscriptionReferrersArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionDepositArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionDepositsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4344,10 +4488,12 @@ export type SubscriptionDepositsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionRedeemUnderlyingArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionRedeemUnderlyingsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4358,10 +4504,12 @@ export type SubscriptionRedeemUnderlyingsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionBorrowArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionBorrowsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4372,10 +4520,12 @@ export type SubscriptionBorrowsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionSwapArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionSwapsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4386,10 +4536,12 @@ export type SubscriptionSwapsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionUsageAsCollateralArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionUsageAsCollateralsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4400,10 +4552,12 @@ export type SubscriptionUsageAsCollateralsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionRebalanceStableBorrowRateArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionRebalanceStableBorrowRatesArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4414,10 +4568,12 @@ export type SubscriptionRebalanceStableBorrowRatesArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionRepayArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionRepaysArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4428,10 +4584,12 @@ export type SubscriptionRepaysArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionFlashLoanArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionFlashLoansArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4442,10 +4600,12 @@ export type SubscriptionFlashLoansArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionLiquidationCallArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionLiquidationCallsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4456,10 +4616,12 @@ export type SubscriptionLiquidationCallsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionOriginationFeeLiquidationArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionOriginationFeeLiquidationsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4470,10 +4632,12 @@ export type SubscriptionOriginationFeeLiquidationsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionReserveConfigurationHistoryItemArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionReserveConfigurationHistoryItemsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4484,10 +4648,12 @@ export type SubscriptionReserveConfigurationHistoryItemsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionReserveParamsHistoryItemArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionReserveParamsHistoryItemsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4498,10 +4664,12 @@ export type SubscriptionReserveParamsHistoryItemsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionReserveArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionReservesArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4512,10 +4680,12 @@ export type SubscriptionReservesArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionWethreserveArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionWethreservesArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4526,10 +4696,12 @@ export type SubscriptionWethreservesArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionAtokenBalanceHistoryItemArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionAtokenBalanceHistoryItemsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4540,10 +4712,12 @@ export type SubscriptionAtokenBalanceHistoryItemsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionVtokenBalanceHistoryItemArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionVtokenBalanceHistoryItemsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4554,10 +4728,12 @@ export type SubscriptionVtokenBalanceHistoryItemsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionStokenBalanceHistoryItemArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionStokenBalanceHistoryItemsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4568,10 +4744,12 @@ export type SubscriptionStokenBalanceHistoryItemsArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionStableTokenDelegatedAllowanceArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionStableTokenDelegatedAllowancesArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4582,10 +4760,12 @@ export type SubscriptionStableTokenDelegatedAllowancesArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionVariableTokenDelegatedAllowanceArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionVariableTokenDelegatedAllowancesArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4596,10 +4776,12 @@ export type SubscriptionVariableTokenDelegatedAllowancesArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionUserReserveArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionUserReservesArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4610,10 +4792,12 @@ export type SubscriptionUserReservesArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionUserArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionUsersArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4624,10 +4808,12 @@ export type SubscriptionUsersArgs = {
   block?: Maybe<Block_Height>;
 };
 
+
 export type SubscriptionUserTransactionArgs = {
   id: Scalars['ID'];
   block?: Maybe<Block_Height>;
 };
+
 
 export type SubscriptionUserTransactionsArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4637,6 +4823,7 @@ export type SubscriptionUserTransactionsArgs = {
   where?: Maybe<UserTransaction_Filter>;
   block?: Maybe<Block_Height>;
 };
+
 
 export type Subscription_MetaArgs = {
   block?: Maybe<Block_Height>;
@@ -4762,7 +4949,7 @@ export enum Swap_OrderBy {
   BorrowRateModeTo = 'borrowRateModeTo',
   StableBorrowRate = 'stableBorrowRate',
   VariableBorrowRate = 'variableBorrowRate',
-  Timestamp = 'timestamp',
+  Timestamp = 'timestamp'
 }
 
 export type UsageAsCollateral = UserTransaction & {
@@ -4869,7 +5056,7 @@ export enum UsageAsCollateral_OrderBy {
   UserReserve = 'userReserve',
   FromState = 'fromState',
   ToState = 'toState',
-  Timestamp = 'timestamp',
+  Timestamp = 'timestamp'
 }
 
 export type UsdEthPriceHistoryItem = {
@@ -4925,7 +5112,7 @@ export enum UsdEthPriceHistoryItem_OrderBy {
   Id = 'id',
   Oracle = 'oracle',
   Price = 'price',
-  Timestamp = 'timestamp',
+  Timestamp = 'timestamp'
 }
 
 export type User = {
@@ -4945,6 +5132,7 @@ export type User = {
   originationFeeLiquidationHistory: Array<OriginationFeeLiquidation>;
 };
 
+
 export type UserReservesArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -4952,6 +5140,7 @@ export type UserReservesArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<UserReserve_Filter>;
 };
+
 
 export type UserDepositHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4961,6 +5150,7 @@ export type UserDepositHistoryArgs = {
   where?: Maybe<Deposit_Filter>;
 };
 
+
 export type UserRedeemUnderlyingHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -4968,6 +5158,7 @@ export type UserRedeemUnderlyingHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<RedeemUnderlying_Filter>;
 };
+
 
 export type UserUsageAsCollateralHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4977,6 +5168,7 @@ export type UserUsageAsCollateralHistoryArgs = {
   where?: Maybe<UsageAsCollateral_Filter>;
 };
 
+
 export type UserBorrowHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -4984,6 +5176,7 @@ export type UserBorrowHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<Borrow_Filter>;
 };
+
 
 export type UserSwapHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -4993,6 +5186,7 @@ export type UserSwapHistoryArgs = {
   where?: Maybe<Swap_Filter>;
 };
 
+
 export type UserRebalanceStableBorrowRateHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -5000,6 +5194,7 @@ export type UserRebalanceStableBorrowRateHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<RebalanceStableBorrowRate_Filter>;
 };
+
 
 export type UserRepayHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -5009,6 +5204,7 @@ export type UserRepayHistoryArgs = {
   where?: Maybe<Repay_Filter>;
 };
 
+
 export type UserLiquidationCallHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -5016,6 +5212,7 @@ export type UserLiquidationCallHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<LiquidationCall_Filter>;
 };
+
 
 export type UserOriginationFeeLiquidationHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -5063,6 +5260,7 @@ export type UserReserve = {
   originationFeeLiquidationHistory: Array<OriginationFeeLiquidation>;
 };
 
+
 export type UserReserveStableTokenDelegatedAllowancesArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -5070,6 +5268,7 @@ export type UserReserveStableTokenDelegatedAllowancesArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<StableTokenDelegatedAllowance_Filter>;
 };
+
 
 export type UserReserveVariableTokenDelegatedAllowancesArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -5079,6 +5278,7 @@ export type UserReserveVariableTokenDelegatedAllowancesArgs = {
   where?: Maybe<VariableTokenDelegatedAllowance_Filter>;
 };
 
+
 export type UserReserveATokenBalanceHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -5086,6 +5286,7 @@ export type UserReserveATokenBalanceHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<ATokenBalanceHistoryItem_Filter>;
 };
+
 
 export type UserReserveVTokenBalanceHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -5095,6 +5296,7 @@ export type UserReserveVTokenBalanceHistoryArgs = {
   where?: Maybe<VTokenBalanceHistoryItem_Filter>;
 };
 
+
 export type UserReserveSTokenBalanceHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -5102,6 +5304,7 @@ export type UserReserveSTokenBalanceHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<STokenBalanceHistoryItem_Filter>;
 };
+
 
 export type UserReserveUsageAsCollateralHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -5111,6 +5314,7 @@ export type UserReserveUsageAsCollateralHistoryArgs = {
   where?: Maybe<UsageAsCollateral_Filter>;
 };
 
+
 export type UserReserveDepositHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -5118,6 +5322,7 @@ export type UserReserveDepositHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<Deposit_Filter>;
 };
+
 
 export type UserReserveRedeemUnderlyingHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -5127,6 +5332,7 @@ export type UserReserveRedeemUnderlyingHistoryArgs = {
   where?: Maybe<RedeemUnderlying_Filter>;
 };
 
+
 export type UserReserveBorrowHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -5134,6 +5340,7 @@ export type UserReserveBorrowHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<Borrow_Filter>;
 };
+
 
 export type UserReserveSwapHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -5143,6 +5350,7 @@ export type UserReserveSwapHistoryArgs = {
   where?: Maybe<Swap_Filter>;
 };
 
+
 export type UserReserveRebalanceStableBorrowRateHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -5150,6 +5358,7 @@ export type UserReserveRebalanceStableBorrowRateHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<RebalanceStableBorrowRate_Filter>;
 };
+
 
 export type UserReserveRepayHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -5159,6 +5368,7 @@ export type UserReserveRepayHistoryArgs = {
   where?: Maybe<Repay_Filter>;
 };
 
+
 export type UserReserveLiquidationCallHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
@@ -5166,6 +5376,7 @@ export type UserReserveLiquidationCallHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<LiquidationCall_Filter>;
 };
+
 
 export type UserReserveOriginationFeeLiquidationHistoryArgs = {
   skip?: Maybe<Scalars['Int']>;
@@ -5368,7 +5579,7 @@ export enum UserReserve_OrderBy {
   RebalanceStableBorrowRateHistory = 'rebalanceStableBorrowRateHistory',
   RepayHistory = 'repayHistory',
   LiquidationCallHistory = 'liquidationCallHistory',
-  OriginationFeeLiquidationHistory = 'originationFeeLiquidationHistory',
+  OriginationFeeLiquidationHistory = 'originationFeeLiquidationHistory'
 }
 
 export type UserTransaction = {
@@ -5429,7 +5640,7 @@ export enum UserTransaction_OrderBy {
   Id = 'id',
   Pool = 'pool',
   User = 'user',
-  Timestamp = 'timestamp',
+  Timestamp = 'timestamp'
 }
 
 export type User_Filter = {
@@ -5463,7 +5674,7 @@ export enum User_OrderBy {
   RebalanceStableBorrowRateHistory = 'rebalanceStableBorrowRateHistory',
   RepayHistory = 'repayHistory',
   LiquidationCallHistory = 'liquidationCallHistory',
-  OriginationFeeLiquidationHistory = 'originationFeeLiquidationHistory',
+  OriginationFeeLiquidationHistory = 'originationFeeLiquidationHistory'
 }
 
 export type VToken = {
@@ -5550,7 +5761,7 @@ export enum VTokenBalanceHistoryItem_OrderBy {
   ScaledVariableDebt = 'scaledVariableDebt',
   CurrentVariableDebt = 'currentVariableDebt',
   Timestamp = 'timestamp',
-  Index = 'index',
+  Index = 'index'
 }
 
 export type VToken_Filter = {
@@ -5603,7 +5814,7 @@ export enum VToken_OrderBy {
   Pool = 'pool',
   UnderlyingAssetAddress = 'underlyingAssetAddress',
   UnderlyingAssetDecimals = 'underlyingAssetDecimals',
-  TokenContractImpl = 'tokenContractImpl',
+  TokenContractImpl = 'tokenContractImpl'
 }
 
 export type VariableDebtToken = {
@@ -5658,7 +5869,7 @@ export enum VariableDebtToken_OrderBy {
   Id = 'id',
   Pool = 'pool',
   UnderlyingAssetAddress = 'underlyingAssetAddress',
-  UnderlyingAssetDecimals = 'underlyingAssetDecimals',
+  UnderlyingAssetDecimals = 'underlyingAssetDecimals'
 }
 
 export type VariableTokenDelegatedAllowance = {
@@ -5737,7 +5948,7 @@ export enum VariableTokenDelegatedAllowance_OrderBy {
   FromUser = 'fromUser',
   ToUser = 'toUser',
   AmountAllowed = 'amountAllowed',
-  UserReserve = 'userReserve',
+  UserReserve = 'userReserve'
 }
 
 export type WethReserve = {
@@ -5828,7 +6039,7 @@ export enum WethReserve_OrderBy {
   Name = 'name',
   Decimals = 'decimals',
   UpdatedTimestamp = 'updatedTimestamp',
-  UpdatedBlockNumber = 'updatedBlockNumber',
+  UpdatedBlockNumber = 'updatedBlockNumber'
 }
 
 export type _Block_ = {
@@ -5859,409 +6070,287 @@ export enum _SubgraphErrorPolicy_ {
   /** Data will be returned even if the subgraph has indexing errors */
   Allow = 'allow',
   /** If the subgraph has indexing errors, data will be omitted. The default. */
-  Deny = 'deny',
+  Deny = 'deny'
 }
 
-export type ReserveHistoryFeeDataFragment = {
-  __typename?: 'ReserveParamsHistoryItem';
-} & Pick<
-  ReserveParamsHistoryItem,
-  | 'id'
-  | 'timestamp'
-  | 'lifetimeFlashLoanPremium'
-  | 'lifetimeReserveFactorAccrued'
-  | 'lifetimeDepositorsInterestEarned'
->;
+export type ReserveHistoryFeeDataV2Fragment = (
+  { __typename?: 'ReserveParamsHistoryItem' }
+  & Pick<ReserveParamsHistoryItem, 'id' | 'timestamp' | 'lifetimeFlashLoanPremium' | 'lifetimeReserveFactorAccrued' | 'lifetimeDepositorsInterestEarned'>
+);
 
-export type ReserveFeeItemFragment = { __typename?: 'Reserve' } & Pick<
-  Reserve,
-  | 'id'
-  | 'symbol'
-  | 'decimals'
-  | 'lifetimeFlashLoanPremium'
-  | 'lifetimeReserveFactorAccrued'
-  | 'lifetimeDepositorsInterestEarned'
-> & {
-    price: { __typename?: 'PriceOracleAsset' } & Pick<
-      PriceOracleAsset,
-      'id' | 'priceInEth'
-    >;
-    pool: { __typename?: 'Pool' } & Pick<Pool, 'id'>;
-  };
+export type ReserveFeeItemV2Fragment = (
+  { __typename?: 'Reserve' }
+  & Pick<Reserve, 'id' | 'symbol' | 'decimals' | 'lifetimeFlashLoanPremium' | 'lifetimeReserveFactorAccrued' | 'lifetimeDepositorsInterestEarned'>
+  & { price: (
+    { __typename?: 'PriceOracleAsset' }
+    & Pick<PriceOracleAsset, 'id' | 'priceInEth'>
+  ) }
+);
 
 export type ReservesFeesQueryQueryVariables = Exact<{
   oneDayAgo: Scalars['Int'];
   sevenDaysAgo: Scalars['Int'];
 }>;
 
-export type ReservesFeesQueryQuery = { __typename?: 'Query' } & {
-  priceOracle?: Maybe<
-    { __typename?: 'PriceOracle' } & Pick<
-      PriceOracle,
-      'id' | 'usdPriceEth' | 'lastUpdateTimestamp'
-    >
-  >;
-  reserves: Array<
-    { __typename?: 'Reserve' } & {
-      oneDayAgo: Array<
-        {
-          __typename?: 'ReserveParamsHistoryItem';
-        } & ReserveHistoryFeeDataFragment
-      >;
-      sevenDaysAgo: Array<
-        {
-          __typename?: 'ReserveParamsHistoryItem';
-        } & ReserveHistoryFeeDataFragment
-      >;
-    } & ReserveFeeItemFragment
-  >;
-};
 
-export type OracleQueryVariables = Exact<{ [key: string]: never }>;
+export type ReservesFeesQueryQuery = (
+  { __typename?: 'Query' }
+  & { priceOracle?: Maybe<(
+    { __typename?: 'PriceOracle' }
+    & Pick<PriceOracle, 'id' | 'usdPriceEth' | 'lastUpdateTimestamp'>
+  )>, reserves: Array<(
+    { __typename?: 'Reserve' }
+    & { oneDayAgo: Array<(
+      { __typename?: 'ReserveParamsHistoryItem' }
+      & ReserveHistoryFeeDataV2Fragment
+    )>, sevenDaysAgo: Array<(
+      { __typename?: 'ReserveParamsHistoryItem' }
+      & ReserveHistoryFeeDataV2Fragment
+    )> }
+    & ReserveFeeItemV2Fragment
+  )> }
+);
 
-export type OracleQuery = { __typename?: 'Query' } & {
-  priceOracle?: Maybe<
-    { __typename?: 'PriceOracle' } & Pick<
-      PriceOracle,
-      'id' | 'usdPriceEth' | 'lastUpdateTimestamp'
-    >
-  >;
-};
+export type OracleQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type ReserveHistoryDataFragment = {
-  __typename?: 'ReserveParamsHistoryItem';
-} & Pick<
-  ReserveParamsHistoryItem,
-  | 'id'
-  | 'timestamp'
-  | 'totalLiquidity'
-  | 'availableLiquidity'
-  | 'liquidityIndex'
-  | 'variableBorrowIndex'
-  | 'priceInEth'
-  | 'priceInUsd'
-  | 'totalScaledVariableDebt'
-  | 'totalPrincipalStableDebt'
-  | 'averageStableBorrowRate'
->;
+
+export type OracleQuery = (
+  { __typename?: 'Query' }
+  & { priceOracle?: Maybe<(
+    { __typename?: 'PriceOracle' }
+    & Pick<PriceOracle, 'id' | 'usdPriceEth' | 'lastUpdateTimestamp'>
+  )> }
+);
+
+export type ReserveHistoryDataV2Fragment = (
+  { __typename?: 'ReserveParamsHistoryItem' }
+  & Pick<ReserveParamsHistoryItem, 'id' | 'timestamp' | 'totalLiquidity' | 'availableLiquidity' | 'liquidityIndex' | 'variableBorrowIndex' | 'priceInEth' | 'priceInUsd' | 'totalScaledVariableDebt' | 'totalPrincipalStableDebt' | 'averageStableBorrowRate'>
+);
 
 export type ReserveParamsHistoryQueryVariables = Exact<{
   reference: Scalars['Int'];
   reserve: Scalars['String'];
 }>;
 
-export type ReserveParamsHistoryQuery = { __typename?: 'Query' } & {
-  reference: Array<
-    { __typename?: 'ReserveParamsHistoryItem' } & ReserveHistoryDataFragment
-  >;
-};
+
+export type ReserveParamsHistoryQuery = (
+  { __typename?: 'Query' }
+  & { reference: Array<(
+    { __typename?: 'ReserveParamsHistoryItem' }
+    & ReserveHistoryDataV2Fragment
+  )> }
+);
 
 export type FirstReserveParamsHistoryQueryVariables = Exact<{
   reserve: Scalars['String'];
 }>;
 
-export type FirstReserveParamsHistoryQuery = { __typename?: 'Query' } & {
-  reference: Array<
-    { __typename?: 'ReserveParamsHistoryItem' } & ReserveHistoryDataFragment
-  >;
-};
 
-export type ReserveItemFragment = { __typename?: 'Reserve' } & Pick<
-  Reserve,
-  | 'id'
-  | 'symbol'
-  | 'decimals'
-  | 'totalLiquidity'
-  | 'liquidityRate'
-  | 'variableBorrowRate'
-  | 'stableBorrowRate'
-  | 'stableBorrowRateEnabled'
-  | 'availableLiquidity'
-  | 'lastUpdateTimestamp'
-  | 'liquidityIndex'
-  | 'variableBorrowIndex'
-  | 'lifetimeFlashLoans'
-  | 'lifetimeLiquidated'
-  | 'lifetimeFlashLoanPremium'
-  | 'totalScaledVariableDebt'
-  | 'totalPrincipalStableDebt'
-  | 'averageStableRate'
-  | 'stableDebtLastUpdateTimestamp'
-> & {
-    flashLoanHistory: Array<
-      { __typename?: 'FlashLoan' } & Pick<FlashLoan, 'id' | 'amount'>
-    >;
-    price: { __typename?: 'PriceOracleAsset' } & Pick<
-      PriceOracleAsset,
-      'id' | 'priceInEth'
-    >;
-    pool: { __typename?: 'Pool' } & Pick<Pool, 'id'>;
-  };
+export type FirstReserveParamsHistoryQuery = (
+  { __typename?: 'Query' }
+  & { reference: Array<(
+    { __typename?: 'ReserveParamsHistoryItem' }
+    & ReserveHistoryDataV2Fragment
+  )> }
+);
 
-export type ReservesQueryQueryVariables = Exact<{ [key: string]: never }>;
+export type ReserveItemV2Fragment = (
+  { __typename?: 'Reserve' }
+  & Pick<Reserve, 'id' | 'symbol' | 'decimals' | 'totalLiquidity' | 'liquidityRate' | 'variableBorrowRate' | 'stableBorrowRate' | 'stableBorrowRateEnabled' | 'availableLiquidity' | 'lastUpdateTimestamp' | 'liquidityIndex' | 'variableBorrowIndex' | 'lifetimeFlashLoans' | 'lifetimeLiquidated' | 'lifetimeFlashLoanPremium' | 'totalScaledVariableDebt' | 'totalPrincipalStableDebt' | 'averageStableRate' | 'stableDebtLastUpdateTimestamp'>
+  & { flashLoanHistory: Array<(
+    { __typename?: 'FlashLoan' }
+    & Pick<FlashLoan, 'id' | 'amount'>
+  )>, price: (
+    { __typename?: 'PriceOracleAsset' }
+    & Pick<PriceOracleAsset, 'id' | 'priceInEth'>
+  ), pool: (
+    { __typename?: 'Pool' }
+    & Pick<Pool, 'id'>
+  ) }
+);
 
-export type ReservesQueryQuery = { __typename?: 'Query' } & {
-  priceOracle?: Maybe<
-    { __typename?: 'PriceOracle' } & Pick<
-      PriceOracle,
-      'id' | 'usdPriceEth' | 'lastUpdateTimestamp'
-    >
-  >;
-  reserves: Array<{ __typename?: 'Reserve' } & ReserveItemFragment>;
-};
+export type ReservesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
-export const ReserveHistoryFeeDataFragmentDoc = gql`
-  fragment ReserveHistoryFeeData on ReserveParamsHistoryItem {
+
+export type ReservesQueryQuery = (
+  { __typename?: 'Query' }
+  & { priceOracle?: Maybe<(
+    { __typename?: 'PriceOracle' }
+    & Pick<PriceOracle, 'id' | 'usdPriceEth' | 'lastUpdateTimestamp'>
+  )>, reserves: Array<(
+    { __typename?: 'Reserve' }
+    & ReserveItemV2Fragment
+  )> }
+);
+
+export const ReserveHistoryFeeDataV2FragmentDoc = gql`
+    fragment ReserveHistoryFeeDataV2 on ReserveParamsHistoryItem {
+  id
+  timestamp
+  lifetimeFlashLoanPremium
+  lifetimeReserveFactorAccrued
+  lifetimeDepositorsInterestEarned
+}
+    `;
+export const ReserveFeeItemV2FragmentDoc = gql`
+    fragment ReserveFeeItemV2 on Reserve {
+  id
+  symbol
+  decimals
+  lifetimeFlashLoanPremium
+  lifetimeReserveFactorAccrued
+  lifetimeDepositorsInterestEarned
+  price {
     id
-    timestamp
-    lifetimeFlashLoanPremium
-    lifetimeReserveFactorAccrued
-    lifetimeDepositorsInterestEarned
-  }
-`;
-export const ReserveFeeItemFragmentDoc = gql`
-  fragment ReserveFeeItem on Reserve {
-    id
-    symbol
-    decimals
-    lifetimeFlashLoanPremium
-    lifetimeReserveFactorAccrued
-    lifetimeDepositorsInterestEarned
-    price {
-      id
-      priceInEth
-    }
-    pool {
-      id
-    }
-  }
-`;
-export const ReserveHistoryDataFragmentDoc = gql`
-  fragment ReserveHistoryData on ReserveParamsHistoryItem {
-    id
-    timestamp
-    totalLiquidity
-    availableLiquidity
-    liquidityIndex
-    variableBorrowIndex
     priceInEth
-    priceInUsd
-    totalScaledVariableDebt
-    totalPrincipalStableDebt
-    averageStableBorrowRate
   }
-`;
-export const ReserveItemFragmentDoc = gql`
-  fragment ReserveItem on Reserve {
+}
+    `;
+export const ReserveHistoryDataV2FragmentDoc = gql`
+    fragment ReserveHistoryDataV2 on ReserveParamsHistoryItem {
+  id
+  timestamp
+  totalLiquidity
+  availableLiquidity
+  liquidityIndex
+  variableBorrowIndex
+  priceInEth
+  priceInUsd
+  totalScaledVariableDebt
+  totalPrincipalStableDebt
+  averageStableBorrowRate
+}
+    `;
+export const ReserveItemV2FragmentDoc = gql`
+    fragment ReserveItemV2 on Reserve {
+  id
+  symbol
+  decimals
+  totalLiquidity
+  liquidityRate
+  variableBorrowRate
+  stableBorrowRate
+  stableBorrowRateEnabled
+  availableLiquidity
+  lastUpdateTimestamp
+  liquidityIndex
+  variableBorrowIndex
+  lifetimeFlashLoans
+  lifetimeLiquidated
+  lifetimeFlashLoanPremium
+  totalScaledVariableDebt
+  totalPrincipalStableDebt
+  averageStableRate
+  stableDebtLastUpdateTimestamp
+  flashLoanHistory(orderBy: amount, orderDirection: desc, first: 1) {
     id
-    symbol
-    decimals
-    totalLiquidity
-    liquidityRate
-    variableBorrowRate
-    stableBorrowRate
-    stableBorrowRateEnabled
-    availableLiquidity
-    lastUpdateTimestamp
-    liquidityIndex
-    variableBorrowIndex
-    lifetimeFlashLoans
-    lifetimeLiquidated
-    lifetimeFlashLoanPremium
-    totalScaledVariableDebt
-    totalPrincipalStableDebt
-    averageStableRate
-    stableDebtLastUpdateTimestamp
-    flashLoanHistory(orderBy: amount, orderDirection: desc, first: 1) {
-      id
-      amount
-    }
-    price {
-      id
-      priceInEth
-    }
-    pool {
-      id
-    }
+    amount
   }
-`;
+  price {
+    id
+    priceInEth
+  }
+  pool {
+    id
+  }
+}
+    `;
 export const ReservesFeesQueryDocument = gql`
-  query ReservesFeesQuery($oneDayAgo: Int!, $sevenDaysAgo: Int!) {
-    priceOracle(id: 1) {
-      id
-      usdPriceEth
-      lastUpdateTimestamp
-    }
-    reserves {
-      ...ReserveFeeItem
-      oneDayAgo: paramsHistory(
-        orderDirection: desc
-        orderBy: timestamp
-        first: 1
-        where: { timestamp_lte: $oneDayAgo }
-      ) {
-        ...ReserveHistoryFeeData
-      }
-      sevenDaysAgo: paramsHistory(
-        orderDirection: desc
-        orderBy: timestamp
-        first: 1
-        where: { timestamp_lte: $sevenDaysAgo }
-      ) {
-        ...ReserveHistoryFeeData
-      }
-    }
+    query ReservesFeesQuery($oneDayAgo: Int!, $sevenDaysAgo: Int!) {
+  priceOracle(id: 1) {
+    id
+    usdPriceEth
+    lastUpdateTimestamp
   }
-  ${ReserveFeeItemFragmentDoc}
-  ${ReserveHistoryFeeDataFragmentDoc}
-`;
-export const OracleDocument = gql`
-  query Oracle {
-    priceOracle(id: 1) {
-      id
-      usdPriceEth
-      lastUpdateTimestamp
-    }
-  }
-`;
-export const ReserveParamsHistoryDocument = gql`
-  query ReserveParamsHistory($reference: Int!, $reserve: String!) {
-    reference: reserveParamsHistoryItems(
-      where: { timestamp_lte: $reference, reserve: $reserve }
-      first: 1
-      orderBy: timestamp
+  reserves {
+    ...ReserveFeeItemV2
+    oneDayAgo: paramsHistory(
       orderDirection: desc
-    ) {
-      ...ReserveHistoryData
-    }
-  }
-  ${ReserveHistoryDataFragmentDoc}
-`;
-export const FirstReserveParamsHistoryDocument = gql`
-  query FirstReserveParamsHistory($reserve: String!) {
-    reference: reserveParamsHistoryItems(
-      where: { reserve: $reserve }
-      first: 1
       orderBy: timestamp
-      orderDirection: asc
+      first: 1
+      where: {timestamp_lte: $oneDayAgo}
     ) {
-      ...ReserveHistoryData
+      ...ReserveHistoryFeeDataV2
+    }
+    sevenDaysAgo: paramsHistory(
+      orderDirection: desc
+      orderBy: timestamp
+      first: 1
+      where: {timestamp_lte: $sevenDaysAgo}
+    ) {
+      ...ReserveHistoryFeeDataV2
     }
   }
-  ${ReserveHistoryDataFragmentDoc}
-`;
+}
+    ${ReserveFeeItemV2FragmentDoc}
+${ReserveHistoryFeeDataV2FragmentDoc}`;
+export const OracleDocument = gql`
+    query Oracle {
+  priceOracle(id: 1) {
+    id
+    usdPriceEth
+    lastUpdateTimestamp
+  }
+}
+    `;
+export const ReserveParamsHistoryDocument = gql`
+    query ReserveParamsHistory($reference: Int!, $reserve: String!) {
+  reference: reserveParamsHistoryItems(
+    where: {timestamp_lte: $reference, reserve: $reserve}
+    first: 1
+    orderBy: timestamp
+    orderDirection: desc
+  ) {
+    ...ReserveHistoryDataV2
+  }
+}
+    ${ReserveHistoryDataV2FragmentDoc}`;
+export const FirstReserveParamsHistoryDocument = gql`
+    query FirstReserveParamsHistory($reserve: String!) {
+  reference: reserveParamsHistoryItems(
+    where: {reserve: $reserve}
+    first: 1
+    orderBy: timestamp
+    orderDirection: asc
+  ) {
+    ...ReserveHistoryDataV2
+  }
+}
+    ${ReserveHistoryDataV2FragmentDoc}`;
 export const ReservesQueryDocument = gql`
-  query ReservesQuery {
-    priceOracle(id: 1) {
-      id
-      usdPriceEth
-      lastUpdateTimestamp
-    }
-    reserves(orderBy: liquidityRate, orderDirection: desc) {
-      ...ReserveItem
-    }
+    query ReservesQuery {
+  priceOracle(id: 1) {
+    id
+    usdPriceEth
+    lastUpdateTimestamp
   }
-  ${ReserveItemFragmentDoc}
-`;
+  reserves(orderBy: liquidityRate, orderDirection: desc) {
+    ...ReserveItemV2
+  }
+}
+    ${ReserveItemV2FragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: () => Promise<T>) => Promise<T>;
 
-const defaultWrapper: SdkFunctionWrapper = (sdkFunction) => sdkFunction();
-export function getSdk(
-  client: GraphQLClient,
-  withWrapper: SdkFunctionWrapper = defaultWrapper
-) {
+
+const defaultWrapper: SdkFunctionWrapper = sdkFunction => sdkFunction();
+export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    ReservesFeesQuery(
-      variables: ReservesFeesQueryQueryVariables,
-      requestHeaders?: Headers
-    ): Promise<{
-      data?: ReservesFeesQueryQuery | undefined;
-      extensions?: any;
-      headers: Headers;
-      status: number;
-      errors?: GraphQLError[] | undefined;
-    }> {
-      return withWrapper(() =>
-        client.rawRequest<ReservesFeesQueryQuery>(
-          print(ReservesFeesQueryDocument),
-          variables,
-          requestHeaders
-        )
-      );
+    ReservesFeesQuery(variables: ReservesFeesQueryQueryVariables, requestHeaders?: Headers): Promise<{ data?: ReservesFeesQueryQuery | undefined; extensions?: any; headers: Headers; status: number; errors?: GraphQLError[] | undefined; }> {
+        return withWrapper(() => client.rawRequest<ReservesFeesQueryQuery>(print(ReservesFeesQueryDocument), variables, requestHeaders));
     },
-    Oracle(
-      variables?: OracleQueryVariables,
-      requestHeaders?: Headers
-    ): Promise<{
-      data?: OracleQuery | undefined;
-      extensions?: any;
-      headers: Headers;
-      status: number;
-      errors?: GraphQLError[] | undefined;
-    }> {
-      return withWrapper(() =>
-        client.rawRequest<OracleQuery>(
-          print(OracleDocument),
-          variables,
-          requestHeaders
-        )
-      );
+    Oracle(variables?: OracleQueryVariables, requestHeaders?: Headers): Promise<{ data?: OracleQuery | undefined; extensions?: any; headers: Headers; status: number; errors?: GraphQLError[] | undefined; }> {
+        return withWrapper(() => client.rawRequest<OracleQuery>(print(OracleDocument), variables, requestHeaders));
     },
-    ReserveParamsHistory(
-      variables: ReserveParamsHistoryQueryVariables,
-      requestHeaders?: Headers
-    ): Promise<{
-      data?: ReserveParamsHistoryQuery | undefined;
-      extensions?: any;
-      headers: Headers;
-      status: number;
-      errors?: GraphQLError[] | undefined;
-    }> {
-      return withWrapper(() =>
-        client.rawRequest<ReserveParamsHistoryQuery>(
-          print(ReserveParamsHistoryDocument),
-          variables,
-          requestHeaders
-        )
-      );
+    ReserveParamsHistory(variables: ReserveParamsHistoryQueryVariables, requestHeaders?: Headers): Promise<{ data?: ReserveParamsHistoryQuery | undefined; extensions?: any; headers: Headers; status: number; errors?: GraphQLError[] | undefined; }> {
+        return withWrapper(() => client.rawRequest<ReserveParamsHistoryQuery>(print(ReserveParamsHistoryDocument), variables, requestHeaders));
     },
-    FirstReserveParamsHistory(
-      variables: FirstReserveParamsHistoryQueryVariables,
-      requestHeaders?: Headers
-    ): Promise<{
-      data?: FirstReserveParamsHistoryQuery | undefined;
-      extensions?: any;
-      headers: Headers;
-      status: number;
-      errors?: GraphQLError[] | undefined;
-    }> {
-      return withWrapper(() =>
-        client.rawRequest<FirstReserveParamsHistoryQuery>(
-          print(FirstReserveParamsHistoryDocument),
-          variables,
-          requestHeaders
-        )
-      );
+    FirstReserveParamsHistory(variables: FirstReserveParamsHistoryQueryVariables, requestHeaders?: Headers): Promise<{ data?: FirstReserveParamsHistoryQuery | undefined; extensions?: any; headers: Headers; status: number; errors?: GraphQLError[] | undefined; }> {
+        return withWrapper(() => client.rawRequest<FirstReserveParamsHistoryQuery>(print(FirstReserveParamsHistoryDocument), variables, requestHeaders));
     },
-    ReservesQuery(
-      variables?: ReservesQueryQueryVariables,
-      requestHeaders?: Headers
-    ): Promise<{
-      data?: ReservesQueryQuery | undefined;
-      extensions?: any;
-      headers: Headers;
-      status: number;
-      errors?: GraphQLError[] | undefined;
-    }> {
-      return withWrapper(() =>
-        client.rawRequest<ReservesQueryQuery>(
-          print(ReservesQueryDocument),
-          variables,
-          requestHeaders
-        )
-      );
-    },
+    ReservesQuery(variables?: ReservesQueryQueryVariables, requestHeaders?: Headers): Promise<{ data?: ReservesQueryQuery | undefined; extensions?: any; headers: Headers; status: number; errors?: GraphQLError[] | undefined; }> {
+        return withWrapper(() => client.rawRequest<ReservesQueryQuery>(print(ReservesQueryDocument), variables, requestHeaders));
+    }
   };
 }
 export type Sdk = ReturnType<typeof getSdk>;

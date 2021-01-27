@@ -1,22 +1,24 @@
 import { gql } from "graphql-request";
 
 const RESERVE_HISTORY_FEE_FRAGMENT = gql`
-  fragment ReserveHistoryFeeDataV2 on ReserveParamsHistoryItem {
+  fragment ReserveHistoryFeeDataV1 on ReserveParamsHistoryItem {
     id
     timestamp
-    lifetimeFlashLoanPremium
-    lifetimeReserveFactorAccrued
+    lifetimeFlashloanDepositorsFee
+    lifetimeFlashloanProtocolFee
+    lifetimeOriginationFee
     lifetimeDepositorsInterestEarned
   }
 `;
 
 const RESERVE_FEE_FRAGMENT = gql`
-  fragment ReserveFeeItemV2 on Reserve {
+  fragment ReserveFeeItemV1 on Reserve {
     id
     symbol
     decimals
-    lifetimeFlashLoanPremium
-    lifetimeReserveFactorAccrued
+    lifetimeFlashloanDepositorsFee
+    lifetimeFlashloanProtocolFee
+    lifetimeOriginationFee: lifetimeFeeOriginated
     lifetimeDepositorsInterestEarned
     price {
       id
@@ -33,14 +35,14 @@ export const FEES_QUERY = gql`
       lastUpdateTimestamp
     }
     reserves {
-      ...ReserveFeeItemV2
+      ...ReserveFeeItemV1
       oneDayAgo: paramsHistory(
         orderDirection: desc
         orderBy: timestamp
         first: 1
         where: { timestamp_lte: $oneDayAgo }
       ) {
-        ...ReserveHistoryFeeDataV2
+        ...ReserveHistoryFeeDataV1
       }
       sevenDaysAgo: paramsHistory(
         orderDirection: desc
@@ -48,7 +50,7 @@ export const FEES_QUERY = gql`
         first: 1
         where: { timestamp_lte: $sevenDaysAgo }
       ) {
-        ...ReserveHistoryFeeDataV2
+        ...ReserveHistoryFeeDataV1
       }
     }
   }

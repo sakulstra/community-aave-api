@@ -1,7 +1,7 @@
 import { gql } from "graphql-request";
 
 const RESERVE_FRAGMENT = gql`
-  fragment ReserveItem on Reserve {
+  fragment ReserveItemV2 on Reserve {
     id
     symbol
     decimals
@@ -43,7 +43,7 @@ export const RESERVES = gql`
       lastUpdateTimestamp
     }
     reserves(orderBy: liquidityRate, orderDirection: desc) {
-      ...ReserveItem
+      ...ReserveItemV2
     }
   }
   ${RESERVE_FRAGMENT}

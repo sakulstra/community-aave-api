@@ -4850,6 +4850,61 @@ export enum _SubgraphErrorPolicy_ {
   Deny = 'deny',
 }
 
+export type ReserveHistoryFeeDataV1Fragment = {
+  __typename?: 'ReserveParamsHistoryItem';
+} & Pick<
+  ReserveParamsHistoryItem,
+  | 'id'
+  | 'timestamp'
+  | 'lifetimeFlashloanDepositorsFee'
+  | 'lifetimeFlashloanProtocolFee'
+  | 'lifetimeOriginationFee'
+  | 'lifetimeDepositorsInterestEarned'
+>;
+
+export type ReserveFeeItemV1Fragment = { __typename?: 'Reserve' } & Pick<
+  Reserve,
+  | 'id'
+  | 'symbol'
+  | 'decimals'
+  | 'lifetimeFlashloanDepositorsFee'
+  | 'lifetimeFlashloanProtocolFee'
+  | 'lifetimeDepositorsInterestEarned'
+> & { lifetimeOriginationFee: Reserve['lifetimeFeeOriginated'] } & {
+    price: { __typename?: 'PriceOracleAsset' } & Pick<
+      PriceOracleAsset,
+      'id' | 'priceInEth'
+    >;
+  };
+
+export type ReservesFeesQueryQueryVariables = Exact<{
+  oneDayAgo: Scalars['Int'];
+  sevenDaysAgo: Scalars['Int'];
+}>;
+
+export type ReservesFeesQueryQuery = { __typename?: 'Query' } & {
+  priceOracle?: Maybe<
+    { __typename?: 'PriceOracle' } & Pick<
+      PriceOracle,
+      'id' | 'usdPriceEth' | 'lastUpdateTimestamp'
+    >
+  >;
+  reserves: Array<
+    { __typename?: 'Reserve' } & {
+      oneDayAgo: Array<
+        {
+          __typename?: 'ReserveParamsHistoryItem';
+        } & ReserveHistoryFeeDataV1Fragment
+      >;
+      sevenDaysAgo: Array<
+        {
+          __typename?: 'ReserveParamsHistoryItem';
+        } & ReserveHistoryFeeDataV1Fragment
+      >;
+    } & ReserveFeeItemV1Fragment
+  >;
+};
+
 export type UserReservesQueryVariables = Exact<{
   pool: Scalars['String'];
   first: Scalars['Int'];
@@ -4890,6 +4945,61 @@ export type UserReservesQuery = { __typename?: 'Query' } & {
   >;
 };
 
+export const ReserveHistoryFeeDataV1FragmentDoc = gql`
+  fragment ReserveHistoryFeeDataV1 on ReserveParamsHistoryItem {
+    id
+    timestamp
+    lifetimeFlashloanDepositorsFee
+    lifetimeFlashloanProtocolFee
+    lifetimeOriginationFee
+    lifetimeDepositorsInterestEarned
+  }
+`;
+export const ReserveFeeItemV1FragmentDoc = gql`
+  fragment ReserveFeeItemV1 on Reserve {
+    id
+    symbol
+    decimals
+    lifetimeFlashloanDepositorsFee
+    lifetimeFlashloanProtocolFee
+    lifetimeOriginationFee: lifetimeFeeOriginated
+    lifetimeDepositorsInterestEarned
+    price {
+      id
+      priceInEth
+    }
+  }
+`;
+export const ReservesFeesQueryDocument = gql`
+  query ReservesFeesQuery($oneDayAgo: Int!, $sevenDaysAgo: Int!) {
+    priceOracle(id: 1) {
+      id
+      usdPriceEth
+      lastUpdateTimestamp
+    }
+    reserves {
+      ...ReserveFeeItemV1
+      oneDayAgo: paramsHistory(
+        orderDirection: desc
+        orderBy: timestamp
+        first: 1
+        where: { timestamp_lte: $oneDayAgo }
+      ) {
+        ...ReserveHistoryFeeDataV1
+      }
+      sevenDaysAgo: paramsHistory(
+        orderDirection: desc
+        orderBy: timestamp
+        first: 1
+        where: { timestamp_lte: $sevenDaysAgo }
+      ) {
+        ...ReserveHistoryFeeDataV1
+      }
+    }
+  }
+  ${ReserveFeeItemV1FragmentDoc}
+  ${ReserveHistoryFeeDataV1FragmentDoc}
+`;
 export const UserReservesDocument = gql`
   query UserReserves($pool: String!, $first: Int!, $from: Int!) {
     items: userReserves(
@@ -4938,6 +5048,24 @@ export function getSdk(
   withWrapper: SdkFunctionWrapper = defaultWrapper
 ) {
   return {
+    ReservesFeesQuery(
+      variables: ReservesFeesQueryQueryVariables,
+      requestHeaders?: Headers
+    ): Promise<{
+      data?: ReservesFeesQueryQuery | undefined;
+      extensions?: any;
+      headers: Headers;
+      status: number;
+      errors?: GraphQLError[] | undefined;
+    }> {
+      return withWrapper(() =>
+        client.rawRequest<ReservesFeesQueryQuery>(
+          print(ReservesFeesQueryDocument),
+          variables,
+          requestHeaders
+        )
+      );
+    },
     UserReserves(
       variables: UserReservesQueryVariables,
       requestHeaders?: Headers
