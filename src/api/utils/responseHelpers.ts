@@ -7,11 +7,12 @@ import { NextApiResponse } from "next";
  */
 export function applyCacheHeaders(
   res: NextApiResponse,
-  cacheSeconds: number = 10
+  cacheSeconds: number = 10,
+  swr: boolean = true
 ) {
   res.setHeader(
     "Cache-Control",
-    `s-maxage=${cacheSeconds}, stale-while-revalidate`
+    `s-maxage=${cacheSeconds}${swr ? `, stale-while-revalidate` : ""}`
   );
   res.setHeader("Content-Type", "application/json");
 }

@@ -114,7 +114,7 @@ async function getV1Fees(
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  applyCacheHeaders(res, 60);
+  applyCacheHeaders(res, 60, false);
   const oneDayInSeconds = 24 * 60 * 60;
   const currentTimestamp = Math.round(new Date().getTime() / 1000);
   const oneDayAgoTimestamp = currentTimestamp - oneDayInSeconds;
