@@ -2,33 +2,18 @@
 name: Income
 ---
 
-import { Playground } from "dokz";
+# Income
 
-# Main Heading
+The income api combines different incomes on the aave protocol fetched via thegraph and aggregates them as an easy to consume rest api.
 
-Officia do eu reprehenderit laborum exercitation eu nisi deserunt aliqua consequat eiusmod.
-
-Duis incididunt fugiat est aliqua deserunt do aliquip laboris in exercitation laboris nulla minim incididunt.
-
-> This is a note, use the > character before a line
-
-## Second Heading
-
-Quis ullamco id duis sit ipsum laborum fugiat occaecat. Commodo aliqua adipisicing non nisi. Dolore aute magna cupidatat qui quis laboris. Irure veniam deserunt veniam ullamco anim pariatur deserunt. Amet commodo aliqua ut fugiat sunt pariatur ullamco cillum duis ipsum amet anim incididunt. Ut esse dolore in ullamco enim sit cillum eu labore consectetur labore sunt.
-
-### third Heading
-
-Here is some code
-
-```js
-const x = "fucking";
-console.log("hello " + x + " world");
+```ts
+// /api/income
+{
+  v1: { oneDayAgo: "110798.8641469263", sevenDaysAVG: "111968.8409105395" },
+  v2: { oneDayAgo: "50870.390661512", sevenDaysAVG: "52957.5728008522" },
+  totalFee: {
+    oneDayAgo: "161669.2548084383",
+    sevenDaysAVG: "164926.4137113917",
+  },
+};
 ```
-
-## Using the playground
-
-You can use live react code to display react component with a preview
-
-<Playground>
-  <div style={{ height: 100, background: "lightblue" }}></div>
-</Playground>
