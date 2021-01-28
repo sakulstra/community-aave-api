@@ -29,5 +29,9 @@
 , "pages/index.mdx"  ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "typedocOptions": {
+    "entryPoints": ["pages/api/income.ts","pages/api/liquidity.ts"],
+    "out": "docs"
+  }
 }

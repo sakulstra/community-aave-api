@@ -10,7 +10,8 @@
     "db:mem:persist": "DB_PATH=database node local-mongo",
     "codegen:watch": "graphql-codegen --config graphql-codegen.yml --watch",
     "codegen": "graphql-codegen --config graphql-codegen.yml && SKIP_LOAD=true hardhat compile",
-    "release": "standard-version"
+    "release": "standard-version",
+    "typedoc": "typedoc --json src/api/gen.json"
   },
   "dependencies": {
     "@aave/protocol-js": "^2.3.0",
@@ -22,7 +23,7 @@
     "dokz": "^2.0.4",
     "ethers": "^5.0.26",
     "framer-motion": "^3.2.2-rc.1",
-    "graphql": "^15.4.0",
+    "graphql": "^14.0.0",
     "graphql-request": "^3.3.0",
     "lodash": "^4.17.20",
     "mini-graphiql": "^1.0.4",

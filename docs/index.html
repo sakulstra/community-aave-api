@@ -1,0 +1,144 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>community-aave-api</title>
+	<meta name="description" content="Documentation for community-aave-api">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">community-aave-api</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>community-aave-api</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#unofficial-aave-api-amp-more" id="unofficial-aave-api-amp-more" style="color: inherit; text-decoration: none;">
+					<h1>Unofficial Aave api &amp; more?</h1>
+				</a>
+				<p>I noticed that there are a lot of projects visualizing aave data in some way doing the same kind of aggregations &amp; calculations either in background or on the client.
+				Therefor I created this api repository which will automatically be deployed to vercel.</p>
+				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+					<h2>Getting Started</h2>
+				</a>
+				<p>First, run the development database. If you got a local mongo running - great. If not you can start on in-memory by running <code>npm run db:mem</code> or <code>npm run db:mem:persist</code> - the latter one saves the db to a .gitignore database folder, so that data is persisted throughout reboots. After that, you can run <code>npm run dev</code> to start a local dev server.</p>
+				<p>Open <a href="http://localhost:3000">http://localhost:3000</a> with your browser to see the result.</p>
+				<a href="#quick-start" id="quick-start" style="color: inherit; text-decoration: none;">
+					<h3>Quick start</h3>
+				</a>
+				<pre><code class="language-bash"><span style="color: #000000">cp .env.test .env</span>
+<span style="color: #008000"># npm run db:mem:persist // only needed when using mongo</span>
+<span style="color: #000000">yarn dev</span>
+<span style="color: #008000"># watch for query changes</span>
+<span style="color: #000000">yarn codegen:watch</span>
+</code></pre>
+				<a href="#add-a-new-api-endpoint" id="add-a-new-api-endpoint" style="color: inherit; text-decoration: none;">
+					<h3>Add a new api endpoint</h3>
+				</a>
+				<ol>
+					<li>create a new file in <code>pages/api</code>, e.g. test-endpoint.ts (have a look at the existing example)</li>
+					<li>now you should be able to access the response at <a href="http://localhost:3000/api/test-endpoint">http://localhost:3000/api/test-endpoint</a></li>
+				</ol>
+				<a href="#contribute" id="contribute" style="color: inherit; text-decoration: none;">
+					<h2>Contribute</h2>
+				</a>
+				<p>Feel free to refine &amp; propose new endpoints!
+				Ideas:</p>
+				<ul>
+					<li>tlv</li>
+					<li>fees</li>
+					<li>liquidations</li>
+					<li>markets data</li>
+				</ul>
+				<a href="#used-tools" id="used-tools" style="color: inherit; text-decoration: none;">
+					<h2>Used tools</h2>
+				</a>
+				<p>I want this thing to be cheap and easy to extend.
+				Therefor I use a serverless architecture based on:</p>
+				<ul>
+					<li>github actions ci for refreshing the cache</li>
+					<li>mongodb at the moment as atlas provides a generous free tier (might migrate to fauna, as mongodb is poor on serverless :sob:)</li>
+					<li>vercel for hosting &amp; cdn as I already pay for it, and it has a flat fee :shrug:</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Modules</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/income.html">income</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/liquidity.html">liquidity</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -19,10 +19,41 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  BigDecimal: any;
-  BigInt: any;
   Bytes: any;
+  BigInt: any;
+  BigDecimal: any;
 };
+
+export type _Block_ = {
+  __typename?: '_Block_';
+  /** The hash of the block */
+  hash?: Maybe<Scalars['Bytes']>;
+  /** The block number */
+  number: Scalars['Int'];
+};
+
+/** The type for the top-level _meta field */
+export type _Meta_ = {
+  __typename?: '_Meta_';
+  /**
+   * Information about a specific subgraph block. The hash of the block
+   * will be null if the _meta field has a block constraint that asks for
+   * a block number. It will be filled if the _meta field has no block constraint
+   * and therefore asks for the latest  block
+   */
+  block: _Block_;
+  /** The deployment ID */
+  deployment: Scalars['String'];
+  /** If `true`, the subgraph encountered indexing errors at some past block */
+  hasIndexingErrors: Scalars['Boolean'];
+};
+
+export enum _SubgraphErrorPolicy_ {
+  /** Data will be returned even if the subgraph has indexing errors */
+  Allow = 'allow',
+  /** If the subgraph has indexing errors, data will be omitted. The default. */
+  Deny = 'deny',
+}
 
 export type AToken = {
   __typename?: 'AToken';
@@ -32,6 +63,52 @@ export type AToken = {
   underlyingAssetAddress: Scalars['Bytes'];
   underlyingAssetDecimals: Scalars['Int'];
 };
+
+export type AToken_Filter = {
+  id?: Maybe<Scalars['ID']>;
+  id_not?: Maybe<Scalars['ID']>;
+  id_gt?: Maybe<Scalars['ID']>;
+  id_lt?: Maybe<Scalars['ID']>;
+  id_gte?: Maybe<Scalars['ID']>;
+  id_lte?: Maybe<Scalars['ID']>;
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  pool?: Maybe<Scalars['String']>;
+  pool_not?: Maybe<Scalars['String']>;
+  pool_gt?: Maybe<Scalars['String']>;
+  pool_lt?: Maybe<Scalars['String']>;
+  pool_gte?: Maybe<Scalars['String']>;
+  pool_lte?: Maybe<Scalars['String']>;
+  pool_in?: Maybe<Array<Scalars['String']>>;
+  pool_not_in?: Maybe<Array<Scalars['String']>>;
+  pool_contains?: Maybe<Scalars['String']>;
+  pool_not_contains?: Maybe<Scalars['String']>;
+  pool_starts_with?: Maybe<Scalars['String']>;
+  pool_not_starts_with?: Maybe<Scalars['String']>;
+  pool_ends_with?: Maybe<Scalars['String']>;
+  pool_not_ends_with?: Maybe<Scalars['String']>;
+  underlyingAssetAddress?: Maybe<Scalars['Bytes']>;
+  underlyingAssetAddress_not?: Maybe<Scalars['Bytes']>;
+  underlyingAssetAddress_in?: Maybe<Array<Scalars['Bytes']>>;
+  underlyingAssetAddress_not_in?: Maybe<Array<Scalars['Bytes']>>;
+  underlyingAssetAddress_contains?: Maybe<Scalars['Bytes']>;
+  underlyingAssetAddress_not_contains?: Maybe<Scalars['Bytes']>;
+  underlyingAssetDecimals?: Maybe<Scalars['Int']>;
+  underlyingAssetDecimals_not?: Maybe<Scalars['Int']>;
+  underlyingAssetDecimals_gt?: Maybe<Scalars['Int']>;
+  underlyingAssetDecimals_lt?: Maybe<Scalars['Int']>;
+  underlyingAssetDecimals_gte?: Maybe<Scalars['Int']>;
+  underlyingAssetDecimals_lte?: Maybe<Scalars['Int']>;
+  underlyingAssetDecimals_in?: Maybe<Array<Scalars['Int']>>;
+  underlyingAssetDecimals_not_in?: Maybe<Array<Scalars['Int']>>;
+};
+
+export enum AToken_OrderBy {
+  Id = 'id',
+  Pool = 'pool',
+  UnderlyingAssetAddress = 'underlyingAssetAddress',
+  UnderlyingAssetDecimals = 'underlyingAssetDecimals',
+}
 
 export type ATokenBalanceHistoryItem = {
   __typename?: 'ATokenBalanceHistoryItem';
@@ -118,52 +195,6 @@ export enum ATokenBalanceHistoryItem_OrderBy {
   Timestamp = 'timestamp',
 }
 
-export type AToken_Filter = {
-  id?: Maybe<Scalars['ID']>;
-  id_not?: Maybe<Scalars['ID']>;
-  id_gt?: Maybe<Scalars['ID']>;
-  id_lt?: Maybe<Scalars['ID']>;
-  id_gte?: Maybe<Scalars['ID']>;
-  id_lte?: Maybe<Scalars['ID']>;
-  id_in?: Maybe<Array<Scalars['ID']>>;
-  id_not_in?: Maybe<Array<Scalars['ID']>>;
-  pool?: Maybe<Scalars['String']>;
-  pool_not?: Maybe<Scalars['String']>;
-  pool_gt?: Maybe<Scalars['String']>;
-  pool_lt?: Maybe<Scalars['String']>;
-  pool_gte?: Maybe<Scalars['String']>;
-  pool_lte?: Maybe<Scalars['String']>;
-  pool_in?: Maybe<Array<Scalars['String']>>;
-  pool_not_in?: Maybe<Array<Scalars['String']>>;
-  pool_contains?: Maybe<Scalars['String']>;
-  pool_not_contains?: Maybe<Scalars['String']>;
-  pool_starts_with?: Maybe<Scalars['String']>;
-  pool_not_starts_with?: Maybe<Scalars['String']>;
-  pool_ends_with?: Maybe<Scalars['String']>;
-  pool_not_ends_with?: Maybe<Scalars['String']>;
-  underlyingAssetAddress?: Maybe<Scalars['Bytes']>;
-  underlyingAssetAddress_not?: Maybe<Scalars['Bytes']>;
-  underlyingAssetAddress_in?: Maybe<Array<Scalars['Bytes']>>;
-  underlyingAssetAddress_not_in?: Maybe<Array<Scalars['Bytes']>>;
-  underlyingAssetAddress_contains?: Maybe<Scalars['Bytes']>;
-  underlyingAssetAddress_not_contains?: Maybe<Scalars['Bytes']>;
-  underlyingAssetDecimals?: Maybe<Scalars['Int']>;
-  underlyingAssetDecimals_not?: Maybe<Scalars['Int']>;
-  underlyingAssetDecimals_gt?: Maybe<Scalars['Int']>;
-  underlyingAssetDecimals_lt?: Maybe<Scalars['Int']>;
-  underlyingAssetDecimals_gte?: Maybe<Scalars['Int']>;
-  underlyingAssetDecimals_lte?: Maybe<Scalars['Int']>;
-  underlyingAssetDecimals_in?: Maybe<Array<Scalars['Int']>>;
-  underlyingAssetDecimals_not_in?: Maybe<Array<Scalars['Int']>>;
-};
-
-export enum AToken_OrderBy {
-  Id = 'id',
-  Pool = 'pool',
-  UnderlyingAssetAddress = 'underlyingAssetAddress',
-  UnderlyingAssetDecimals = 'underlyingAssetDecimals',
-}
-
 export type Block_Height = {
   hash?: Maybe<Scalars['Bytes']>;
   number?: Maybe<Scalars['Int']>;
@@ -184,12 +215,6 @@ export type Borrow = UserTransaction & {
   referrer?: Maybe<Referrer>;
   timestamp: Scalars['Int'];
 };
-
-export enum BorrowRateMode {
-  None = 'None',
-  Stable = 'Stable',
-  Variable = 'Variable',
-}
 
 export type Borrow_Filter = {
   id?: Maybe<Scalars['ID']>;
@@ -318,6 +343,12 @@ export enum Borrow_OrderBy {
   AccruedBorrowInterest = 'accruedBorrowInterest',
   Referrer = 'referrer',
   Timestamp = 'timestamp',
+}
+
+export enum BorrowRateMode {
+  None = 'None',
+  Stable = 'Stable',
+  Variable = 'Variable',
 }
 
 export type ChainlinkAggregator = {
@@ -1046,6 +1077,127 @@ export type PoolOriginationFeeLiquidationHistoryArgs = {
   where?: Maybe<OriginationFeeLiquidation_Filter>;
 };
 
+export type Pool_Filter = {
+  id?: Maybe<Scalars['ID']>;
+  id_not?: Maybe<Scalars['ID']>;
+  id_gt?: Maybe<Scalars['ID']>;
+  id_lt?: Maybe<Scalars['ID']>;
+  id_gte?: Maybe<Scalars['ID']>;
+  id_lte?: Maybe<Scalars['ID']>;
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  protocol?: Maybe<Scalars['String']>;
+  protocol_not?: Maybe<Scalars['String']>;
+  protocol_gt?: Maybe<Scalars['String']>;
+  protocol_lt?: Maybe<Scalars['String']>;
+  protocol_gte?: Maybe<Scalars['String']>;
+  protocol_lte?: Maybe<Scalars['String']>;
+  protocol_in?: Maybe<Array<Scalars['String']>>;
+  protocol_not_in?: Maybe<Array<Scalars['String']>>;
+  protocol_contains?: Maybe<Scalars['String']>;
+  protocol_not_contains?: Maybe<Scalars['String']>;
+  protocol_starts_with?: Maybe<Scalars['String']>;
+  protocol_not_starts_with?: Maybe<Scalars['String']>;
+  protocol_ends_with?: Maybe<Scalars['String']>;
+  protocol_not_ends_with?: Maybe<Scalars['String']>;
+  lendingPool?: Maybe<Scalars['Bytes']>;
+  lendingPool_not?: Maybe<Scalars['Bytes']>;
+  lendingPool_in?: Maybe<Array<Scalars['Bytes']>>;
+  lendingPool_not_in?: Maybe<Array<Scalars['Bytes']>>;
+  lendingPool_contains?: Maybe<Scalars['Bytes']>;
+  lendingPool_not_contains?: Maybe<Scalars['Bytes']>;
+  lendingPoolCore?: Maybe<Scalars['Bytes']>;
+  lendingPoolCore_not?: Maybe<Scalars['Bytes']>;
+  lendingPoolCore_in?: Maybe<Array<Scalars['Bytes']>>;
+  lendingPoolCore_not_in?: Maybe<Array<Scalars['Bytes']>>;
+  lendingPoolCore_contains?: Maybe<Scalars['Bytes']>;
+  lendingPoolCore_not_contains?: Maybe<Scalars['Bytes']>;
+  lendingPoolParametersProvider?: Maybe<Scalars['Bytes']>;
+  lendingPoolParametersProvider_not?: Maybe<Scalars['Bytes']>;
+  lendingPoolParametersProvider_in?: Maybe<Array<Scalars['Bytes']>>;
+  lendingPoolParametersProvider_not_in?: Maybe<Array<Scalars['Bytes']>>;
+  lendingPoolParametersProvider_contains?: Maybe<Scalars['Bytes']>;
+  lendingPoolParametersProvider_not_contains?: Maybe<Scalars['Bytes']>;
+  lendingPoolManager?: Maybe<Scalars['Bytes']>;
+  lendingPoolManager_not?: Maybe<Scalars['Bytes']>;
+  lendingPoolManager_in?: Maybe<Array<Scalars['Bytes']>>;
+  lendingPoolManager_not_in?: Maybe<Array<Scalars['Bytes']>>;
+  lendingPoolManager_contains?: Maybe<Scalars['Bytes']>;
+  lendingPoolManager_not_contains?: Maybe<Scalars['Bytes']>;
+  lendingPoolConfigurator?: Maybe<Scalars['Bytes']>;
+  lendingPoolConfigurator_not?: Maybe<Scalars['Bytes']>;
+  lendingPoolConfigurator_in?: Maybe<Array<Scalars['Bytes']>>;
+  lendingPoolConfigurator_not_in?: Maybe<Array<Scalars['Bytes']>>;
+  lendingPoolConfigurator_contains?: Maybe<Scalars['Bytes']>;
+  lendingPoolConfigurator_not_contains?: Maybe<Scalars['Bytes']>;
+  lendingPoolLiquidationManager?: Maybe<Scalars['Bytes']>;
+  lendingPoolLiquidationManager_not?: Maybe<Scalars['Bytes']>;
+  lendingPoolLiquidationManager_in?: Maybe<Array<Scalars['Bytes']>>;
+  lendingPoolLiquidationManager_not_in?: Maybe<Array<Scalars['Bytes']>>;
+  lendingPoolLiquidationManager_contains?: Maybe<Scalars['Bytes']>;
+  lendingPoolLiquidationManager_not_contains?: Maybe<Scalars['Bytes']>;
+  lendingPoolDataProvider?: Maybe<Scalars['Bytes']>;
+  lendingPoolDataProvider_not?: Maybe<Scalars['Bytes']>;
+  lendingPoolDataProvider_in?: Maybe<Array<Scalars['Bytes']>>;
+  lendingPoolDataProvider_not_in?: Maybe<Array<Scalars['Bytes']>>;
+  lendingPoolDataProvider_contains?: Maybe<Scalars['Bytes']>;
+  lendingPoolDataProvider_not_contains?: Maybe<Scalars['Bytes']>;
+  proxyPriceProvider?: Maybe<Scalars['Bytes']>;
+  proxyPriceProvider_not?: Maybe<Scalars['Bytes']>;
+  proxyPriceProvider_in?: Maybe<Array<Scalars['Bytes']>>;
+  proxyPriceProvider_not_in?: Maybe<Array<Scalars['Bytes']>>;
+  proxyPriceProvider_contains?: Maybe<Scalars['Bytes']>;
+  proxyPriceProvider_not_contains?: Maybe<Scalars['Bytes']>;
+  lendingRateOracle?: Maybe<Scalars['Bytes']>;
+  lendingRateOracle_not?: Maybe<Scalars['Bytes']>;
+  lendingRateOracle_in?: Maybe<Array<Scalars['Bytes']>>;
+  lendingRateOracle_not_in?: Maybe<Array<Scalars['Bytes']>>;
+  lendingRateOracle_contains?: Maybe<Scalars['Bytes']>;
+  lendingRateOracle_not_contains?: Maybe<Scalars['Bytes']>;
+  feeProvider?: Maybe<Scalars['Bytes']>;
+  feeProvider_not?: Maybe<Scalars['Bytes']>;
+  feeProvider_in?: Maybe<Array<Scalars['Bytes']>>;
+  feeProvider_not_in?: Maybe<Array<Scalars['Bytes']>>;
+  feeProvider_contains?: Maybe<Scalars['Bytes']>;
+  feeProvider_not_contains?: Maybe<Scalars['Bytes']>;
+  lastUpdateTimestamp?: Maybe<Scalars['Int']>;
+  lastUpdateTimestamp_not?: Maybe<Scalars['Int']>;
+  lastUpdateTimestamp_gt?: Maybe<Scalars['Int']>;
+  lastUpdateTimestamp_lt?: Maybe<Scalars['Int']>;
+  lastUpdateTimestamp_gte?: Maybe<Scalars['Int']>;
+  lastUpdateTimestamp_lte?: Maybe<Scalars['Int']>;
+  lastUpdateTimestamp_in?: Maybe<Array<Scalars['Int']>>;
+  lastUpdateTimestamp_not_in?: Maybe<Array<Scalars['Int']>>;
+};
+
+export enum Pool_OrderBy {
+  Id = 'id',
+  Protocol = 'protocol',
+  LendingPool = 'lendingPool',
+  LendingPoolCore = 'lendingPoolCore',
+  LendingPoolParametersProvider = 'lendingPoolParametersProvider',
+  LendingPoolManager = 'lendingPoolManager',
+  LendingPoolConfigurator = 'lendingPoolConfigurator',
+  LendingPoolLiquidationManager = 'lendingPoolLiquidationManager',
+  LendingPoolDataProvider = 'lendingPoolDataProvider',
+  ProxyPriceProvider = 'proxyPriceProvider',
+  LendingRateOracle = 'lendingRateOracle',
+  FeeProvider = 'feeProvider',
+  History = 'history',
+  LastUpdateTimestamp = 'lastUpdateTimestamp',
+  Reserves = 'reserves',
+  DepositHistory = 'depositHistory',
+  RedeemUnderlyingHistory = 'redeemUnderlyingHistory',
+  BorrowHistory = 'borrowHistory',
+  SwapHistory = 'swapHistory',
+  UsageAsCollateralHistory = 'usageAsCollateralHistory',
+  RebalanceStableBorrowRateHistory = 'rebalanceStableBorrowRateHistory',
+  RepayHistory = 'repayHistory',
+  FlashLoanHistory = 'flashLoanHistory',
+  LiquidationCallHistory = 'liquidationCallHistory',
+  OriginationFeeLiquidationHistory = 'originationFeeLiquidationHistory',
+}
+
 export type PoolConfigurationHistoryItem = {
   __typename?: 'PoolConfigurationHistoryItem';
   /** tx hash */
@@ -1173,127 +1325,6 @@ export enum PoolConfigurationHistoryItem_OrderBy {
   Timestamp = 'timestamp',
 }
 
-export type Pool_Filter = {
-  id?: Maybe<Scalars['ID']>;
-  id_not?: Maybe<Scalars['ID']>;
-  id_gt?: Maybe<Scalars['ID']>;
-  id_lt?: Maybe<Scalars['ID']>;
-  id_gte?: Maybe<Scalars['ID']>;
-  id_lte?: Maybe<Scalars['ID']>;
-  id_in?: Maybe<Array<Scalars['ID']>>;
-  id_not_in?: Maybe<Array<Scalars['ID']>>;
-  protocol?: Maybe<Scalars['String']>;
-  protocol_not?: Maybe<Scalars['String']>;
-  protocol_gt?: Maybe<Scalars['String']>;
-  protocol_lt?: Maybe<Scalars['String']>;
-  protocol_gte?: Maybe<Scalars['String']>;
-  protocol_lte?: Maybe<Scalars['String']>;
-  protocol_in?: Maybe<Array<Scalars['String']>>;
-  protocol_not_in?: Maybe<Array<Scalars['String']>>;
-  protocol_contains?: Maybe<Scalars['String']>;
-  protocol_not_contains?: Maybe<Scalars['String']>;
-  protocol_starts_with?: Maybe<Scalars['String']>;
-  protocol_not_starts_with?: Maybe<Scalars['String']>;
-  protocol_ends_with?: Maybe<Scalars['String']>;
-  protocol_not_ends_with?: Maybe<Scalars['String']>;
-  lendingPool?: Maybe<Scalars['Bytes']>;
-  lendingPool_not?: Maybe<Scalars['Bytes']>;
-  lendingPool_in?: Maybe<Array<Scalars['Bytes']>>;
-  lendingPool_not_in?: Maybe<Array<Scalars['Bytes']>>;
-  lendingPool_contains?: Maybe<Scalars['Bytes']>;
-  lendingPool_not_contains?: Maybe<Scalars['Bytes']>;
-  lendingPoolCore?: Maybe<Scalars['Bytes']>;
-  lendingPoolCore_not?: Maybe<Scalars['Bytes']>;
-  lendingPoolCore_in?: Maybe<Array<Scalars['Bytes']>>;
-  lendingPoolCore_not_in?: Maybe<Array<Scalars['Bytes']>>;
-  lendingPoolCore_contains?: Maybe<Scalars['Bytes']>;
-  lendingPoolCore_not_contains?: Maybe<Scalars['Bytes']>;
-  lendingPoolParametersProvider?: Maybe<Scalars['Bytes']>;
-  lendingPoolParametersProvider_not?: Maybe<Scalars['Bytes']>;
-  lendingPoolParametersProvider_in?: Maybe<Array<Scalars['Bytes']>>;
-  lendingPoolParametersProvider_not_in?: Maybe<Array<Scalars['Bytes']>>;
-  lendingPoolParametersProvider_contains?: Maybe<Scalars['Bytes']>;
-  lendingPoolParametersProvider_not_contains?: Maybe<Scalars['Bytes']>;
-  lendingPoolManager?: Maybe<Scalars['Bytes']>;
-  lendingPoolManager_not?: Maybe<Scalars['Bytes']>;
-  lendingPoolManager_in?: Maybe<Array<Scalars['Bytes']>>;
-  lendingPoolManager_not_in?: Maybe<Array<Scalars['Bytes']>>;
-  lendingPoolManager_contains?: Maybe<Scalars['Bytes']>;
-  lendingPoolManager_not_contains?: Maybe<Scalars['Bytes']>;
-  lendingPoolConfigurator?: Maybe<Scalars['Bytes']>;
-  lendingPoolConfigurator_not?: Maybe<Scalars['Bytes']>;
-  lendingPoolConfigurator_in?: Maybe<Array<Scalars['Bytes']>>;
-  lendingPoolConfigurator_not_in?: Maybe<Array<Scalars['Bytes']>>;
-  lendingPoolConfigurator_contains?: Maybe<Scalars['Bytes']>;
-  lendingPoolConfigurator_not_contains?: Maybe<Scalars['Bytes']>;
-  lendingPoolLiquidationManager?: Maybe<Scalars['Bytes']>;
-  lendingPoolLiquidationManager_not?: Maybe<Scalars['Bytes']>;
-  lendingPoolLiquidationManager_in?: Maybe<Array<Scalars['Bytes']>>;
-  lendingPoolLiquidationManager_not_in?: Maybe<Array<Scalars['Bytes']>>;
-  lendingPoolLiquidationManager_contains?: Maybe<Scalars['Bytes']>;
-  lendingPoolLiquidationManager_not_contains?: Maybe<Scalars['Bytes']>;
-  lendingPoolDataProvider?: Maybe<Scalars['Bytes']>;
-  lendingPoolDataProvider_not?: Maybe<Scalars['Bytes']>;
-  lendingPoolDataProvider_in?: Maybe<Array<Scalars['Bytes']>>;
-  lendingPoolDataProvider_not_in?: Maybe<Array<Scalars['Bytes']>>;
-  lendingPoolDataProvider_contains?: Maybe<Scalars['Bytes']>;
-  lendingPoolDataProvider_not_contains?: Maybe<Scalars['Bytes']>;
-  proxyPriceProvider?: Maybe<Scalars['Bytes']>;
-  proxyPriceProvider_not?: Maybe<Scalars['Bytes']>;
-  proxyPriceProvider_in?: Maybe<Array<Scalars['Bytes']>>;
-  proxyPriceProvider_not_in?: Maybe<Array<Scalars['Bytes']>>;
-  proxyPriceProvider_contains?: Maybe<Scalars['Bytes']>;
-  proxyPriceProvider_not_contains?: Maybe<Scalars['Bytes']>;
-  lendingRateOracle?: Maybe<Scalars['Bytes']>;
-  lendingRateOracle_not?: Maybe<Scalars['Bytes']>;
-  lendingRateOracle_in?: Maybe<Array<Scalars['Bytes']>>;
-  lendingRateOracle_not_in?: Maybe<Array<Scalars['Bytes']>>;
-  lendingRateOracle_contains?: Maybe<Scalars['Bytes']>;
-  lendingRateOracle_not_contains?: Maybe<Scalars['Bytes']>;
-  feeProvider?: Maybe<Scalars['Bytes']>;
-  feeProvider_not?: Maybe<Scalars['Bytes']>;
-  feeProvider_in?: Maybe<Array<Scalars['Bytes']>>;
-  feeProvider_not_in?: Maybe<Array<Scalars['Bytes']>>;
-  feeProvider_contains?: Maybe<Scalars['Bytes']>;
-  feeProvider_not_contains?: Maybe<Scalars['Bytes']>;
-  lastUpdateTimestamp?: Maybe<Scalars['Int']>;
-  lastUpdateTimestamp_not?: Maybe<Scalars['Int']>;
-  lastUpdateTimestamp_gt?: Maybe<Scalars['Int']>;
-  lastUpdateTimestamp_lt?: Maybe<Scalars['Int']>;
-  lastUpdateTimestamp_gte?: Maybe<Scalars['Int']>;
-  lastUpdateTimestamp_lte?: Maybe<Scalars['Int']>;
-  lastUpdateTimestamp_in?: Maybe<Array<Scalars['Int']>>;
-  lastUpdateTimestamp_not_in?: Maybe<Array<Scalars['Int']>>;
-};
-
-export enum Pool_OrderBy {
-  Id = 'id',
-  Protocol = 'protocol',
-  LendingPool = 'lendingPool',
-  LendingPoolCore = 'lendingPoolCore',
-  LendingPoolParametersProvider = 'lendingPoolParametersProvider',
-  LendingPoolManager = 'lendingPoolManager',
-  LendingPoolConfigurator = 'lendingPoolConfigurator',
-  LendingPoolLiquidationManager = 'lendingPoolLiquidationManager',
-  LendingPoolDataProvider = 'lendingPoolDataProvider',
-  ProxyPriceProvider = 'proxyPriceProvider',
-  LendingRateOracle = 'lendingRateOracle',
-  FeeProvider = 'feeProvider',
-  History = 'history',
-  LastUpdateTimestamp = 'lastUpdateTimestamp',
-  Reserves = 'reserves',
-  DepositHistory = 'depositHistory',
-  RedeemUnderlyingHistory = 'redeemUnderlyingHistory',
-  BorrowHistory = 'borrowHistory',
-  SwapHistory = 'swapHistory',
-  UsageAsCollateralHistory = 'usageAsCollateralHistory',
-  RebalanceStableBorrowRateHistory = 'rebalanceStableBorrowRateHistory',
-  RepayHistory = 'repayHistory',
-  FlashLoanHistory = 'flashLoanHistory',
-  LiquidationCallHistory = 'liquidationCallHistory',
-  OriginationFeeLiquidationHistory = 'originationFeeLiquidationHistory',
-}
-
 export type PriceHistoryItem = {
   __typename?: 'PriceHistoryItem';
   id: Scalars['ID'];
@@ -1388,6 +1419,72 @@ export type PriceOracleTokensWithFallbackArgs = {
   where?: Maybe<PriceOracleAsset_Filter>;
 };
 
+export type PriceOracle_Filter = {
+  id?: Maybe<Scalars['ID']>;
+  id_not?: Maybe<Scalars['ID']>;
+  id_gt?: Maybe<Scalars['ID']>;
+  id_lt?: Maybe<Scalars['ID']>;
+  id_gte?: Maybe<Scalars['ID']>;
+  id_lte?: Maybe<Scalars['ID']>;
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  proxyPriceProvider?: Maybe<Scalars['Bytes']>;
+  proxyPriceProvider_not?: Maybe<Scalars['Bytes']>;
+  proxyPriceProvider_in?: Maybe<Array<Scalars['Bytes']>>;
+  proxyPriceProvider_not_in?: Maybe<Array<Scalars['Bytes']>>;
+  proxyPriceProvider_contains?: Maybe<Scalars['Bytes']>;
+  proxyPriceProvider_not_contains?: Maybe<Scalars['Bytes']>;
+  usdPriceEth?: Maybe<Scalars['BigInt']>;
+  usdPriceEth_not?: Maybe<Scalars['BigInt']>;
+  usdPriceEth_gt?: Maybe<Scalars['BigInt']>;
+  usdPriceEth_lt?: Maybe<Scalars['BigInt']>;
+  usdPriceEth_gte?: Maybe<Scalars['BigInt']>;
+  usdPriceEth_lte?: Maybe<Scalars['BigInt']>;
+  usdPriceEth_in?: Maybe<Array<Scalars['BigInt']>>;
+  usdPriceEth_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  usdPriceEthMainSource?: Maybe<Scalars['Bytes']>;
+  usdPriceEthMainSource_not?: Maybe<Scalars['Bytes']>;
+  usdPriceEthMainSource_in?: Maybe<Array<Scalars['Bytes']>>;
+  usdPriceEthMainSource_not_in?: Maybe<Array<Scalars['Bytes']>>;
+  usdPriceEthMainSource_contains?: Maybe<Scalars['Bytes']>;
+  usdPriceEthMainSource_not_contains?: Maybe<Scalars['Bytes']>;
+  usdPriceEthFallbackRequired?: Maybe<Scalars['Boolean']>;
+  usdPriceEthFallbackRequired_not?: Maybe<Scalars['Boolean']>;
+  usdPriceEthFallbackRequired_in?: Maybe<Array<Scalars['Boolean']>>;
+  usdPriceEthFallbackRequired_not_in?: Maybe<Array<Scalars['Boolean']>>;
+  fallbackPriceOracle?: Maybe<Scalars['Bytes']>;
+  fallbackPriceOracle_not?: Maybe<Scalars['Bytes']>;
+  fallbackPriceOracle_in?: Maybe<Array<Scalars['Bytes']>>;
+  fallbackPriceOracle_not_in?: Maybe<Array<Scalars['Bytes']>>;
+  fallbackPriceOracle_contains?: Maybe<Scalars['Bytes']>;
+  fallbackPriceOracle_not_contains?: Maybe<Scalars['Bytes']>;
+  tokensWithFallback?: Maybe<Array<Scalars['String']>>;
+  tokensWithFallback_not?: Maybe<Array<Scalars['String']>>;
+  tokensWithFallback_contains?: Maybe<Array<Scalars['String']>>;
+  tokensWithFallback_not_contains?: Maybe<Array<Scalars['String']>>;
+  lastUpdateTimestamp?: Maybe<Scalars['Int']>;
+  lastUpdateTimestamp_not?: Maybe<Scalars['Int']>;
+  lastUpdateTimestamp_gt?: Maybe<Scalars['Int']>;
+  lastUpdateTimestamp_lt?: Maybe<Scalars['Int']>;
+  lastUpdateTimestamp_gte?: Maybe<Scalars['Int']>;
+  lastUpdateTimestamp_lte?: Maybe<Scalars['Int']>;
+  lastUpdateTimestamp_in?: Maybe<Array<Scalars['Int']>>;
+  lastUpdateTimestamp_not_in?: Maybe<Array<Scalars['Int']>>;
+};
+
+export enum PriceOracle_OrderBy {
+  Id = 'id',
+  ProxyPriceProvider = 'proxyPriceProvider',
+  UsdPriceEth = 'usdPriceEth',
+  UsdPriceEthMainSource = 'usdPriceEthMainSource',
+  UsdPriceEthFallbackRequired = 'usdPriceEthFallbackRequired',
+  FallbackPriceOracle = 'fallbackPriceOracle',
+  Tokens = 'tokens',
+  UsdPriceEthHistory = 'usdPriceEthHistory',
+  TokensWithFallback = 'tokensWithFallback',
+  LastUpdateTimestamp = 'lastUpdateTimestamp',
+}
+
 export type PriceOracleAsset = {
   __typename?: 'PriceOracleAsset';
   id: Scalars['ID'];
@@ -1418,16 +1515,6 @@ export type PriceOracleAssetPriceHistoryArgs = {
   orderDirection?: Maybe<OrderDirection>;
   where?: Maybe<PriceHistoryItem_Filter>;
 };
-
-export enum PriceOracleAssetPlatform {
-  Simple = 'Simple',
-  Uniswap = 'Uniswap',
-}
-
-export enum PriceOracleAssetType {
-  Simple = 'Simple',
-  Composite = 'Composite',
-}
 
 export type PriceOracleAsset_Filter = {
   id?: Maybe<Scalars['ID']>;
@@ -1506,70 +1593,14 @@ export enum PriceOracleAsset_OrderBy {
   FromChainlinkSourcesRegistry = 'fromChainlinkSourcesRegistry',
 }
 
-export type PriceOracle_Filter = {
-  id?: Maybe<Scalars['ID']>;
-  id_not?: Maybe<Scalars['ID']>;
-  id_gt?: Maybe<Scalars['ID']>;
-  id_lt?: Maybe<Scalars['ID']>;
-  id_gte?: Maybe<Scalars['ID']>;
-  id_lte?: Maybe<Scalars['ID']>;
-  id_in?: Maybe<Array<Scalars['ID']>>;
-  id_not_in?: Maybe<Array<Scalars['ID']>>;
-  proxyPriceProvider?: Maybe<Scalars['Bytes']>;
-  proxyPriceProvider_not?: Maybe<Scalars['Bytes']>;
-  proxyPriceProvider_in?: Maybe<Array<Scalars['Bytes']>>;
-  proxyPriceProvider_not_in?: Maybe<Array<Scalars['Bytes']>>;
-  proxyPriceProvider_contains?: Maybe<Scalars['Bytes']>;
-  proxyPriceProvider_not_contains?: Maybe<Scalars['Bytes']>;
-  usdPriceEth?: Maybe<Scalars['BigInt']>;
-  usdPriceEth_not?: Maybe<Scalars['BigInt']>;
-  usdPriceEth_gt?: Maybe<Scalars['BigInt']>;
-  usdPriceEth_lt?: Maybe<Scalars['BigInt']>;
-  usdPriceEth_gte?: Maybe<Scalars['BigInt']>;
-  usdPriceEth_lte?: Maybe<Scalars['BigInt']>;
-  usdPriceEth_in?: Maybe<Array<Scalars['BigInt']>>;
-  usdPriceEth_not_in?: Maybe<Array<Scalars['BigInt']>>;
-  usdPriceEthMainSource?: Maybe<Scalars['Bytes']>;
-  usdPriceEthMainSource_not?: Maybe<Scalars['Bytes']>;
-  usdPriceEthMainSource_in?: Maybe<Array<Scalars['Bytes']>>;
-  usdPriceEthMainSource_not_in?: Maybe<Array<Scalars['Bytes']>>;
-  usdPriceEthMainSource_contains?: Maybe<Scalars['Bytes']>;
-  usdPriceEthMainSource_not_contains?: Maybe<Scalars['Bytes']>;
-  usdPriceEthFallbackRequired?: Maybe<Scalars['Boolean']>;
-  usdPriceEthFallbackRequired_not?: Maybe<Scalars['Boolean']>;
-  usdPriceEthFallbackRequired_in?: Maybe<Array<Scalars['Boolean']>>;
-  usdPriceEthFallbackRequired_not_in?: Maybe<Array<Scalars['Boolean']>>;
-  fallbackPriceOracle?: Maybe<Scalars['Bytes']>;
-  fallbackPriceOracle_not?: Maybe<Scalars['Bytes']>;
-  fallbackPriceOracle_in?: Maybe<Array<Scalars['Bytes']>>;
-  fallbackPriceOracle_not_in?: Maybe<Array<Scalars['Bytes']>>;
-  fallbackPriceOracle_contains?: Maybe<Scalars['Bytes']>;
-  fallbackPriceOracle_not_contains?: Maybe<Scalars['Bytes']>;
-  tokensWithFallback?: Maybe<Array<Scalars['String']>>;
-  tokensWithFallback_not?: Maybe<Array<Scalars['String']>>;
-  tokensWithFallback_contains?: Maybe<Array<Scalars['String']>>;
-  tokensWithFallback_not_contains?: Maybe<Array<Scalars['String']>>;
-  lastUpdateTimestamp?: Maybe<Scalars['Int']>;
-  lastUpdateTimestamp_not?: Maybe<Scalars['Int']>;
-  lastUpdateTimestamp_gt?: Maybe<Scalars['Int']>;
-  lastUpdateTimestamp_lt?: Maybe<Scalars['Int']>;
-  lastUpdateTimestamp_gte?: Maybe<Scalars['Int']>;
-  lastUpdateTimestamp_lte?: Maybe<Scalars['Int']>;
-  lastUpdateTimestamp_in?: Maybe<Array<Scalars['Int']>>;
-  lastUpdateTimestamp_not_in?: Maybe<Array<Scalars['Int']>>;
-};
+export enum PriceOracleAssetPlatform {
+  Simple = 'Simple',
+  Uniswap = 'Uniswap',
+}
 
-export enum PriceOracle_OrderBy {
-  Id = 'id',
-  ProxyPriceProvider = 'proxyPriceProvider',
-  UsdPriceEth = 'usdPriceEth',
-  UsdPriceEthMainSource = 'usdPriceEthMainSource',
-  UsdPriceEthFallbackRequired = 'usdPriceEthFallbackRequired',
-  FallbackPriceOracle = 'fallbackPriceOracle',
-  Tokens = 'tokens',
-  UsdPriceEthHistory = 'usdPriceEthHistory',
-  TokensWithFallback = 'tokensWithFallback',
-  LastUpdateTimestamp = 'lastUpdateTimestamp',
+export enum PriceOracleAssetType {
+  Simple = 'Simple',
+  Composite = 'Composite',
 }
 
 export type Protocol = {
@@ -2643,368 +2674,6 @@ export type ReserveDepositsArgs = {
   where?: Maybe<Deposit_Filter>;
 };
 
-export type ReserveConfigurationHistoryItem = {
-  __typename?: 'ReserveConfigurationHistoryItem';
-  /** tx hash */
-  id: Scalars['ID'];
-  reserve: Reserve;
-  usageAsCollateralEnabled: Scalars['Boolean'];
-  borrowingEnabled: Scalars['Boolean'];
-  stableBorrowRateEnabled: Scalars['Boolean'];
-  isActive: Scalars['Boolean'];
-  isFreezed: Scalars['Boolean'];
-  reserveInterestRateStrategy: Scalars['Bytes'];
-  baseLTVasCollateral: Scalars['BigInt'];
-  reserveLiquidationThreshold: Scalars['BigInt'];
-  reserveLiquidationBonus: Scalars['BigInt'];
-  timestamp: Scalars['Int'];
-};
-
-export type ReserveConfigurationHistoryItem_Filter = {
-  id?: Maybe<Scalars['ID']>;
-  id_not?: Maybe<Scalars['ID']>;
-  id_gt?: Maybe<Scalars['ID']>;
-  id_lt?: Maybe<Scalars['ID']>;
-  id_gte?: Maybe<Scalars['ID']>;
-  id_lte?: Maybe<Scalars['ID']>;
-  id_in?: Maybe<Array<Scalars['ID']>>;
-  id_not_in?: Maybe<Array<Scalars['ID']>>;
-  reserve?: Maybe<Scalars['String']>;
-  reserve_not?: Maybe<Scalars['String']>;
-  reserve_gt?: Maybe<Scalars['String']>;
-  reserve_lt?: Maybe<Scalars['String']>;
-  reserve_gte?: Maybe<Scalars['String']>;
-  reserve_lte?: Maybe<Scalars['String']>;
-  reserve_in?: Maybe<Array<Scalars['String']>>;
-  reserve_not_in?: Maybe<Array<Scalars['String']>>;
-  reserve_contains?: Maybe<Scalars['String']>;
-  reserve_not_contains?: Maybe<Scalars['String']>;
-  reserve_starts_with?: Maybe<Scalars['String']>;
-  reserve_not_starts_with?: Maybe<Scalars['String']>;
-  reserve_ends_with?: Maybe<Scalars['String']>;
-  reserve_not_ends_with?: Maybe<Scalars['String']>;
-  usageAsCollateralEnabled?: Maybe<Scalars['Boolean']>;
-  usageAsCollateralEnabled_not?: Maybe<Scalars['Boolean']>;
-  usageAsCollateralEnabled_in?: Maybe<Array<Scalars['Boolean']>>;
-  usageAsCollateralEnabled_not_in?: Maybe<Array<Scalars['Boolean']>>;
-  borrowingEnabled?: Maybe<Scalars['Boolean']>;
-  borrowingEnabled_not?: Maybe<Scalars['Boolean']>;
-  borrowingEnabled_in?: Maybe<Array<Scalars['Boolean']>>;
-  borrowingEnabled_not_in?: Maybe<Array<Scalars['Boolean']>>;
-  stableBorrowRateEnabled?: Maybe<Scalars['Boolean']>;
-  stableBorrowRateEnabled_not?: Maybe<Scalars['Boolean']>;
-  stableBorrowRateEnabled_in?: Maybe<Array<Scalars['Boolean']>>;
-  stableBorrowRateEnabled_not_in?: Maybe<Array<Scalars['Boolean']>>;
-  isActive?: Maybe<Scalars['Boolean']>;
-  isActive_not?: Maybe<Scalars['Boolean']>;
-  isActive_in?: Maybe<Array<Scalars['Boolean']>>;
-  isActive_not_in?: Maybe<Array<Scalars['Boolean']>>;
-  isFreezed?: Maybe<Scalars['Boolean']>;
-  isFreezed_not?: Maybe<Scalars['Boolean']>;
-  isFreezed_in?: Maybe<Array<Scalars['Boolean']>>;
-  isFreezed_not_in?: Maybe<Array<Scalars['Boolean']>>;
-  reserveInterestRateStrategy?: Maybe<Scalars['Bytes']>;
-  reserveInterestRateStrategy_not?: Maybe<Scalars['Bytes']>;
-  reserveInterestRateStrategy_in?: Maybe<Array<Scalars['Bytes']>>;
-  reserveInterestRateStrategy_not_in?: Maybe<Array<Scalars['Bytes']>>;
-  reserveInterestRateStrategy_contains?: Maybe<Scalars['Bytes']>;
-  reserveInterestRateStrategy_not_contains?: Maybe<Scalars['Bytes']>;
-  baseLTVasCollateral?: Maybe<Scalars['BigInt']>;
-  baseLTVasCollateral_not?: Maybe<Scalars['BigInt']>;
-  baseLTVasCollateral_gt?: Maybe<Scalars['BigInt']>;
-  baseLTVasCollateral_lt?: Maybe<Scalars['BigInt']>;
-  baseLTVasCollateral_gte?: Maybe<Scalars['BigInt']>;
-  baseLTVasCollateral_lte?: Maybe<Scalars['BigInt']>;
-  baseLTVasCollateral_in?: Maybe<Array<Scalars['BigInt']>>;
-  baseLTVasCollateral_not_in?: Maybe<Array<Scalars['BigInt']>>;
-  reserveLiquidationThreshold?: Maybe<Scalars['BigInt']>;
-  reserveLiquidationThreshold_not?: Maybe<Scalars['BigInt']>;
-  reserveLiquidationThreshold_gt?: Maybe<Scalars['BigInt']>;
-  reserveLiquidationThreshold_lt?: Maybe<Scalars['BigInt']>;
-  reserveLiquidationThreshold_gte?: Maybe<Scalars['BigInt']>;
-  reserveLiquidationThreshold_lte?: Maybe<Scalars['BigInt']>;
-  reserveLiquidationThreshold_in?: Maybe<Array<Scalars['BigInt']>>;
-  reserveLiquidationThreshold_not_in?: Maybe<Array<Scalars['BigInt']>>;
-  reserveLiquidationBonus?: Maybe<Scalars['BigInt']>;
-  reserveLiquidationBonus_not?: Maybe<Scalars['BigInt']>;
-  reserveLiquidationBonus_gt?: Maybe<Scalars['BigInt']>;
-  reserveLiquidationBonus_lt?: Maybe<Scalars['BigInt']>;
-  reserveLiquidationBonus_gte?: Maybe<Scalars['BigInt']>;
-  reserveLiquidationBonus_lte?: Maybe<Scalars['BigInt']>;
-  reserveLiquidationBonus_in?: Maybe<Array<Scalars['BigInt']>>;
-  reserveLiquidationBonus_not_in?: Maybe<Array<Scalars['BigInt']>>;
-  timestamp?: Maybe<Scalars['Int']>;
-  timestamp_not?: Maybe<Scalars['Int']>;
-  timestamp_gt?: Maybe<Scalars['Int']>;
-  timestamp_lt?: Maybe<Scalars['Int']>;
-  timestamp_gte?: Maybe<Scalars['Int']>;
-  timestamp_lte?: Maybe<Scalars['Int']>;
-  timestamp_in?: Maybe<Array<Scalars['Int']>>;
-  timestamp_not_in?: Maybe<Array<Scalars['Int']>>;
-};
-
-export enum ReserveConfigurationHistoryItem_OrderBy {
-  Id = 'id',
-  Reserve = 'reserve',
-  UsageAsCollateralEnabled = 'usageAsCollateralEnabled',
-  BorrowingEnabled = 'borrowingEnabled',
-  StableBorrowRateEnabled = 'stableBorrowRateEnabled',
-  IsActive = 'isActive',
-  IsFreezed = 'isFreezed',
-  ReserveInterestRateStrategy = 'reserveInterestRateStrategy',
-  BaseLtVasCollateral = 'baseLTVasCollateral',
-  ReserveLiquidationThreshold = 'reserveLiquidationThreshold',
-  ReserveLiquidationBonus = 'reserveLiquidationBonus',
-  Timestamp = 'timestamp',
-}
-
-export type ReserveParamsHistoryItem = {
-  __typename?: 'ReserveParamsHistoryItem';
-  /** tx hash */
-  id: Scalars['ID'];
-  reserve: Reserve;
-  variableBorrowRate: Scalars['BigInt'];
-  variableBorrowIndex: Scalars['BigInt'];
-  utilizationRate: Scalars['BigDecimal'];
-  stableBorrowRate: Scalars['BigInt'];
-  averageStableBorrowRate: Scalars['BigInt'];
-  liquidityIndex: Scalars['BigInt'];
-  liquidityRate: Scalars['BigInt'];
-  totalLiquidity: Scalars['BigInt'];
-  totalLiquidityAsCollateral: Scalars['BigInt'];
-  availableLiquidity: Scalars['BigInt'];
-  totalBorrows: Scalars['BigInt'];
-  totalBorrowsVariable: Scalars['BigInt'];
-  totalBorrowsStable: Scalars['BigInt'];
-  priceInEth: Scalars['BigInt'];
-  priceInUsd: Scalars['BigDecimal'];
-  timestamp: Scalars['Int'];
-  lifetimeFlashloanDepositorsFee: Scalars['BigInt'];
-  lifetimeFlashloanProtocolFee: Scalars['BigInt'];
-  lifetimeOriginationFee: Scalars['BigInt'];
-  lifetimeDepositorsInterestEarned: Scalars['BigInt'];
-  aTokenTotalSupply: Scalars['BigInt'];
-};
-
-export type ReserveParamsHistoryItem_Filter = {
-  id?: Maybe<Scalars['ID']>;
-  id_not?: Maybe<Scalars['ID']>;
-  id_gt?: Maybe<Scalars['ID']>;
-  id_lt?: Maybe<Scalars['ID']>;
-  id_gte?: Maybe<Scalars['ID']>;
-  id_lte?: Maybe<Scalars['ID']>;
-  id_in?: Maybe<Array<Scalars['ID']>>;
-  id_not_in?: Maybe<Array<Scalars['ID']>>;
-  reserve?: Maybe<Scalars['String']>;
-  reserve_not?: Maybe<Scalars['String']>;
-  reserve_gt?: Maybe<Scalars['String']>;
-  reserve_lt?: Maybe<Scalars['String']>;
-  reserve_gte?: Maybe<Scalars['String']>;
-  reserve_lte?: Maybe<Scalars['String']>;
-  reserve_in?: Maybe<Array<Scalars['String']>>;
-  reserve_not_in?: Maybe<Array<Scalars['String']>>;
-  reserve_contains?: Maybe<Scalars['String']>;
-  reserve_not_contains?: Maybe<Scalars['String']>;
-  reserve_starts_with?: Maybe<Scalars['String']>;
-  reserve_not_starts_with?: Maybe<Scalars['String']>;
-  reserve_ends_with?: Maybe<Scalars['String']>;
-  reserve_not_ends_with?: Maybe<Scalars['String']>;
-  variableBorrowRate?: Maybe<Scalars['BigInt']>;
-  variableBorrowRate_not?: Maybe<Scalars['BigInt']>;
-  variableBorrowRate_gt?: Maybe<Scalars['BigInt']>;
-  variableBorrowRate_lt?: Maybe<Scalars['BigInt']>;
-  variableBorrowRate_gte?: Maybe<Scalars['BigInt']>;
-  variableBorrowRate_lte?: Maybe<Scalars['BigInt']>;
-  variableBorrowRate_in?: Maybe<Array<Scalars['BigInt']>>;
-  variableBorrowRate_not_in?: Maybe<Array<Scalars['BigInt']>>;
-  variableBorrowIndex?: Maybe<Scalars['BigInt']>;
-  variableBorrowIndex_not?: Maybe<Scalars['BigInt']>;
-  variableBorrowIndex_gt?: Maybe<Scalars['BigInt']>;
-  variableBorrowIndex_lt?: Maybe<Scalars['BigInt']>;
-  variableBorrowIndex_gte?: Maybe<Scalars['BigInt']>;
-  variableBorrowIndex_lte?: Maybe<Scalars['BigInt']>;
-  variableBorrowIndex_in?: Maybe<Array<Scalars['BigInt']>>;
-  variableBorrowIndex_not_in?: Maybe<Array<Scalars['BigInt']>>;
-  utilizationRate?: Maybe<Scalars['BigDecimal']>;
-  utilizationRate_not?: Maybe<Scalars['BigDecimal']>;
-  utilizationRate_gt?: Maybe<Scalars['BigDecimal']>;
-  utilizationRate_lt?: Maybe<Scalars['BigDecimal']>;
-  utilizationRate_gte?: Maybe<Scalars['BigDecimal']>;
-  utilizationRate_lte?: Maybe<Scalars['BigDecimal']>;
-  utilizationRate_in?: Maybe<Array<Scalars['BigDecimal']>>;
-  utilizationRate_not_in?: Maybe<Array<Scalars['BigDecimal']>>;
-  stableBorrowRate?: Maybe<Scalars['BigInt']>;
-  stableBorrowRate_not?: Maybe<Scalars['BigInt']>;
-  stableBorrowRate_gt?: Maybe<Scalars['BigInt']>;
-  stableBorrowRate_lt?: Maybe<Scalars['BigInt']>;
-  stableBorrowRate_gte?: Maybe<Scalars['BigInt']>;
-  stableBorrowRate_lte?: Maybe<Scalars['BigInt']>;
-  stableBorrowRate_in?: Maybe<Array<Scalars['BigInt']>>;
-  stableBorrowRate_not_in?: Maybe<Array<Scalars['BigInt']>>;
-  averageStableBorrowRate?: Maybe<Scalars['BigInt']>;
-  averageStableBorrowRate_not?: Maybe<Scalars['BigInt']>;
-  averageStableBorrowRate_gt?: Maybe<Scalars['BigInt']>;
-  averageStableBorrowRate_lt?: Maybe<Scalars['BigInt']>;
-  averageStableBorrowRate_gte?: Maybe<Scalars['BigInt']>;
-  averageStableBorrowRate_lte?: Maybe<Scalars['BigInt']>;
-  averageStableBorrowRate_in?: Maybe<Array<Scalars['BigInt']>>;
-  averageStableBorrowRate_not_in?: Maybe<Array<Scalars['BigInt']>>;
-  liquidityIndex?: Maybe<Scalars['BigInt']>;
-  liquidityIndex_not?: Maybe<Scalars['BigInt']>;
-  liquidityIndex_gt?: Maybe<Scalars['BigInt']>;
-  liquidityIndex_lt?: Maybe<Scalars['BigInt']>;
-  liquidityIndex_gte?: Maybe<Scalars['BigInt']>;
-  liquidityIndex_lte?: Maybe<Scalars['BigInt']>;
-  liquidityIndex_in?: Maybe<Array<Scalars['BigInt']>>;
-  liquidityIndex_not_in?: Maybe<Array<Scalars['BigInt']>>;
-  liquidityRate?: Maybe<Scalars['BigInt']>;
-  liquidityRate_not?: Maybe<Scalars['BigInt']>;
-  liquidityRate_gt?: Maybe<Scalars['BigInt']>;
-  liquidityRate_lt?: Maybe<Scalars['BigInt']>;
-  liquidityRate_gte?: Maybe<Scalars['BigInt']>;
-  liquidityRate_lte?: Maybe<Scalars['BigInt']>;
-  liquidityRate_in?: Maybe<Array<Scalars['BigInt']>>;
-  liquidityRate_not_in?: Maybe<Array<Scalars['BigInt']>>;
-  totalLiquidity?: Maybe<Scalars['BigInt']>;
-  totalLiquidity_not?: Maybe<Scalars['BigInt']>;
-  totalLiquidity_gt?: Maybe<Scalars['BigInt']>;
-  totalLiquidity_lt?: Maybe<Scalars['BigInt']>;
-  totalLiquidity_gte?: Maybe<Scalars['BigInt']>;
-  totalLiquidity_lte?: Maybe<Scalars['BigInt']>;
-  totalLiquidity_in?: Maybe<Array<Scalars['BigInt']>>;
-  totalLiquidity_not_in?: Maybe<Array<Scalars['BigInt']>>;
-  totalLiquidityAsCollateral?: Maybe<Scalars['BigInt']>;
-  totalLiquidityAsCollateral_not?: Maybe<Scalars['BigInt']>;
-  totalLiquidityAsCollateral_gt?: Maybe<Scalars['BigInt']>;
-  totalLiquidityAsCollateral_lt?: Maybe<Scalars['BigInt']>;
-  totalLiquidityAsCollateral_gte?: Maybe<Scalars['BigInt']>;
-  totalLiquidityAsCollateral_lte?: Maybe<Scalars['BigInt']>;
-  totalLiquidityAsCollateral_in?: Maybe<Array<Scalars['BigInt']>>;
-  totalLiquidityAsCollateral_not_in?: Maybe<Array<Scalars['BigInt']>>;
-  availableLiquidity?: Maybe<Scalars['BigInt']>;
-  availableLiquidity_not?: Maybe<Scalars['BigInt']>;
-  availableLiquidity_gt?: Maybe<Scalars['BigInt']>;
-  availableLiquidity_lt?: Maybe<Scalars['BigInt']>;
-  availableLiquidity_gte?: Maybe<Scalars['BigInt']>;
-  availableLiquidity_lte?: Maybe<Scalars['BigInt']>;
-  availableLiquidity_in?: Maybe<Array<Scalars['BigInt']>>;
-  availableLiquidity_not_in?: Maybe<Array<Scalars['BigInt']>>;
-  totalBorrows?: Maybe<Scalars['BigInt']>;
-  totalBorrows_not?: Maybe<Scalars['BigInt']>;
-  totalBorrows_gt?: Maybe<Scalars['BigInt']>;
-  totalBorrows_lt?: Maybe<Scalars['BigInt']>;
-  totalBorrows_gte?: Maybe<Scalars['BigInt']>;
-  totalBorrows_lte?: Maybe<Scalars['BigInt']>;
-  totalBorrows_in?: Maybe<Array<Scalars['BigInt']>>;
-  totalBorrows_not_in?: Maybe<Array<Scalars['BigInt']>>;
-  totalBorrowsVariable?: Maybe<Scalars['BigInt']>;
-  totalBorrowsVariable_not?: Maybe<Scalars['BigInt']>;
-  totalBorrowsVariable_gt?: Maybe<Scalars['BigInt']>;
-  totalBorrowsVariable_lt?: Maybe<Scalars['BigInt']>;
-  totalBorrowsVariable_gte?: Maybe<Scalars['BigInt']>;
-  totalBorrowsVariable_lte?: Maybe<Scalars['BigInt']>;
-  totalBorrowsVariable_in?: Maybe<Array<Scalars['BigInt']>>;
-  totalBorrowsVariable_not_in?: Maybe<Array<Scalars['BigInt']>>;
-  totalBorrowsStable?: Maybe<Scalars['BigInt']>;
-  totalBorrowsStable_not?: Maybe<Scalars['BigInt']>;
-  totalBorrowsStable_gt?: Maybe<Scalars['BigInt']>;
-  totalBorrowsStable_lt?: Maybe<Scalars['BigInt']>;
-  totalBorrowsStable_gte?: Maybe<Scalars['BigInt']>;
-  totalBorrowsStable_lte?: Maybe<Scalars['BigInt']>;
-  totalBorrowsStable_in?: Maybe<Array<Scalars['BigInt']>>;
-  totalBorrowsStable_not_in?: Maybe<Array<Scalars['BigInt']>>;
-  priceInEth?: Maybe<Scalars['BigInt']>;
-  priceInEth_not?: Maybe<Scalars['BigInt']>;
-  priceInEth_gt?: Maybe<Scalars['BigInt']>;
-  priceInEth_lt?: Maybe<Scalars['BigInt']>;
-  priceInEth_gte?: Maybe<Scalars['BigInt']>;
-  priceInEth_lte?: Maybe<Scalars['BigInt']>;
-  priceInEth_in?: Maybe<Array<Scalars['BigInt']>>;
-  priceInEth_not_in?: Maybe<Array<Scalars['BigInt']>>;
-  priceInUsd?: Maybe<Scalars['BigDecimal']>;
-  priceInUsd_not?: Maybe<Scalars['BigDecimal']>;
-  priceInUsd_gt?: Maybe<Scalars['BigDecimal']>;
-  priceInUsd_lt?: Maybe<Scalars['BigDecimal']>;
-  priceInUsd_gte?: Maybe<Scalars['BigDecimal']>;
-  priceInUsd_lte?: Maybe<Scalars['BigDecimal']>;
-  priceInUsd_in?: Maybe<Array<Scalars['BigDecimal']>>;
-  priceInUsd_not_in?: Maybe<Array<Scalars['BigDecimal']>>;
-  timestamp?: Maybe<Scalars['Int']>;
-  timestamp_not?: Maybe<Scalars['Int']>;
-  timestamp_gt?: Maybe<Scalars['Int']>;
-  timestamp_lt?: Maybe<Scalars['Int']>;
-  timestamp_gte?: Maybe<Scalars['Int']>;
-  timestamp_lte?: Maybe<Scalars['Int']>;
-  timestamp_in?: Maybe<Array<Scalars['Int']>>;
-  timestamp_not_in?: Maybe<Array<Scalars['Int']>>;
-  lifetimeFlashloanDepositorsFee?: Maybe<Scalars['BigInt']>;
-  lifetimeFlashloanDepositorsFee_not?: Maybe<Scalars['BigInt']>;
-  lifetimeFlashloanDepositorsFee_gt?: Maybe<Scalars['BigInt']>;
-  lifetimeFlashloanDepositorsFee_lt?: Maybe<Scalars['BigInt']>;
-  lifetimeFlashloanDepositorsFee_gte?: Maybe<Scalars['BigInt']>;
-  lifetimeFlashloanDepositorsFee_lte?: Maybe<Scalars['BigInt']>;
-  lifetimeFlashloanDepositorsFee_in?: Maybe<Array<Scalars['BigInt']>>;
-  lifetimeFlashloanDepositorsFee_not_in?: Maybe<Array<Scalars['BigInt']>>;
-  lifetimeFlashloanProtocolFee?: Maybe<Scalars['BigInt']>;
-  lifetimeFlashloanProtocolFee_not?: Maybe<Scalars['BigInt']>;
-  lifetimeFlashloanProtocolFee_gt?: Maybe<Scalars['BigInt']>;
-  lifetimeFlashloanProtocolFee_lt?: Maybe<Scalars['BigInt']>;
-  lifetimeFlashloanProtocolFee_gte?: Maybe<Scalars['BigInt']>;
-  lifetimeFlashloanProtocolFee_lte?: Maybe<Scalars['BigInt']>;
-  lifetimeFlashloanProtocolFee_in?: Maybe<Array<Scalars['BigInt']>>;
-  lifetimeFlashloanProtocolFee_not_in?: Maybe<Array<Scalars['BigInt']>>;
-  lifetimeOriginationFee?: Maybe<Scalars['BigInt']>;
-  lifetimeOriginationFee_not?: Maybe<Scalars['BigInt']>;
-  lifetimeOriginationFee_gt?: Maybe<Scalars['BigInt']>;
-  lifetimeOriginationFee_lt?: Maybe<Scalars['BigInt']>;
-  lifetimeOriginationFee_gte?: Maybe<Scalars['BigInt']>;
-  lifetimeOriginationFee_lte?: Maybe<Scalars['BigInt']>;
-  lifetimeOriginationFee_in?: Maybe<Array<Scalars['BigInt']>>;
-  lifetimeOriginationFee_not_in?: Maybe<Array<Scalars['BigInt']>>;
-  lifetimeDepositorsInterestEarned?: Maybe<Scalars['BigInt']>;
-  lifetimeDepositorsInterestEarned_not?: Maybe<Scalars['BigInt']>;
-  lifetimeDepositorsInterestEarned_gt?: Maybe<Scalars['BigInt']>;
-  lifetimeDepositorsInterestEarned_lt?: Maybe<Scalars['BigInt']>;
-  lifetimeDepositorsInterestEarned_gte?: Maybe<Scalars['BigInt']>;
-  lifetimeDepositorsInterestEarned_lte?: Maybe<Scalars['BigInt']>;
-  lifetimeDepositorsInterestEarned_in?: Maybe<Array<Scalars['BigInt']>>;
-  lifetimeDepositorsInterestEarned_not_in?: Maybe<Array<Scalars['BigInt']>>;
-  aTokenTotalSupply?: Maybe<Scalars['BigInt']>;
-  aTokenTotalSupply_not?: Maybe<Scalars['BigInt']>;
-  aTokenTotalSupply_gt?: Maybe<Scalars['BigInt']>;
-  aTokenTotalSupply_lt?: Maybe<Scalars['BigInt']>;
-  aTokenTotalSupply_gte?: Maybe<Scalars['BigInt']>;
-  aTokenTotalSupply_lte?: Maybe<Scalars['BigInt']>;
-  aTokenTotalSupply_in?: Maybe<Array<Scalars['BigInt']>>;
-  aTokenTotalSupply_not_in?: Maybe<Array<Scalars['BigInt']>>;
-};
-
-export enum ReserveParamsHistoryItem_OrderBy {
-  Id = 'id',
-  Reserve = 'reserve',
-  VariableBorrowRate = 'variableBorrowRate',
-  VariableBorrowIndex = 'variableBorrowIndex',
-  UtilizationRate = 'utilizationRate',
-  StableBorrowRate = 'stableBorrowRate',
-  AverageStableBorrowRate = 'averageStableBorrowRate',
-  LiquidityIndex = 'liquidityIndex',
-  LiquidityRate = 'liquidityRate',
-  TotalLiquidity = 'totalLiquidity',
-  TotalLiquidityAsCollateral = 'totalLiquidityAsCollateral',
-  AvailableLiquidity = 'availableLiquidity',
-  TotalBorrows = 'totalBorrows',
-  TotalBorrowsVariable = 'totalBorrowsVariable',
-  TotalBorrowsStable = 'totalBorrowsStable',
-  PriceInEth = 'priceInEth',
-  PriceInUsd = 'priceInUsd',
-  Timestamp = 'timestamp',
-  LifetimeFlashloanDepositorsFee = 'lifetimeFlashloanDepositorsFee',
-  LifetimeFlashloanProtocolFee = 'lifetimeFlashloanProtocolFee',
-  LifetimeOriginationFee = 'lifetimeOriginationFee',
-  LifetimeDepositorsInterestEarned = 'lifetimeDepositorsInterestEarned',
-  ATokenTotalSupply = 'aTokenTotalSupply',
-}
-
 export type Reserve_Filter = {
   id?: Maybe<Scalars['ID']>;
   id_not?: Maybe<Scalars['ID']>;
@@ -3488,6 +3157,368 @@ export enum Reserve_OrderBy {
   ParamsHistory = 'paramsHistory',
   ConfigurationHistory = 'configurationHistory',
   Deposits = 'deposits',
+}
+
+export type ReserveConfigurationHistoryItem = {
+  __typename?: 'ReserveConfigurationHistoryItem';
+  /** tx hash */
+  id: Scalars['ID'];
+  reserve: Reserve;
+  usageAsCollateralEnabled: Scalars['Boolean'];
+  borrowingEnabled: Scalars['Boolean'];
+  stableBorrowRateEnabled: Scalars['Boolean'];
+  isActive: Scalars['Boolean'];
+  isFreezed: Scalars['Boolean'];
+  reserveInterestRateStrategy: Scalars['Bytes'];
+  baseLTVasCollateral: Scalars['BigInt'];
+  reserveLiquidationThreshold: Scalars['BigInt'];
+  reserveLiquidationBonus: Scalars['BigInt'];
+  timestamp: Scalars['Int'];
+};
+
+export type ReserveConfigurationHistoryItem_Filter = {
+  id?: Maybe<Scalars['ID']>;
+  id_not?: Maybe<Scalars['ID']>;
+  id_gt?: Maybe<Scalars['ID']>;
+  id_lt?: Maybe<Scalars['ID']>;
+  id_gte?: Maybe<Scalars['ID']>;
+  id_lte?: Maybe<Scalars['ID']>;
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  reserve?: Maybe<Scalars['String']>;
+  reserve_not?: Maybe<Scalars['String']>;
+  reserve_gt?: Maybe<Scalars['String']>;
+  reserve_lt?: Maybe<Scalars['String']>;
+  reserve_gte?: Maybe<Scalars['String']>;
+  reserve_lte?: Maybe<Scalars['String']>;
+  reserve_in?: Maybe<Array<Scalars['String']>>;
+  reserve_not_in?: Maybe<Array<Scalars['String']>>;
+  reserve_contains?: Maybe<Scalars['String']>;
+  reserve_not_contains?: Maybe<Scalars['String']>;
+  reserve_starts_with?: Maybe<Scalars['String']>;
+  reserve_not_starts_with?: Maybe<Scalars['String']>;
+  reserve_ends_with?: Maybe<Scalars['String']>;
+  reserve_not_ends_with?: Maybe<Scalars['String']>;
+  usageAsCollateralEnabled?: Maybe<Scalars['Boolean']>;
+  usageAsCollateralEnabled_not?: Maybe<Scalars['Boolean']>;
+  usageAsCollateralEnabled_in?: Maybe<Array<Scalars['Boolean']>>;
+  usageAsCollateralEnabled_not_in?: Maybe<Array<Scalars['Boolean']>>;
+  borrowingEnabled?: Maybe<Scalars['Boolean']>;
+  borrowingEnabled_not?: Maybe<Scalars['Boolean']>;
+  borrowingEnabled_in?: Maybe<Array<Scalars['Boolean']>>;
+  borrowingEnabled_not_in?: Maybe<Array<Scalars['Boolean']>>;
+  stableBorrowRateEnabled?: Maybe<Scalars['Boolean']>;
+  stableBorrowRateEnabled_not?: Maybe<Scalars['Boolean']>;
+  stableBorrowRateEnabled_in?: Maybe<Array<Scalars['Boolean']>>;
+  stableBorrowRateEnabled_not_in?: Maybe<Array<Scalars['Boolean']>>;
+  isActive?: Maybe<Scalars['Boolean']>;
+  isActive_not?: Maybe<Scalars['Boolean']>;
+  isActive_in?: Maybe<Array<Scalars['Boolean']>>;
+  isActive_not_in?: Maybe<Array<Scalars['Boolean']>>;
+  isFreezed?: Maybe<Scalars['Boolean']>;
+  isFreezed_not?: Maybe<Scalars['Boolean']>;
+  isFreezed_in?: Maybe<Array<Scalars['Boolean']>>;
+  isFreezed_not_in?: Maybe<Array<Scalars['Boolean']>>;
+  reserveInterestRateStrategy?: Maybe<Scalars['Bytes']>;
+  reserveInterestRateStrategy_not?: Maybe<Scalars['Bytes']>;
+  reserveInterestRateStrategy_in?: Maybe<Array<Scalars['Bytes']>>;
+  reserveInterestRateStrategy_not_in?: Maybe<Array<Scalars['Bytes']>>;
+  reserveInterestRateStrategy_contains?: Maybe<Scalars['Bytes']>;
+  reserveInterestRateStrategy_not_contains?: Maybe<Scalars['Bytes']>;
+  baseLTVasCollateral?: Maybe<Scalars['BigInt']>;
+  baseLTVasCollateral_not?: Maybe<Scalars['BigInt']>;
+  baseLTVasCollateral_gt?: Maybe<Scalars['BigInt']>;
+  baseLTVasCollateral_lt?: Maybe<Scalars['BigInt']>;
+  baseLTVasCollateral_gte?: Maybe<Scalars['BigInt']>;
+  baseLTVasCollateral_lte?: Maybe<Scalars['BigInt']>;
+  baseLTVasCollateral_in?: Maybe<Array<Scalars['BigInt']>>;
+  baseLTVasCollateral_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  reserveLiquidationThreshold?: Maybe<Scalars['BigInt']>;
+  reserveLiquidationThreshold_not?: Maybe<Scalars['BigInt']>;
+  reserveLiquidationThreshold_gt?: Maybe<Scalars['BigInt']>;
+  reserveLiquidationThreshold_lt?: Maybe<Scalars['BigInt']>;
+  reserveLiquidationThreshold_gte?: Maybe<Scalars['BigInt']>;
+  reserveLiquidationThreshold_lte?: Maybe<Scalars['BigInt']>;
+  reserveLiquidationThreshold_in?: Maybe<Array<Scalars['BigInt']>>;
+  reserveLiquidationThreshold_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  reserveLiquidationBonus?: Maybe<Scalars['BigInt']>;
+  reserveLiquidationBonus_not?: Maybe<Scalars['BigInt']>;
+  reserveLiquidationBonus_gt?: Maybe<Scalars['BigInt']>;
+  reserveLiquidationBonus_lt?: Maybe<Scalars['BigInt']>;
+  reserveLiquidationBonus_gte?: Maybe<Scalars['BigInt']>;
+  reserveLiquidationBonus_lte?: Maybe<Scalars['BigInt']>;
+  reserveLiquidationBonus_in?: Maybe<Array<Scalars['BigInt']>>;
+  reserveLiquidationBonus_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  timestamp?: Maybe<Scalars['Int']>;
+  timestamp_not?: Maybe<Scalars['Int']>;
+  timestamp_gt?: Maybe<Scalars['Int']>;
+  timestamp_lt?: Maybe<Scalars['Int']>;
+  timestamp_gte?: Maybe<Scalars['Int']>;
+  timestamp_lte?: Maybe<Scalars['Int']>;
+  timestamp_in?: Maybe<Array<Scalars['Int']>>;
+  timestamp_not_in?: Maybe<Array<Scalars['Int']>>;
+};
+
+export enum ReserveConfigurationHistoryItem_OrderBy {
+  Id = 'id',
+  Reserve = 'reserve',
+  UsageAsCollateralEnabled = 'usageAsCollateralEnabled',
+  BorrowingEnabled = 'borrowingEnabled',
+  StableBorrowRateEnabled = 'stableBorrowRateEnabled',
+  IsActive = 'isActive',
+  IsFreezed = 'isFreezed',
+  ReserveInterestRateStrategy = 'reserveInterestRateStrategy',
+  BaseLtVasCollateral = 'baseLTVasCollateral',
+  ReserveLiquidationThreshold = 'reserveLiquidationThreshold',
+  ReserveLiquidationBonus = 'reserveLiquidationBonus',
+  Timestamp = 'timestamp',
+}
+
+export type ReserveParamsHistoryItem = {
+  __typename?: 'ReserveParamsHistoryItem';
+  /** tx hash */
+  id: Scalars['ID'];
+  reserve: Reserve;
+  variableBorrowRate: Scalars['BigInt'];
+  variableBorrowIndex: Scalars['BigInt'];
+  utilizationRate: Scalars['BigDecimal'];
+  stableBorrowRate: Scalars['BigInt'];
+  averageStableBorrowRate: Scalars['BigInt'];
+  liquidityIndex: Scalars['BigInt'];
+  liquidityRate: Scalars['BigInt'];
+  totalLiquidity: Scalars['BigInt'];
+  totalLiquidityAsCollateral: Scalars['BigInt'];
+  availableLiquidity: Scalars['BigInt'];
+  totalBorrows: Scalars['BigInt'];
+  totalBorrowsVariable: Scalars['BigInt'];
+  totalBorrowsStable: Scalars['BigInt'];
+  priceInEth: Scalars['BigInt'];
+  priceInUsd: Scalars['BigDecimal'];
+  timestamp: Scalars['Int'];
+  lifetimeFlashloanDepositorsFee: Scalars['BigInt'];
+  lifetimeFlashloanProtocolFee: Scalars['BigInt'];
+  lifetimeOriginationFee: Scalars['BigInt'];
+  lifetimeDepositorsInterestEarned: Scalars['BigInt'];
+  aTokenTotalSupply: Scalars['BigInt'];
+};
+
+export type ReserveParamsHistoryItem_Filter = {
+  id?: Maybe<Scalars['ID']>;
+  id_not?: Maybe<Scalars['ID']>;
+  id_gt?: Maybe<Scalars['ID']>;
+  id_lt?: Maybe<Scalars['ID']>;
+  id_gte?: Maybe<Scalars['ID']>;
+  id_lte?: Maybe<Scalars['ID']>;
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  reserve?: Maybe<Scalars['String']>;
+  reserve_not?: Maybe<Scalars['String']>;
+  reserve_gt?: Maybe<Scalars['String']>;
+  reserve_lt?: Maybe<Scalars['String']>;
+  reserve_gte?: Maybe<Scalars['String']>;
+  reserve_lte?: Maybe<Scalars['String']>;
+  reserve_in?: Maybe<Array<Scalars['String']>>;
+  reserve_not_in?: Maybe<Array<Scalars['String']>>;
+  reserve_contains?: Maybe<Scalars['String']>;
+  reserve_not_contains?: Maybe<Scalars['String']>;
+  reserve_starts_with?: Maybe<Scalars['String']>;
+  reserve_not_starts_with?: Maybe<Scalars['String']>;
+  reserve_ends_with?: Maybe<Scalars['String']>;
+  reserve_not_ends_with?: Maybe<Scalars['String']>;
+  variableBorrowRate?: Maybe<Scalars['BigInt']>;
+  variableBorrowRate_not?: Maybe<Scalars['BigInt']>;
+  variableBorrowRate_gt?: Maybe<Scalars['BigInt']>;
+  variableBorrowRate_lt?: Maybe<Scalars['BigInt']>;
+  variableBorrowRate_gte?: Maybe<Scalars['BigInt']>;
+  variableBorrowRate_lte?: Maybe<Scalars['BigInt']>;
+  variableBorrowRate_in?: Maybe<Array<Scalars['BigInt']>>;
+  variableBorrowRate_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  variableBorrowIndex?: Maybe<Scalars['BigInt']>;
+  variableBorrowIndex_not?: Maybe<Scalars['BigInt']>;
+  variableBorrowIndex_gt?: Maybe<Scalars['BigInt']>;
+  variableBorrowIndex_lt?: Maybe<Scalars['BigInt']>;
+  variableBorrowIndex_gte?: Maybe<Scalars['BigInt']>;
+  variableBorrowIndex_lte?: Maybe<Scalars['BigInt']>;
+  variableBorrowIndex_in?: Maybe<Array<Scalars['BigInt']>>;
+  variableBorrowIndex_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  utilizationRate?: Maybe<Scalars['BigDecimal']>;
+  utilizationRate_not?: Maybe<Scalars['BigDecimal']>;
+  utilizationRate_gt?: Maybe<Scalars['BigDecimal']>;
+  utilizationRate_lt?: Maybe<Scalars['BigDecimal']>;
+  utilizationRate_gte?: Maybe<Scalars['BigDecimal']>;
+  utilizationRate_lte?: Maybe<Scalars['BigDecimal']>;
+  utilizationRate_in?: Maybe<Array<Scalars['BigDecimal']>>;
+  utilizationRate_not_in?: Maybe<Array<Scalars['BigDecimal']>>;
+  stableBorrowRate?: Maybe<Scalars['BigInt']>;
+  stableBorrowRate_not?: Maybe<Scalars['BigInt']>;
+  stableBorrowRate_gt?: Maybe<Scalars['BigInt']>;
+  stableBorrowRate_lt?: Maybe<Scalars['BigInt']>;
+  stableBorrowRate_gte?: Maybe<Scalars['BigInt']>;
+  stableBorrowRate_lte?: Maybe<Scalars['BigInt']>;
+  stableBorrowRate_in?: Maybe<Array<Scalars['BigInt']>>;
+  stableBorrowRate_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  averageStableBorrowRate?: Maybe<Scalars['BigInt']>;
+  averageStableBorrowRate_not?: Maybe<Scalars['BigInt']>;
+  averageStableBorrowRate_gt?: Maybe<Scalars['BigInt']>;
+  averageStableBorrowRate_lt?: Maybe<Scalars['BigInt']>;
+  averageStableBorrowRate_gte?: Maybe<Scalars['BigInt']>;
+  averageStableBorrowRate_lte?: Maybe<Scalars['BigInt']>;
+  averageStableBorrowRate_in?: Maybe<Array<Scalars['BigInt']>>;
+  averageStableBorrowRate_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  liquidityIndex?: Maybe<Scalars['BigInt']>;
+  liquidityIndex_not?: Maybe<Scalars['BigInt']>;
+  liquidityIndex_gt?: Maybe<Scalars['BigInt']>;
+  liquidityIndex_lt?: Maybe<Scalars['BigInt']>;
+  liquidityIndex_gte?: Maybe<Scalars['BigInt']>;
+  liquidityIndex_lte?: Maybe<Scalars['BigInt']>;
+  liquidityIndex_in?: Maybe<Array<Scalars['BigInt']>>;
+  liquidityIndex_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  liquidityRate?: Maybe<Scalars['BigInt']>;
+  liquidityRate_not?: Maybe<Scalars['BigInt']>;
+  liquidityRate_gt?: Maybe<Scalars['BigInt']>;
+  liquidityRate_lt?: Maybe<Scalars['BigInt']>;
+  liquidityRate_gte?: Maybe<Scalars['BigInt']>;
+  liquidityRate_lte?: Maybe<Scalars['BigInt']>;
+  liquidityRate_in?: Maybe<Array<Scalars['BigInt']>>;
+  liquidityRate_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  totalLiquidity?: Maybe<Scalars['BigInt']>;
+  totalLiquidity_not?: Maybe<Scalars['BigInt']>;
+  totalLiquidity_gt?: Maybe<Scalars['BigInt']>;
+  totalLiquidity_lt?: Maybe<Scalars['BigInt']>;
+  totalLiquidity_gte?: Maybe<Scalars['BigInt']>;
+  totalLiquidity_lte?: Maybe<Scalars['BigInt']>;
+  totalLiquidity_in?: Maybe<Array<Scalars['BigInt']>>;
+  totalLiquidity_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  totalLiquidityAsCollateral?: Maybe<Scalars['BigInt']>;
+  totalLiquidityAsCollateral_not?: Maybe<Scalars['BigInt']>;
+  totalLiquidityAsCollateral_gt?: Maybe<Scalars['BigInt']>;
+  totalLiquidityAsCollateral_lt?: Maybe<Scalars['BigInt']>;
+  totalLiquidityAsCollateral_gte?: Maybe<Scalars['BigInt']>;
+  totalLiquidityAsCollateral_lte?: Maybe<Scalars['BigInt']>;
+  totalLiquidityAsCollateral_in?: Maybe<Array<Scalars['BigInt']>>;
+  totalLiquidityAsCollateral_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  availableLiquidity?: Maybe<Scalars['BigInt']>;
+  availableLiquidity_not?: Maybe<Scalars['BigInt']>;
+  availableLiquidity_gt?: Maybe<Scalars['BigInt']>;
+  availableLiquidity_lt?: Maybe<Scalars['BigInt']>;
+  availableLiquidity_gte?: Maybe<Scalars['BigInt']>;
+  availableLiquidity_lte?: Maybe<Scalars['BigInt']>;
+  availableLiquidity_in?: Maybe<Array<Scalars['BigInt']>>;
+  availableLiquidity_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  totalBorrows?: Maybe<Scalars['BigInt']>;
+  totalBorrows_not?: Maybe<Scalars['BigInt']>;
+  totalBorrows_gt?: Maybe<Scalars['BigInt']>;
+  totalBorrows_lt?: Maybe<Scalars['BigInt']>;
+  totalBorrows_gte?: Maybe<Scalars['BigInt']>;
+  totalBorrows_lte?: Maybe<Scalars['BigInt']>;
+  totalBorrows_in?: Maybe<Array<Scalars['BigInt']>>;
+  totalBorrows_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  totalBorrowsVariable?: Maybe<Scalars['BigInt']>;
+  totalBorrowsVariable_not?: Maybe<Scalars['BigInt']>;
+  totalBorrowsVariable_gt?: Maybe<Scalars['BigInt']>;
+  totalBorrowsVariable_lt?: Maybe<Scalars['BigInt']>;
+  totalBorrowsVariable_gte?: Maybe<Scalars['BigInt']>;
+  totalBorrowsVariable_lte?: Maybe<Scalars['BigInt']>;
+  totalBorrowsVariable_in?: Maybe<Array<Scalars['BigInt']>>;
+  totalBorrowsVariable_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  totalBorrowsStable?: Maybe<Scalars['BigInt']>;
+  totalBorrowsStable_not?: Maybe<Scalars['BigInt']>;
+  totalBorrowsStable_gt?: Maybe<Scalars['BigInt']>;
+  totalBorrowsStable_lt?: Maybe<Scalars['BigInt']>;
+  totalBorrowsStable_gte?: Maybe<Scalars['BigInt']>;
+  totalBorrowsStable_lte?: Maybe<Scalars['BigInt']>;
+  totalBorrowsStable_in?: Maybe<Array<Scalars['BigInt']>>;
+  totalBorrowsStable_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  priceInEth?: Maybe<Scalars['BigInt']>;
+  priceInEth_not?: Maybe<Scalars['BigInt']>;
+  priceInEth_gt?: Maybe<Scalars['BigInt']>;
+  priceInEth_lt?: Maybe<Scalars['BigInt']>;
+  priceInEth_gte?: Maybe<Scalars['BigInt']>;
+  priceInEth_lte?: Maybe<Scalars['BigInt']>;
+  priceInEth_in?: Maybe<Array<Scalars['BigInt']>>;
+  priceInEth_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  priceInUsd?: Maybe<Scalars['BigDecimal']>;
+  priceInUsd_not?: Maybe<Scalars['BigDecimal']>;
+  priceInUsd_gt?: Maybe<Scalars['BigDecimal']>;
+  priceInUsd_lt?: Maybe<Scalars['BigDecimal']>;
+  priceInUsd_gte?: Maybe<Scalars['BigDecimal']>;
+  priceInUsd_lte?: Maybe<Scalars['BigDecimal']>;
+  priceInUsd_in?: Maybe<Array<Scalars['BigDecimal']>>;
+  priceInUsd_not_in?: Maybe<Array<Scalars['BigDecimal']>>;
+  timestamp?: Maybe<Scalars['Int']>;
+  timestamp_not?: Maybe<Scalars['Int']>;
+  timestamp_gt?: Maybe<Scalars['Int']>;
+  timestamp_lt?: Maybe<Scalars['Int']>;
+  timestamp_gte?: Maybe<Scalars['Int']>;
+  timestamp_lte?: Maybe<Scalars['Int']>;
+  timestamp_in?: Maybe<Array<Scalars['Int']>>;
+  timestamp_not_in?: Maybe<Array<Scalars['Int']>>;
+  lifetimeFlashloanDepositorsFee?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashloanDepositorsFee_not?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashloanDepositorsFee_gt?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashloanDepositorsFee_lt?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashloanDepositorsFee_gte?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashloanDepositorsFee_lte?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashloanDepositorsFee_in?: Maybe<Array<Scalars['BigInt']>>;
+  lifetimeFlashloanDepositorsFee_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  lifetimeFlashloanProtocolFee?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashloanProtocolFee_not?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashloanProtocolFee_gt?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashloanProtocolFee_lt?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashloanProtocolFee_gte?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashloanProtocolFee_lte?: Maybe<Scalars['BigInt']>;
+  lifetimeFlashloanProtocolFee_in?: Maybe<Array<Scalars['BigInt']>>;
+  lifetimeFlashloanProtocolFee_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  lifetimeOriginationFee?: Maybe<Scalars['BigInt']>;
+  lifetimeOriginationFee_not?: Maybe<Scalars['BigInt']>;
+  lifetimeOriginationFee_gt?: Maybe<Scalars['BigInt']>;
+  lifetimeOriginationFee_lt?: Maybe<Scalars['BigInt']>;
+  lifetimeOriginationFee_gte?: Maybe<Scalars['BigInt']>;
+  lifetimeOriginationFee_lte?: Maybe<Scalars['BigInt']>;
+  lifetimeOriginationFee_in?: Maybe<Array<Scalars['BigInt']>>;
+  lifetimeOriginationFee_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  lifetimeDepositorsInterestEarned?: Maybe<Scalars['BigInt']>;
+  lifetimeDepositorsInterestEarned_not?: Maybe<Scalars['BigInt']>;
+  lifetimeDepositorsInterestEarned_gt?: Maybe<Scalars['BigInt']>;
+  lifetimeDepositorsInterestEarned_lt?: Maybe<Scalars['BigInt']>;
+  lifetimeDepositorsInterestEarned_gte?: Maybe<Scalars['BigInt']>;
+  lifetimeDepositorsInterestEarned_lte?: Maybe<Scalars['BigInt']>;
+  lifetimeDepositorsInterestEarned_in?: Maybe<Array<Scalars['BigInt']>>;
+  lifetimeDepositorsInterestEarned_not_in?: Maybe<Array<Scalars['BigInt']>>;
+  aTokenTotalSupply?: Maybe<Scalars['BigInt']>;
+  aTokenTotalSupply_not?: Maybe<Scalars['BigInt']>;
+  aTokenTotalSupply_gt?: Maybe<Scalars['BigInt']>;
+  aTokenTotalSupply_lt?: Maybe<Scalars['BigInt']>;
+  aTokenTotalSupply_gte?: Maybe<Scalars['BigInt']>;
+  aTokenTotalSupply_lte?: Maybe<Scalars['BigInt']>;
+  aTokenTotalSupply_in?: Maybe<Array<Scalars['BigInt']>>;
+  aTokenTotalSupply_not_in?: Maybe<Array<Scalars['BigInt']>>;
+};
+
+export enum ReserveParamsHistoryItem_OrderBy {
+  Id = 'id',
+  Reserve = 'reserve',
+  VariableBorrowRate = 'variableBorrowRate',
+  VariableBorrowIndex = 'variableBorrowIndex',
+  UtilizationRate = 'utilizationRate',
+  StableBorrowRate = 'stableBorrowRate',
+  AverageStableBorrowRate = 'averageStableBorrowRate',
+  LiquidityIndex = 'liquidityIndex',
+  LiquidityRate = 'liquidityRate',
+  TotalLiquidity = 'totalLiquidity',
+  TotalLiquidityAsCollateral = 'totalLiquidityAsCollateral',
+  AvailableLiquidity = 'availableLiquidity',
+  TotalBorrows = 'totalBorrows',
+  TotalBorrowsVariable = 'totalBorrowsVariable',
+  TotalBorrowsStable = 'totalBorrowsStable',
+  PriceInEth = 'priceInEth',
+  PriceInUsd = 'priceInUsd',
+  Timestamp = 'timestamp',
+  LifetimeFlashloanDepositorsFee = 'lifetimeFlashloanDepositorsFee',
+  LifetimeFlashloanProtocolFee = 'lifetimeFlashloanProtocolFee',
+  LifetimeOriginationFee = 'lifetimeOriginationFee',
+  LifetimeDepositorsInterestEarned = 'lifetimeDepositorsInterestEarned',
+  ATokenTotalSupply = 'aTokenTotalSupply',
 }
 
 export type Subscription = {
@@ -4357,6 +4388,40 @@ export type UserOriginationFeeLiquidationHistoryArgs = {
   where?: Maybe<OriginationFeeLiquidation_Filter>;
 };
 
+export type User_Filter = {
+  id?: Maybe<Scalars['ID']>;
+  id_not?: Maybe<Scalars['ID']>;
+  id_gt?: Maybe<Scalars['ID']>;
+  id_lt?: Maybe<Scalars['ID']>;
+  id_gte?: Maybe<Scalars['ID']>;
+  id_lte?: Maybe<Scalars['ID']>;
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  borrowedReservesCount?: Maybe<Scalars['Int']>;
+  borrowedReservesCount_not?: Maybe<Scalars['Int']>;
+  borrowedReservesCount_gt?: Maybe<Scalars['Int']>;
+  borrowedReservesCount_lt?: Maybe<Scalars['Int']>;
+  borrowedReservesCount_gte?: Maybe<Scalars['Int']>;
+  borrowedReservesCount_lte?: Maybe<Scalars['Int']>;
+  borrowedReservesCount_in?: Maybe<Array<Scalars['Int']>>;
+  borrowedReservesCount_not_in?: Maybe<Array<Scalars['Int']>>;
+};
+
+export enum User_OrderBy {
+  Id = 'id',
+  BorrowedReservesCount = 'borrowedReservesCount',
+  Reserves = 'reserves',
+  DepositHistory = 'depositHistory',
+  RedeemUnderlyingHistory = 'redeemUnderlyingHistory',
+  UsageAsCollateralHistory = 'usageAsCollateralHistory',
+  BorrowHistory = 'borrowHistory',
+  SwapHistory = 'swapHistory',
+  RebalanceStableBorrowRateHistory = 'rebalanceStableBorrowRateHistory',
+  RepayHistory = 'repayHistory',
+  LiquidationCallHistory = 'liquidationCallHistory',
+  OriginationFeeLiquidationHistory = 'originationFeeLiquidationHistory',
+}
+
 export type UserBorrowHistoryItem = {
   __typename?: 'UserBorrowHistoryItem';
   /** userReserve + txHash */
@@ -4785,71 +4850,6 @@ export enum UserTransaction_OrderBy {
   Timestamp = 'timestamp',
 }
 
-export type User_Filter = {
-  id?: Maybe<Scalars['ID']>;
-  id_not?: Maybe<Scalars['ID']>;
-  id_gt?: Maybe<Scalars['ID']>;
-  id_lt?: Maybe<Scalars['ID']>;
-  id_gte?: Maybe<Scalars['ID']>;
-  id_lte?: Maybe<Scalars['ID']>;
-  id_in?: Maybe<Array<Scalars['ID']>>;
-  id_not_in?: Maybe<Array<Scalars['ID']>>;
-  borrowedReservesCount?: Maybe<Scalars['Int']>;
-  borrowedReservesCount_not?: Maybe<Scalars['Int']>;
-  borrowedReservesCount_gt?: Maybe<Scalars['Int']>;
-  borrowedReservesCount_lt?: Maybe<Scalars['Int']>;
-  borrowedReservesCount_gte?: Maybe<Scalars['Int']>;
-  borrowedReservesCount_lte?: Maybe<Scalars['Int']>;
-  borrowedReservesCount_in?: Maybe<Array<Scalars['Int']>>;
-  borrowedReservesCount_not_in?: Maybe<Array<Scalars['Int']>>;
-};
-
-export enum User_OrderBy {
-  Id = 'id',
-  BorrowedReservesCount = 'borrowedReservesCount',
-  Reserves = 'reserves',
-  DepositHistory = 'depositHistory',
-  RedeemUnderlyingHistory = 'redeemUnderlyingHistory',
-  UsageAsCollateralHistory = 'usageAsCollateralHistory',
-  BorrowHistory = 'borrowHistory',
-  SwapHistory = 'swapHistory',
-  RebalanceStableBorrowRateHistory = 'rebalanceStableBorrowRateHistory',
-  RepayHistory = 'repayHistory',
-  LiquidationCallHistory = 'liquidationCallHistory',
-  OriginationFeeLiquidationHistory = 'originationFeeLiquidationHistory',
-}
-
-export type _Block_ = {
-  __typename?: '_Block_';
-  /** The hash of the block */
-  hash?: Maybe<Scalars['Bytes']>;
-  /** The block number */
-  number: Scalars['Int'];
-};
-
-/** The type for the top-level _meta field */
-export type _Meta_ = {
-  __typename?: '_Meta_';
-  /**
-   * Information about a specific subgraph block. The hash of the block
-   * will be null if the _meta field has a block constraint that asks for
-   * a block number. It will be filled if the _meta field has no block constraint
-   * and therefore asks for the latest  block
-   */
-  block: _Block_;
-  /** The deployment ID */
-  deployment: Scalars['String'];
-  /** If `true`, the subgraph encountered indexing errors at some past block */
-  hasIndexingErrors: Scalars['Boolean'];
-};
-
-export enum _SubgraphErrorPolicy_ {
-  /** Data will be returned even if the subgraph has indexing errors */
-  Allow = 'allow',
-  /** If the subgraph has indexing errors, data will be omitted. The default. */
-  Deny = 'deny',
-}
-
 export type ReserveHistoryFeeDataV1Fragment = {
   __typename?: 'ReserveParamsHistoryItem';
 } & Pick<
@@ -4942,6 +4942,68 @@ export type UserReservesQuery = { __typename?: 'Query' } & {
         > & { aToken: { __typename?: 'AToken' } & Pick<AToken, 'id'> };
         user: { __typename?: 'User' } & Pick<User, 'id'>;
       }
+  >;
+};
+
+export type VolumeReservesV1QueryVariables = Exact<{ [key: string]: never }>;
+
+export type VolumeReservesV1Query = { __typename?: 'Query' } & {
+  priceOracle?: Maybe<
+    { __typename?: 'PriceOracle' } & Pick<PriceOracle, 'usdPriceEth'>
+  >;
+  reserves: Array<
+    { __typename?: 'Reserve' } & Pick<
+      Reserve,
+      'id' | 'symbol' | 'name' | 'decimals' | 'underlyingAsset'
+    > & {
+        price: { __typename?: 'PriceOracleAsset' } & Pick<
+          PriceOracleAsset,
+          'priceInEth'
+        >;
+        aToken: { __typename?: 'AToken' } & Pick<AToken, 'id'>;
+      }
+  >;
+};
+
+export type DailyVolumeV1QueryVariables = Exact<{
+  first: Scalars['Int'];
+  from: Scalars['Int'];
+}>;
+
+export type DailyVolumeV1Query = { __typename?: 'Query' } & {
+  items: Array<
+    | ({ __typename: 'Deposit' } & Pick<
+        Deposit,
+        'amount' | 'id' | 'timestamp'
+      > & { reserve: { __typename?: 'Reserve' } & Pick<Reserve, 'id'> })
+    | ({ __typename: 'Borrow' } & Pick<
+        Borrow,
+        'amount' | 'id' | 'timestamp'
+      > & { reserve: { __typename?: 'Reserve' } & Pick<Reserve, 'id'> })
+    | ({ __typename: 'RedeemUnderlying' } & Pick<
+        RedeemUnderlying,
+        'amount' | 'id' | 'timestamp'
+      > & { reserve: { __typename?: 'Reserve' } & Pick<Reserve, 'id'> })
+    | ({ __typename: 'UsageAsCollateral' } & Pick<
+        UsageAsCollateral,
+        'id' | 'timestamp'
+      >)
+    | ({ __typename: 'Swap' } & Pick<Swap, 'id' | 'timestamp'>)
+    | ({ __typename: 'RebalanceStableBorrowRate' } & Pick<
+        RebalanceStableBorrowRate,
+        'id' | 'timestamp'
+      >)
+    | ({ __typename: 'Repay' } & Pick<Repay, 'id' | 'timestamp'> & {
+          amount: Repay['amountAfterFee'];
+        } & { reserve: { __typename?: 'Reserve' } & Pick<Reserve, 'id'> })
+    | ({ __typename: 'LiquidationCall' } & Pick<
+        LiquidationCall,
+        'id' | 'timestamp'
+      >)
+    | ({ __typename: 'OriginationFeeLiquidation' } & Pick<
+        OriginationFeeLiquidation,
+        'id' | 'timestamp'
+      >)
   >;
 };
 
@@ -5039,6 +5101,64 @@ export const UserReservesDocument = gql`
     }
   }
 `;
+export const VolumeReservesV1Document = gql`
+  query VolumeReservesV1 {
+    priceOracle(id: 1) {
+      usdPriceEth
+    }
+    reserves {
+      id
+      symbol
+      name
+      decimals
+      underlyingAsset
+      price {
+        priceInEth
+      }
+      aToken {
+        id
+      }
+    }
+  }
+`;
+export const DailyVolumeV1Document = gql`
+  query DailyVolumeV1($first: Int!, $from: Int!) {
+    items: userTransactions(
+      first: $first
+      orderBy: timestamp
+      orderDirection: asc
+      where: { timestamp_gte: $from }
+    ) {
+      __typename
+      id
+      timestamp
+      ... on Repay {
+        reserve {
+          id
+        }
+        amount: amountAfterFee
+      }
+      ... on Deposit {
+        reserve {
+          id
+        }
+        amount
+      }
+      ... on Borrow {
+        reserve {
+          id
+        }
+        amount
+      }
+      ... on RedeemUnderlying {
+        reserve {
+          id
+        }
+        amount
+      }
+    }
+  }
+`;
 
 export type SdkFunctionWrapper = <T>(action: () => Promise<T>) => Promise<T>;
 
@@ -5079,6 +5199,42 @@ export function getSdk(
       return withWrapper(() =>
         client.rawRequest<UserReservesQuery>(
           print(UserReservesDocument),
+          variables,
+          requestHeaders
+        )
+      );
+    },
+    VolumeReservesV1(
+      variables?: VolumeReservesV1QueryVariables,
+      requestHeaders?: Headers
+    ): Promise<{
+      data?: VolumeReservesV1Query | undefined;
+      extensions?: any;
+      headers: Headers;
+      status: number;
+      errors?: GraphQLError[] | undefined;
+    }> {
+      return withWrapper(() =>
+        client.rawRequest<VolumeReservesV1Query>(
+          print(VolumeReservesV1Document),
+          variables,
+          requestHeaders
+        )
+      );
+    },
+    DailyVolumeV1(
+      variables: DailyVolumeV1QueryVariables,
+      requestHeaders?: Headers
+    ): Promise<{
+      data?: DailyVolumeV1Query | undefined;
+      extensions?: any;
+      headers: Headers;
+      status: number;
+      errors?: GraphQLError[] | undefined;
+    }> {
+      return withWrapper(() =>
+        client.rawRequest<DailyVolumeV1Query>(
+          print(DailyVolumeV1Document),
           variables,
           requestHeaders
         )
