@@ -1,44 +1,59 @@
 {
-    "path": "pages",
-    "name": "pages",
-    "children": [
+  "path": "pages",
+  "name": "pages",
+  "children": [
+    {
+      "path": "pages/API",
+      "name": "API",
+      "children": [
         {
-            "path": "pages/API",
-            "name": "API",
-            "children": [
-                {
-                    "path": "pages/API/income.mdx",
-                    "name": "income.mdx",
-                    "meta": {},
-                    "title": "Income",
-                    "url": "/API/income"
-                },
-                {
-                    "path": "pages/API/index.mdx",
-                    "name": "index.mdx",
-                    "meta": {},
-                    "title": "Introduction",
-                    "url": "/API/"
-                }
-            ],
-            "size": null,
-            "type": "directory"
+          "path": "pages/API/income.mdx",
+          "name": "income.mdx",
+          "meta": {},
+          "title": "Income",
+          "url": "/API/income"
         },
         {
-            "path": "pages/api",
-            "name": "api",
-            "children": [],
-            "size": 0,
-            "type": "directory"
-        },
-        {
-            "path": "pages/index.mdx",
-            "name": "index.mdx",
-            "meta": {},
-            "title": "About",
-            "url": "/"
+          "path": "pages/API/index.mdx",
+          "name": "index.mdx",
+          "meta": {},
+          "title": "Introduction",
+          "url": "/API/"
         }
-    ],
-    "size": null,
-    "type": "directory"
+      ],
+      "size": null,
+      "type": "directory"
+    },
+    {
+      "path": "pages/api",
+      "name": "api",
+      "children": [],
+      "size": 0,
+      "type": "directory"
+    },
+    {
+      "path": "pages/index.mdx",
+      "name": "index.mdx",
+      "meta": {},
+      "title": "About",
+      "url": "/"
+    },
+    {
+      "path": "pages/math",
+      "name": "math",
+      "children": [
+        {
+          "path": "pages/math/rate-calculation.mdx",
+          "name": "rate-calculation.mdx",
+          "meta": {},
+          "title": "Rate Calculation",
+          "url": "/math/rate-calculation"
+        }
+      ],
+      "size": null,
+      "type": "directory"
+    }
+  ],
+  "size": null,
+  "type": "directory"
 }

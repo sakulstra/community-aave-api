@@ -1,0 +1,69 @@
+---
+name: Rate Calculation
+---
+
+import { MiniGraphiQL } from "mini-graphiql";
+
+# Rates calculation
+
+Calculating rates in Aave is somehwhat complicated due to the interest bearing nature of aTokens.
+
+The reason for that is twofold:
+
+1. liquidity of aTokens constantly changes which is making utilization based rates extremly dynamic
+2. depositor intrest is not only based on interest, but also includes factors like flash premiums
+
+Therefore the aave protocol keeps track of two values:
+
+**Rate**: The rate is a purly utilization based metric which represents the current rate at this point of time.
+
+**Index**: The index keeps track of "growth" also incorporating things like the flash premium.
+
+To calculate correct historically archived deposit rates you should use [index based rate claculation](https://github.com/aave/aave-js/blob/v2/src/helpers/pool-math.ts#L124).
+
+## Example Code
+
+export const query1 = `
+{
+  # v1 query
+  reserves(first: 1) {
+    lastUpdateTimestamp
+    liquidityIndex
+    variableBorrowIndex
+    paramsHistory(first: 1, orderDirection: asc){
+      timestamp
+    	liquidityIndex
+    	variableBorrowIndex
+    }
+  }
+}
+`;
+
+<MiniGraphiQL
+  url="https://api.thegraph.com/subgraphs/name/aave/protocol-multy-raw"
+  query={query1}
+/>
+
+```ts
+import { calculateAverageRate } from "@aave/protocol-js";
+
+const result = {
+  lastUpdateTimestamp: 1611926412,
+  liquidityIndex: "1031830159181667334741382194",
+  variableBorrowIndex: "1048002659480593195934069307",
+  paramsHistory: [
+    {
+      timestamp: 1606903009,
+      liquidityIndex: "1021187617641523092754480830",
+      variableBorrowIndex: "1034162815675781948442542345",
+    },
+  ],
+};
+
+const archivedRate = calculateAverageRate(
+  result.paramsHistory[0].liquidityIndex,
+  result.liquidityIndex,
+  result.paramsHistory[0].timestamp
+  result.lastUpdateTimestamp
+);
+```
