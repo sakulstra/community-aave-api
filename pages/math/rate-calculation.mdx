@@ -10,8 +10,8 @@ Calculating rates in Aave is somehwhat complicated due to the interest bearing n
 
 The reason for that is twofold:
 
-1. liquidity of aTokens constantly changes which is making utilization based rates extremly dynamic
-2. depositor intrest is not only based on interest, but also includes factors like flash premiums
+1. liquidity of aTokens constantly changes which is making utilization based rates extremly dynamic (it's changing every second)
+2. depositor interest is not only based on interest, but also includes factors like flash premiums (so it's usually "a little more")
 
 Therefore the aave protocol keeps track of two values:
 
@@ -63,7 +63,7 @@ const result = {
 const archivedRate = calculateAverageRate(
   result.paramsHistory[0].liquidityIndex,
   result.liquidityIndex,
-  result.paramsHistory[0].timestamp
+  result.paramsHistory[0].timestamp,
   result.lastUpdateTimestamp
 );
 ```
