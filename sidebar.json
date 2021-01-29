@@ -19,6 +19,13 @@
           "meta": {},
           "title": "Introduction",
           "url": "/API/"
+        },
+        {
+          "path": "pages/API/volume.mdx",
+          "name": "volume.mdx",
+          "meta": {},
+          "title": "Volume",
+          "url": "/API/volume"
         }
       ],
       "size": null,

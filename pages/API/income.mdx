@@ -2,18 +2,10 @@
 name: Income
 ---
 
+import { ApiFetcher } from "@ui/ApiFetcher";
+
 # Income
 
 The income api combines different incomes on the aave protocol fetched via thegraph and aggregates them as an easy to consume rest api.
 
-```ts
-// /api/income
-{
-  v1: { oneDayAgo: "110798.8641469263", sevenDaysAVG: "111968.8409105395" },
-  v2: { oneDayAgo: "50870.390661512", sevenDaysAVG: "52957.5728008522" },
-  totalFee: {
-    oneDayAgo: "161669.2548084383",
-    sevenDaysAVG: "164926.4137113917",
-  },
-};
-```
+<ApiFetcher url={"/api/income"} />
