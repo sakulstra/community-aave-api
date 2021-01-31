@@ -66,6 +66,13 @@
       ],
       "size": null,
       "type": "directory"
+    },
+    {
+      "path": "pages/reserves.mdx",
+      "name": "reserves.mdx",
+      "meta": {},
+      "title": "Reserves",
+      "url": "/reserves"
     }
   ],
   "size": null,

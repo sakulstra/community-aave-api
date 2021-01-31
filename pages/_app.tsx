@@ -29,6 +29,7 @@ export default function App(props) {
         ]}
         sidebarOrdering={{
           "index.mdx": true,
+          "reserves.mdx": true,
           api: false,
           API: {
             "index.mdx": true,
