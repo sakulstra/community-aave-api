@@ -21,6 +21,13 @@
           "url": "/API/"
         },
         {
+          "path": "pages/API/liquidity.mdx",
+          "name": "liquidity.mdx",
+          "meta": {},
+          "title": "Liquidity",
+          "url": "/API/liquidity"
+        },
+        {
           "path": "pages/API/volume.mdx",
           "name": "volume.mdx",
           "meta": {},

@@ -16,3 +16,8 @@ export function applyCacheHeaders(
   );
   res.setHeader("Content-Type", "application/json");
 }
+
+export function handleBadRequest(res: NextApiResponse, error) {
+  res.statusCode = 400;
+  res.json(JSON.stringify({ error }));
+}

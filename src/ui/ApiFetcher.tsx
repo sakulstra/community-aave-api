@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { fetcher } from "./utils";
 import { Code } from "dokz";
 
 export function ApiFetcher({ url }: { url: string }) {
@@ -7,8 +6,8 @@ export function ApiFetcher({ url }: { url: string }) {
   const [response, setResponse] = useState({});
 
   useEffect(() => {
-    fetcher(url).then((data) => {
-      setResponse(data);
+    fetch(url).then(async (data) => {
+      setResponse({ status: data.status, data: await data.json() });
       setLoading(false);
     });
   }, []);
