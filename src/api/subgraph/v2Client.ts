@@ -1,8 +1,8 @@
 /* eslint-disable */
 import { GraphQLClient } from "graphql-request";
-import { HeadersInit } from "graphql-request/dist/types.dom";
 import { print } from "graphql";
 import { GraphQLError } from "graphql-request/dist/types";
+import { Headers } from "graphql-request/dist/types.dom";
 import gql from "graphql-tag";
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -6509,11 +6509,11 @@ export function getSdk(
   return {
     ReservesFeesQuery(
       variables: ReservesFeesQueryQueryVariables,
-      requestHeaders?: HeadersInit
+      requestHeaders?: Headers
     ): Promise<{
       data?: ReservesFeesQueryQuery | undefined;
       extensions?: any;
-      headers: HeadersInit;
+      headers: Headers;
       status: number;
       errors?: GraphQLError[] | undefined;
     }> {
@@ -6527,11 +6527,11 @@ export function getSdk(
     },
     ReservesLiquidityQuery(
       variables: ReservesLiquidityQueryQueryVariables,
-      requestHeaders?: HeadersInit
+      requestHeaders?: Headers
     ): Promise<{
       data?: ReservesLiquidityQueryQuery | undefined;
       extensions?: any;
-      headers: HeadersInit;
+      headers: Headers;
       status: number;
       errors?: GraphQLError[] | undefined;
     }> {
@@ -6545,11 +6545,11 @@ export function getSdk(
     },
     ReserveParamsHistoryLiquidityItems(
       variables: ReserveParamsHistoryLiquidityItemsQueryVariables,
-      requestHeaders?: HeadersInit
+      requestHeaders?: Headers
     ): Promise<{
       data?: ReserveParamsHistoryLiquidityItemsQuery | undefined;
       extensions?: any;
-      headers: HeadersInit;
+      headers: Headers;
       status: number;
       errors?: GraphQLError[] | undefined;
     }> {
@@ -6563,11 +6563,11 @@ export function getSdk(
     },
     FirstReserveParamsHistoryLiquidityItems(
       variables: FirstReserveParamsHistoryLiquidityItemsQueryVariables,
-      requestHeaders?: HeadersInit
+      requestHeaders?: Headers
     ): Promise<{
       data?: FirstReserveParamsHistoryLiquidityItemsQuery | undefined;
       extensions?: any;
-      headers: HeadersInit;
+      headers: Headers;
       status: number;
       errors?: GraphQLError[] | undefined;
     }> {
@@ -6581,11 +6581,11 @@ export function getSdk(
     },
     Oracle(
       variables?: OracleQueryVariables,
-      requestHeaders?: HeadersInit
+      requestHeaders?: Headers
     ): Promise<{
       data?: OracleQuery | undefined;
       extensions?: any;
-      headers: HeadersInit;
+      headers: Headers;
       status: number;
       errors?: GraphQLError[] | undefined;
     }> {
@@ -6599,11 +6599,11 @@ export function getSdk(
     },
     ReserveParamsHistory(
       variables: ReserveParamsHistoryQueryVariables,
-      requestHeaders?: HeadersInit
+      requestHeaders?: Headers
     ): Promise<{
       data?: ReserveParamsHistoryQuery | undefined;
       extensions?: any;
-      headers: HeadersInit;
+      headers: Headers;
       status: number;
       errors?: GraphQLError[] | undefined;
     }> {
@@ -6617,11 +6617,11 @@ export function getSdk(
     },
     FirstReserveParamsHistory(
       variables: FirstReserveParamsHistoryQueryVariables,
-      requestHeaders?: HeadersInit
+      requestHeaders?: Headers
     ): Promise<{
       data?: FirstReserveParamsHistoryQuery | undefined;
       extensions?: any;
-      headers: HeadersInit;
+      headers: Headers;
       status: number;
       errors?: GraphQLError[] | undefined;
     }> {
@@ -6635,11 +6635,11 @@ export function getSdk(
     },
     ReservesQuery(
       variables?: ReservesQueryQueryVariables,
-      requestHeaders?: HeadersInit
+      requestHeaders?: Headers
     ): Promise<{
       data?: ReservesQueryQuery | undefined;
       extensions?: any;
-      headers: HeadersInit;
+      headers: Headers;
       status: number;
       errors?: GraphQLError[] | undefined;
     }> {
@@ -6653,11 +6653,11 @@ export function getSdk(
     },
     VolumeReservesV2(
       variables?: VolumeReservesV2QueryVariables,
-      requestHeaders?: HeadersInit
+      requestHeaders?: Headers
     ): Promise<{
       data?: VolumeReservesV2Query | undefined;
       extensions?: any;
-      headers: HeadersInit;
+      headers: Headers;
       status: number;
       errors?: GraphQLError[] | undefined;
     }> {
@@ -6671,11 +6671,11 @@ export function getSdk(
     },
     DailyVolumeV2(
       variables: DailyVolumeV2QueryVariables,
-      requestHeaders?: HeadersInit
+      requestHeaders?: Headers
     ): Promise<{
       data?: DailyVolumeV2Query | undefined;
       extensions?: any;
-      headers: HeadersInit;
+      headers: Headers;
       status: number;
       errors?: GraphQLError[] | undefined;
     }> {
