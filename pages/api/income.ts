@@ -49,8 +49,12 @@ async function getV2Fees(
       };
 
       const currentFee = getFees(reserve);
-      const oneDayAgoFee = getFees(reserve.oneDayAgo[0]);
-      const sevenDayAgoFee = getFees(reserve.sevenDaysAgo[0]);
+      const oneDayAgoFee = reserve.oneDayAgo[0]
+        ? getFees(reserve.oneDayAgo[0])
+        : new BigNumber(0);
+      const sevenDayAgoFee = reserve.sevenDaysAgo[0]
+        ? getFees(reserve.sevenDaysAgo[0])
+        : new BigNumber(0);
 
       acc.sevenDaysAVG = acc.sevenDaysAVG.plus(
         currentFee.minus(sevenDayAgoFee).div(7)
@@ -100,8 +104,12 @@ async function getV1Fees(
       };
 
       const currentFee = getFees(reserve);
-      const oneDayAgoFee = getFees(reserve.oneDayAgo[0]);
-      const sevenDayAgoFee = getFees(reserve.sevenDaysAgo[0]);
+      const oneDayAgoFee = reserve.oneDayAgo[0]
+        ? getFees(reserve.oneDayAgo[0])
+        : new BigNumber(0);
+      const sevenDayAgoFee = reserve.sevenDaysAgo[0]
+        ? getFees(reserve.sevenDaysAgo[0])
+        : new BigNumber(0);
 
       acc.sevenDaysAVG = acc.sevenDaysAVG.plus(
         currentFee.minus(sevenDayAgoFee).div(7)
