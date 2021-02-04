@@ -10,7 +10,7 @@ import { NextApiRequest, NextApiResponse } from "next";
  * borrow positions are per user & per
  */
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const { userId, poolId, timestamp } = req.query;
+  const { userId, poolId, timestamp, version } = req.query;
   if (!timestamp) {
     // caching response fro 30s
     applyCacheHeaders(res, 30);
